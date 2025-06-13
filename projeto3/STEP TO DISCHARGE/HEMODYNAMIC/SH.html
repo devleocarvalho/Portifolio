@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema de Monitoramento de Pacientes</h1>
+       
+        <div class="no-print">
+            <h2>Cadastro de Paciente</h2>
+            <form id="patientForm">
+                <div class="form-group">
+                    <label for="name">Nome do Paciente:</label>
+                    <input type="text" id="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bed">Leito:</label>
+                    <input type="text" id="bed" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="admission">Data de Admissão:</label>
+                    <input type="date" id="admission" required>
+                </div>
+                
+                <button type="submit">Cadastrar Paciente</button>
+            </form>
+            
+            <h2>Registro de Sinais Vitais</h2>
+            <form id="vitalsForm">
+                <div class="form-group">
+                    <label for="patientSelect">Paciente:</label>
+                    <select id="patientSelect" required></select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="time">Horário:</label>
+                    <input type="time" id="time" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pa">Pressão Arterial (PA):</label>
+                    <input type="text" id="pa" placeholder="Ex: 120/80 mmHg" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pam">Pressão Arterial Média (PAM):</label>
+                    <input type="number" id="pam" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fc">Frequência Cardíaca (FC - bpm):</label>
+                    <input type="number" id="fc" placeholder="Ex: 0-300 rpm" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fr">Frequência Respiratória (FR - rpm):</label>
+                    <input type="number" id="fr" placeholder="Ex: 0-70 ipm" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="temp">Temperatura (°C):</label>
+                    <input type="number" step="0.1" id="temp" placeholder="Ex: 0º-50ºC" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="satO2">Saturação O₂ (%):</label>
+                    <input type="number" id="satO2" min="0" max="100" placeholder="Ex: 0-100%" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="CO2">CO₂:</label>
+                    <input type="text" id="CO2" placeholder="Ex: 0-50">
+                </div>
+                
+                <div class="form-group">
+                    <label for="dor">Dor (0-10):</label>
+                    <input type="number" id="dor" min="0" max="10" placeholder="doiquanto?0 nada 10 muito">
+                </div>
+                                
+                <div class="form-group">
+                    <label for="balancoHidrico">Balanço Hídrico:</label>
+                    <input type="text" id="balancoHidrico">
+                </div>
+
+                <div class="form-group">
+                    <label for="Dispositivo/dreno">Dispositivo/dreno:</label>
+                    <input type="text" id="medicacao">
+                </div>
+                
+                <div class="form-group">
+                    <label for="medicacao">Medicação:</label>
+                    <input type="text" id="medicacao">
+                </div>
+                
+                <button type="submit">Registrar Sinais Vitais</button>
+            </form>
+            
+            <h2>Gerar Relatório</h2>
+            <form id="reportForm">
+                <div class="form-group">
+                    <label for="reportPatient">Paciente:</label>
+                    <select id="reportPatient" required>
+                        <option value="">Selecione um paciente</option>
+                    </select>
+                </div>
+                
+                <button type="submit" id="generateReport">Gerar Relatório Completo</button>
+            </form>
+        </div>
+        
+        <div id="reportContainer"></div>
+    </div>
+
+    <script>
+        let patients = JSON.parse(localStorage.getItem('patients')) || [];
+      
+        function updatePatientSelects() {
+            const patientSelect = document.getElementById('patientSelect');
+            const reportPatient = document.getElementById('reportPatient');
+            
+            patientSelect.innerHTML = '';
+            reportPatient.innerHTML = '<option value="">Selecione um paciente</option>';
+            
+            patients.forEach(patient => {
+                const option1 = document.createElement('option');
+                option1.value = patient.id;
+                option1.textContent = `${patient.name} (Leito: ${patient.bed})`;
+                patientSelect.appendChild(option1);
+                
+                const option2 = document.createElement('option');
+                option2.value = patient.id;
+                option2.textContent = `${patient.name} (Leito: ${patient.bed})`;
+                reportPatient.appendChild(option2);
+            });
+        }
+        
+        function generateId() {
+            return '_' + Math.random().toString(36).substr(2, 9);
+        }
+        
+        function calculatePAM() {
+            const paInput = document.getElementById('pa').value;
+            const pamInput = document.getElementById('pam');
+            
+            if (paInput && paInput.includes('/')) {
+                const [sistolica, diastolica] = paInput.split('/').map(Number);
+                if (!isNaN(sistolica) && !isNaN(diastolica)) {
+                    const pam = Math.round((sistolica + 2 * diastolica) / 3);
+                    pamInput.value = pam;
+                    return;
+                }
+            }
+            
+            pamInput.value = '';
+        }
+        
+        document.getElementById('patientForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const patient = {
+                id: generateId(),
+                name: document.getElementById('name').value,
+                bed: document.getElementById('bed').value,
+                admission: document.getElementById('admission').value,
+                vitals: []
+            };
+            
+            patients.push(patient);
+            localStorage.setItem('patients', JSON.stringify(patients));
+            
+            updatePatientSelects();
+            this.reset();
+            alert('Paciente cadastrado com sucesso!');
+        });
+        
+        document.getElementById('vitalsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const patientId = document.getElementById('patientSelect').value;
+            const patient = patients.find(p => p.id === patientId);
+            
+            if (patient) {
+                const vital = {
+                    time: document.getElementById('time').value,
+                    pa: document.getElementById('pa').value,
+                    pam: document.getElementById('pam').value,
+                    fc: document.getElementById('fc').value,
+                    fr: document.getElementById('fr').value,
+                    temp: document.getElementById('temp').value,
+                    satO2: document.getElementById('satO2').value,
+                    CO2: document.getElementById('CO2').value,
+                    dor: document.getElementById('dor').value,
+                    balancoHidrico: document.getElementById('balancoHidrico').value,
+                    medicacao: document.getElementById('medicacao').value
+                };
+                
+                patient.vitals.push(vital);
+                localStorage.setItem('patients', JSON.stringify(patients));
+                
+                this.reset();
+                alert('Sinais vitais registrados com sucesso!');
+            }
+        });
+        
+        document.getElementById('pa').addEventListener('input', calculatePAM);
+        document.getElementById('pa').addEventListener('change', calculatePAM);
+        
+        document.getElementById('reportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const patientId = document.getElementById('reportPatient').value;
+            const patient = patients.find(p => p.id === patientId);
+            
+            if (!patient || patient.vitals.length === 0) {
+                alert('Nenhum dado de sinais vitais encontrado para este paciente.');
+                return;
+            }
+            
+            patient.vitals.sort((a, b) => {
+                return new Date(`1970-01-01 ${a.time}`) - new Date(`1970-01-01 ${b.time}`);
+            });
+            
+            const reportContainer = document.getElementById('reportContainer');
+            reportContainer.innerHTML = '';
+            
+            reportContainer.innerHTML = `
+                <div class="report-header">
+                    <h1>Relatório de Monitoramento</h1>
+                    <p><strong>Data de geração:</strong> ${new Date().toLocaleDateString('pt-BR')} às ${new Date().toLocaleTimeString('pt-BR')}</p>
+                </div>
+                
+                <div class="patient-info">
+                    <h2>Paciente: ${patient.name}</h2>
+                    <p><strong>Leito:</strong> ${patient.bed}</p>
+                    <p><strong>Data de admissão:</strong> ${new Date(patient.admission).toLocaleDateString('pt-BR')}</p>
+                </div>
+                
+                <h3>Registros de Sinais Vitais</h3>
+                <table class="vitals-table">
+                    <thead>
+                        <tr>
+                            <th>Horário</th>
+                            <th>PA</th>
+                            <th>PAM</th>
+                            <th>FC (bpm)</th>
+                            <th>FR (rpm)</th>
+                            <th>Temp (°C)</th>
+                            <th>SatO₂ (%)</th>
+                            <th>CO₂</th>
+                            <th>Dor (0-10)</th>
+                            <th>Balanço Hídrico</th>
+                            <th>Medicação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${patient.vitals.map(vital => `
+                            <tr>
+                                <td>${vital.time}</td>
+                                <td>${vital.pa}</td>
+                                <td>${vital.pam}</td>
+                                <td>${vital.fc}</td>
+                                <td>${vital.fr}</td>
+                                <td>${vital.temp}</td>
+                                <td>${vital.satO2}</td>
+                                <td>${vital.CO2 || '-'}</td>
+                                <td>${vital.dor || '-'}</td>
+                                <td>${vital.balancoHidrico || '-'}</td>
+                                <td>${vital.medicacao || '-'}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+                
+                <button class="print-btn" onclick="window.print()">Imprimir Relatório</button>
+            `;
+            
+            createCombinedChart(reportContainer, patient);
+            
+            const footer = document.createElement('div');
+            footer.className = 'signature-area';
+            footer.innerHTML = `
+                <div style="border-top: 1px solid #000; width: 300px; margin-left: auto; margin-top: 50px;"></div>
+                <p>Assinatura do Responsável</p>
+                <p>Relatório gerado automaticamente pelo Sistema de Monitoramento</p>
+            `;
+            reportContainer.appendChild(footer);
+            
+            reportContainer.style.display = 'block';
+            reportContainer.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        function createCombinedChart(container, patient) {
+            const times = patient.vitals.map(v => v.time);
+            
+            // Dados formatados para o gráfico combinado
+            const allData = {
+        'PA Sistólica': patient.vitals.map(v => v.pa ? parseInt(v.pa.split('/')[0]) : null),
+        'PA Diastólica': patient.vitals.map(v => v.pa ? parseInt(v.pa.split('/')[1]) : null),
+        'PAM': patient.vitals.map(v => parseInt(v.pam)) || null,
+        'FC (bpm)': patient.vitals.map(v => parseInt(v.fc)) || null,
+        'FR (rpm)': patient.vitals.map(v => parseInt(v.fr)) || null,
+        'Temp (°C)': patient.vitals.map(v => parseFloat(v.temp)) || null,
+        'SatO₂ (%)': patient.vitals.map(v => parseInt(v.satO2)) || null,
+        'Dor (0-10)': patient.vitals.map(v => isNaN(v.dor) ? null : parseFloat(v.dor))
+            };
+            // Cores para cada série
+            const colors = {
+                'PA Sistólica': '#FF6384',
+                'PA Diastólica': '#36A2EB',
+                'PAM': '#FFCE56',
+                'FC (bpm)': '#4BC0C0',
+                'FR (rpm)': '#9966FF',
+                'Temp (°C)': '#FF9F40',
+                'SatO₂ (%)': '#C9CBCF',
+                'Dor (0-10)': '#FF6384'
+            };
+
+            // Criar container para o gráfico combinado
+            const combinedChartDiv = document.createElement('div');
+            combinedChartDiv.innerHTML = '<h3>Evolução dos Sinais Vitais</h3>';
+            container.insertBefore(combinedChartDiv, container.querySelector('.print-btn'));
+
+            // Adicionar controles de exibição
+            const controlsDiv = document.createElement('div');
+            controlsDiv.className = 'chart-controls';
+            controlsDiv.innerHTML = '<strong>Mostrar:</strong>';
+            
+            Object.keys(allData).forEach(key => {
+                const controlId = `show-${key.replace(/\s+/g, '-')}`;
+                controlsDiv.innerHTML += `
+                    <label>
+                        <input type="checkbox" id="${controlId}" checked>
+                        <span style="color: ${colors[key]}">■</span> ${key}
+                    </label>
+                `;
+            });
+            
+            combinedChartDiv.appendChild(controlsDiv);
+
+            // Container do gráfico
+            const chartCanvasContainer = document.createElement('div');
+            chartCanvasContainer.className = 'combined-chart-container';
+            combinedChartDiv.appendChild(chartCanvasContainer);
+
+            const canvas = document.createElement('canvas');
+            chartCanvasContainer.appendChild(canvas);
+            
+            // Preparar datasets iniciais (todos visíveis)
+            const initialDatasets = Object.keys(allData).map(key => ({
+                label: key,
+                data: allData[key],
+                borderColor: colors[key],
+                backgroundColor: colors[key] + '33',
+                tension: 0.3,
+                fill: false,
+                hidden: false
+            }));
+
+            // Criar o gráfico combinado
+            const ctx = canvas.getContext('2d');
+            const combinedChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: times,
+                    datasets: initialDatasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: 'PA/PAM/FC/FR/Dor'
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: 'Temp/ SatO₂',
+                            },
+                            grid: {
+                                drawOnChartArea: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    }
+                }
+            });
+
+            // Atribuir eixos específicos
+            combinedChart.data.datasets.forEach(ds => {
+                if (['Temp (°C)', 'SatO₂ (%)'].includes(ds.label)) {
+                    ds.yAxisID = 'y1';
+                } else {
+                    ds.yAxisID = 'y';
+                }
+            });
+
+            // Adicionar event listeners para os controles
+            Object.keys(allData).forEach(key => {
+                const controlId = `show-${key.replace(/\s+/g, '-')}`;
+                document.getElementById(controlId).addEventListener('change', function() {
+                    const datasetIndex = combinedChart.data.datasets.findIndex(ds => ds.label === key);
+                    if (datasetIndex !== -1) {
+                        combinedChart.setDatasetVisibility(datasetIndex, this.checked);
+                        combinedChart.update();
+                    }
+                });
+            });
+
+            combinedChart.update();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updatePatientSelects();
+        });
+    </script>
+</body>
+</html>

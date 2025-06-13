@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verdade ou Mentira</title>
+    <link rel="shortcut icon" href="./OIP.jpeg" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>V ou F</h1>
+        <div id="start-screen" class="screen active">
+            <p>Um jogo de atuação e blefe com curiosidades onde a verdade ou a mentira são postos à prova</p>
+            <button id="start-game-btn">Começar Jogo</button>
+        </div>
+
+        <div id="game-screen" class="screen">
+            <div class="timer-container">
+                Tempo restante: <span id="timer">01:00</span>
+            </div>
+            <div class="main-fact-display">
+                <h2>Fato Principal:</h2>
+                <p id="main-fact-text"></p>
+                <div id="main-fact-indicator" class="indicator"></div>
+            </div>
+
+            <div class="cards-container">
+                <h3>Informações do Fato:</h3>
+                <div id="info-cards" class="info-cards">
+                    </div>
+                <div class="card-action-area">
+                    <p id="card-question-text" class="hidden">Essa informação é Verdadeira ou Falsa?</p>
+                    <div id="card-guess-buttons" class="hidden">
+                        <button id="card-guess-truth-btn">Verdadeiro</button>
+                        <button id="card-guess-false-btn">Falso</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-actions">
+                <button id="reveal-card-btn">Revelar Próxima Informação</button>
+            </div>
+
+            <div class="group-guess hidden">
+                <h3>Palpite Final do Grupo sobre o Fato Principal:</h3>
+                <button id="final-guess-truth-btn">O Fato Principal É Verdade!</button>
+                <button id="final-guess-lie-btn">O Fato Principal É Mentira!</button>
+            </div>
+
+            <div id="feedback-message" class="message"></div>
+            <button id="next-round-btn" class="hidden">Próximo Fato</button>
+        </div>
+
+        <div id="end-screen" class="screen">
+            <h2>Fim de Jogo!</h2>
+            <p id="final-story-text"></p>
+            <button id="restart-game-btn">Jogar Novamente</button>
+        </div>
+    </div>
+    <script src="gameFacts.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

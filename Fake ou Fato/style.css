@@ -1,0 +1,265 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.game-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+    overflow: hidden; /* Para esconder telas inativas */
+}
+
+h1, h2, h3 {
+    color: #ffd700;
+    margin-bottom: 20px;
+}
+
+.screen {
+    display: none;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Botões */
+button {
+    background-color: #ffd700;
+    color: #2575fc;
+    border: none;
+    padding: 12px 25px;
+    margin: 10px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #ffe066;
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    background-color: #888;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.player-actions, .group-guess {
+    margin-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 20px;
+}
+
+/* Fato Principal */
+.main-fact-display {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.main-fact-display h2 {
+    color: #fff;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.main-fact-display p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Indicadores de Verdade/Mentira */
+/* Indicador do Fato Principal - sempre no canto */
+.indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.8em;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.indicator.true {
+    background-color: #28a745; /* Verde */
+}
+
+.indicator.false {
+    background-color: #dc3545; /* Vermelho */
+}
+
+/* Cartas de Informação */
+.info-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    min-height: 120px; /* Garante que a área não encolha demais */
+}
+
+.info-card {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 15px;
+    width: calc(50% - 25px); /* Duas colunas */
+    min-height: 80px;
+    display: flex; /* Transforma em flexbox para alinhar texto e indicadores */
+    justify-content: space-between; /* Espaça o texto e os indicadores */
+    align-items: center; /* Centraliza verticalmente */
+    text-align: left; /* Alinha o texto à esquerda */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    opacity: 0; /* Começam invisíveis */
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.info-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.info-card p {
+    font-size: 1em;
+    margin: 0;
+    flex-grow: 1; /* Permite que o parágrafo ocupe o espaço disponível */
+    padding-right: 10px; /* Espaço entre o texto e os indicadores */
+}
+
+/* Container para os indicadores de Verdade/Palpite */
+.info-card .card-indicators-wrapper {
+    display: flex;
+    flex-direction: column; /* Indicadores empilhados verticalmente */
+    align-items: flex-end; /* Alinha à direita */
+    margin-left: 10px;
+}
+
+/* Indicador da VERDADE da informação (Visível para o narrador) */
+.info-card .card-truth-indicator {
+    font-size: 0.9em; /* Tamanho menor para o indicador de verdade */
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 5px; /* Espaço entre os indicadores */
+}
+
+.info-card .card-truth-indicator.true {
+    background-color: #28a745; /* Verde */
+}
+.info-card .card-truth-indicator.false {
+    background-color: #dc3545; /* Vermelho */
+}
+
+/* Indicador do PALPITE do grupo (Visível após a votação) */
+.info-card .card-guess-indicator {
+    font-size: 0.9em; /* Tamanho menor para o indicador de palpite */
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: none; /* Escondido por padrão */
+}
+
+/* A cor do palpite do grupo indica se o palpite foi CERTO ou ERRADO */
+.info-card .card-guess-indicator.correct-guess {
+    background-color: #ffc107; /* Azul para palpite correto do grupo */
+}
+.info-card .card-guess-indicator.incorrect-guess {
+    background-color: #ffc107; /* Amarelo/Laranja para palpite incorreto do grupo */
+}
+
+.info-card .card-guess-indicator.revealed-guess {
+    display: block; /* Mostra após o grupo votar */
+}
+
+
+/* Área de ação para cada cartão (botões de Verdadeiro/Falso) */
+.card-action-area {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.card-action-area p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+/* Timer */
+.timer-container {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ffd700;
+    margin-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.message {
+    margin-top: 25px;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.message.success {
+    background-color: #28a745;
+}
+
+.message.error {
+    background-color: #dc3545;
+}
+
+.hidden {
+    display: none !important; /* Use !important para garantir a sobreposição */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .game-container {
+        padding: 20px;
+    }
+    .info-card {
+        width: 100%; /* Uma coluna em telas menores */
+    }
+    .info-card p {
+        margin: 0;
+    }
+    .info-card .card-indicators-wrapper {
+        flex-direction: row; /* Coloca os indicadores lado a lado em telas pequenas */
+        align-items: center;
+    }
+    .info-card .card-truth-indicator {
+        margin-bottom: 0;
+        margin-right: 5px; /* Espaçamento entre os indicadores */
+    }
+}

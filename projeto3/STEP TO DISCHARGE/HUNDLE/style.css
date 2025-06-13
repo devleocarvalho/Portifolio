@@ -1,0 +1,202 @@
+/* Reset e Estilos Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #000000;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #000000;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input, 
+select, 
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button, 
+.btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    display: inline-block;
+    text-align: center;
+    margin: 0.25rem;
+}
+
+button:hover, 
+.btn:hover {
+    background-color: #0056b3;
+}
+
+
+.radio-group {
+    display: flex;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.radio-group label {
+    position: relative;
+    background-color:#007bff;
+    color: #000000;
+    border: 2px solid #000000;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radio-group input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+}
+
+.radio-group input[type="radio"]:checked + span {
+    background-color: #007bff;
+    color:#007bff;
+}
+.radio-group input[type="radio"]:checked + span::after {
+    content: "✖"; 
+    font-size: 20px;
+    color: rgb(0, 0, 0); 
+    position: absolute;
+    top: 5px;
+    right: 5px; 
+}
+
+
+.radio-group span {
+    display: inline-block;
+    padding: 5px 10px;     
+}
+
+.radio-group label:hover {
+    background-color: #44ff00cf;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.leito-selection label {
+    display: inline-block;
+    margin: 0.25rem;
+    background: hsl(190, 100%, 50%);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.leito-selection input[type="checkbox"] {
+    display: none;
+}
+
+.leito-selection input[type="checkbox"]:checked + span {
+    background-color: #ff0000;
+    color: rgb(255, 255, 255);
+    cursor:progress;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+    }
+}
+
+@media print {
+    body {
+        background-color: white;
+        padding: 0;
+    }
+    
+    .container {
+        box-shadow: none;
+        padding: 0;
+    }
+    
+    button, .no-print {
+        display: none;
+    }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio da Cafeteria</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f1e5;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #8b4513;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        .price {
+            font-weight: bold;
+            color: #8b4513;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cardápio da Cafeteria</h1>
+        <div class="menu-item">
+            <span>Café Expresso</span>
+            <span class="price">R$ 5,00</span>
+        </div>
+        <div class="menu-item">
+            <span>Cappuccino</span>
+            <span class="price">R$ 8,00</span>
+        </div>
+        <div class="menu-item">
+            <span>Latte</span>
+            <span class="price">R$ 7,50</span>
+        </div>
+        <div class="menu-item">
+            <span>Pão de Queijo</span>
+            <span class="price">R$ 4,50</span>
+        </div>
+        <div class="menu-item">
+            <span>Bolo de Chocolate</span>
+            <span class="price">R$ 6,00</span>
+        </div>
+    </div>
+</body>
+</html>
