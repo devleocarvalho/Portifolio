@@ -205,6 +205,8 @@ p {
   text-shadow: 0 0 1px #ffffff;
   margin-bottom: 20px;
   line-height: 1.8;
+  text-align: center;
+  
 }
 
 .actions {
