@@ -159,7 +159,7 @@
         <h4>Salvador, Bahia, Brasil</h4>
       </div>
       
-      <form id="contactForm" class="contact-form" method="POST">
+      <form id="contactForm" class="contact-form" action="https://formsubmit.co/dev.leocarvalho@gmail.com" method="POST">
         <div class="form-group">
           <label for="name">Seu nome:</label>
           <input type="text" id="name" placeholder="Seu nome" required>
@@ -173,8 +173,11 @@
           <textarea id="message" placeholder="Sua mensagem" required></textarea>
         </div>
         <button type="submit" class="submit-button">Enviar mensagem</button>
+        
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://github.com/devleocarvalho">
       </form>
-
+      
     <footer class="footer">
       <div class="footer-content">
         <p>&copy; <span id="year"></span> Todos os direitos reservados</p>
