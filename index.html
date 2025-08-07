@@ -61,7 +61,7 @@
     </section>
 
     <section id="skills" class="js-section">
-       <h2>Habilidades</h2>
+      <h2>Habilidades</h2>
       <div class="skills-container">
         <div class="skills-grid">
           <div class="skill-box">
@@ -107,7 +107,7 @@
           <div class="skill-box">
             <img src="./assets/vue-js.png" alt="Vue.js" title="Vue.js 60h *2024 *">
              
-         </div>
+          </div>
           <div class="skill-box">
             <img src="./assets/react.png" alt="React" title="React 60h *2024 *">
               
@@ -116,7 +116,6 @@
             <img src="./assets/reactnative.png" alt="ReactNative" title="ReactNative 170h *2024 *">
              
           </div>
-          
           <div class="skill-box">
             <img src="./assets/sql.png" alt="SQL" title="SQL 60h *2024 *">
              
@@ -139,7 +138,8 @@
           </div>
         </div>
       </div>
-   </section>   
+    </section>
+      
     <section id="projects" class="js-section">
       <h2>Meus Projetos</h2>
       <div class="projects-container">
@@ -148,13 +148,13 @@
                 <img src="./projeto1/cafeteria modelo/img/parallax-imagem3.jpg" alt="Projeto 1">
                 <p>☕ Cafeteria Madrid!         
                   Bem-vindo ao repositório do projeto Cafeteria Madrid! Este projeto simula o site de uma cafeteria, desenvolvido com HTML5, CSS3 e JavaScript. Ele apresenta o cardápio, informações da loja, galeria de fotos e formulário de contato.</p>
-                <a href="./projeto1/cafeteria modelo/index.html" class="project-link">Ver projeto</a>
+                <a href="https://cafeteria-nine-mu.vercel.app/" class="project-link">Ver projeto</a>
               </div>
               <div class="project-card">
                 <h3>Construtora AM</h3>
                 <img src="./projeto2/ampla/images/a.jpg" alt="Projeto 2">
                 <p>Em desenvolvimento</p>
-                <a href="https://ampla-phi.vercel.app/index.html" class="project-link">Ver projeto</a>
+                <a href="./projeto2/ampla/index.html" class="project-link">Ver projeto</a>
               </div>
               <div class="project-card">
                 <h3>Evolution health</h3>
@@ -180,7 +180,7 @@
                   <p> loja de bordados</p>
                   <a href="https://bordados-eight.vercel.app/" class="project-link">Ver projeto</a>
               </div>
-              <div class="project-card">
+               <div class="project-card">
                   <h3> virtual cosmeticos</h3>
                   <img src="./assets/contact-bg.jpg" alt="Projeto 7">
                   <p> loja </p>
@@ -191,10 +191,9 @@
 
     </section>   
 
-
     <section id="contact" class="js-section">
       <h2>Entre em Contato</h2>
-      <h3>Vamos conversar!              <a href="whatsapp://send?phone=5571991338859" class="social-icon" target="_blank">  <i class="fab fa-whatsapp" ></i></a></h3>
+      <h3>Vamos conversar! <a href="whatsapp://send?phone=5571991338859" class="social-icon" target="_blank"><i class="fab fa-whatsapp" ></i></a></h3>
       <p>Estou interessado em oportunidades freelance, projetos desafiadores e colaborações. Entre em contato e vamos criar algo incrível juntos!</p>
       
       <div class="contact-info">
@@ -202,34 +201,29 @@
         <h4>Salvador, Bahia, Brasil</h4>
       </div>
       
-        <form action="https://formsubmit.co/dev.leocarvalho@gmail.com" method="POST" class="contact-form">
-            <div class="form-group">
-              <label for="name">Seu nome:</label>
-              <input type="text" id="name" name="name" placeholder="Seu nome" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Seu email:</label>
-              <input type="email" id="email" name="email" placeholder="Seu email" required>
-            </div>
-            <div class="form-group">
-              <label for="message">Sua mensagem:</label>
-              <textarea id="message" name="message" placeholder="Sua mensagem" required></textarea>
-            </div>
-         
-          <input type="text" name="_honey" style="display:none">
-           <input type="hidden" name="_captcha" value="false">
-           <input type="hidden" name="_next" value="https://portifolio-gules-tau.vercel.app/obrigado.html">
-          <button type="submit" class="submit-button">Enviar mensagem</button>
-          </form>
+      <form id="contactForm" class="contact-form" method="POST">
+        <div class="form-group">
+          <label for="name">Seu nome:</label>
+          <input type="text" id="name" placeholder="Seu nome" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Seu email:</label>
+          <input type="email" id="email" placeholder="Seu email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Sua mensagem:</label>
+          <textarea id="message" placeholder="Sua mensagem" required></textarea>
+        </div>
+        <button type="submit" class="submit-button">Enviar mensagem</button>
+      </form>
 
-      
     <footer class="footer">
       <div class="footer-content">
         <p>&copy; <span id="year"></span> Todos os direitos reservados</p>
         <p>Desenvolvido por DevLeoCarvalho</p>
         <div class="spotify-player">
           <iframe src="https://open.spotify.com/embed/playlist/0POsey0dCg5sk1MDouBYKl" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-        </div>
+        </div> 
       </div>
       
     </footer>
