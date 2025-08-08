@@ -196,8 +196,8 @@ document.addEventListener('DOMContentLoaded', function() {
     yearElement.textContent = new Date().getFullYear();
   }
 
-(function() {
-    emailjs.init("SEU_PUBLIC_KEY"); // Substitua pelo seu Public Key
+  (function() {
+    emailjs.init("drQ4lb-ASW_mfZBrl");  
   })();
 
   const contactForm = document.getElementById('contactForm');
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
       submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
       submitBtn.disabled = true;
 
-       const name = document.getElementById("name").value;
+      const name = document.getElementById("name").value;
       const email = document.getElementById("email").value;
       const message = document.getElementById("message").value;
 
@@ -219,8 +219,8 @@ document.addEventListener('DOMContentLoaded', function() {
         from_email: email,
         message: message
       };
-
-      emailjs.send("service_haj8s2f", "template_sem_template", params)
+ 
+      emailjs.send("service_haj8s2f", "template", params)
         .then(() => {
           submitBtn.innerHTML = '<i class="fas fa-check"></i> Mensagem Enviada!';
           setTimeout(() => {
@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function() {
           }, 2000);
         }, (err) => {
           alert("Erro ao enviar. Tente novamente.");
-          console.error("Erro:", err);
+          console.error("Erro ao enviar:", err); // Mostra o erro no console
           submitBtn.innerHTML = 'Enviar Mensagem';
           submitBtn.disabled = false;
         });
