@@ -307,7 +307,9 @@ p {
 }
 
 .project-link {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 10px 20px;
   margin: 0 20px 20px;
   background: var(--primary-color);
