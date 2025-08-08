@@ -196,26 +196,44 @@ document.addEventListener('DOMContentLoaded', function() {
     yearElement.textContent = new Date().getFullYear();
   }
 
+(function() {
+    emailjs.init("SEU_PUBLIC_KEY"); // Substitua pelo seu Public Key
+  })();
+
   const contactForm = document.getElementById('contactForm');
-  
+
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      
+
       const submitBtn = this.querySelector('button[type="submit"]');
-      
       submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
       submitBtn.disabled = true;
-      
-      setTimeout(() => {
-        submitBtn.innerHTML = '<i class="fas fa-check"></i> Mensagem Enviada!';
-        
-        setTimeout(() => {
-          this.reset();
+
+       const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+
+      const params = {
+        from_name: name,
+        from_email: email,
+        message: message
+      };
+
+      emailjs.send("service_haj8s2f", "template_sem_template", params)
+        .then(() => {
+          submitBtn.innerHTML = '<i class="fas fa-check"></i> Mensagem Enviada!';
+          setTimeout(() => {
+            contactForm.reset();
+            submitBtn.innerHTML = 'Enviar Mensagem';
+            submitBtn.disabled = false;
+          }, 2000);
+        }, (err) => {
+          alert("Erro ao enviar. Tente novamente.");
+          console.error("Erro:", err);
           submitBtn.innerHTML = 'Enviar Mensagem';
           submitBtn.disabled = false;
-        }, 2000);
-      }, 1500);
+        });
     });
   }
    
