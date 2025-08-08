@@ -91,7 +91,7 @@ body {
 }
 
 .hero-section {
-  position: relative;
+  position: initial;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -101,7 +101,7 @@ body {
 }
 
 .particles-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
