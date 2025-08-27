@@ -1,4 +1,4 @@
-# 👨‍💻 Portfólio Pessoal - Dev Leo Carvalho
+# 👨‍💻 Portfólio Pessoal - Dev Leo Carvalho 
 
 🔹 **Portfólio profissional** criado para exibir projetos, habilidades e trajetória acadêmica em **Análise e Desenvolvimento de Sistemas**.  
 
