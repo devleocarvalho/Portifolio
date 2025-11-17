@@ -18,6 +18,22 @@
       <div class="spinner-sector spinner-sector-3"></div>
     </div>
   </div>
+
+  <div class="language-switcher">
+    <div class="selected-language">
+      <img src="./assets/flags/br.png" id="selected-flag">
+      <span id="selected-lang-text"></span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <ul class="language-options">
+      <li data-lang="pt-br">
+        <img src="./assets/flags/br.png" alt="Bandeira do Brasil">BR</li>
+      <li data-lang="en">
+        <img src="./assets/flags/gb.png" alt="Bandeira do Reino Unido"> English</li>
+      <li data-lang="es">
+        <img src="./assets/flags/es.png" alt="Bandeira da Espanha"> Español</li>
+    </ul>
+  </div>
   
   <div class="container">
     <header id="home" class="hero-section">
@@ -25,25 +41,29 @@
         <div id="particles-js"></div>
       </div>
       <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-        <h1 class="typing-effect">Dev. Leo Carvalho</h1>
-        <p class="profession">Full Stack Developer & Systems Analyst</p>
+        <h1 class="typing-effect" data-key="heroTitle">Dev. Leo Carvalho</h1>
+        <p class="profession" data-key="heroSubtitle">Full Stack Developer & Systems Analyst</p>
         <div class="social-links">
-          <a href="#about" class="nav-link" data-tooltip="Sobre"><i class="fas fa-user"></i></a>
-          <a href="#skills" class="nav-link" data-tooltip="Habilidades"><i class="fas fa-code"></i></a>
-          <a href="#projects" class="nav-link" data-tooltip="Projetos"><i class="fas fa-project-diagram"></i></a>
-          <a href="https://github.com/devleocarvalho" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/devleocarvalho/" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-          <a href="mailto:dev.leocarvalho@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
-          <a href="whatsapp://send?phone=5571991338859" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="#about" class="social-icon" data-tooltip="Sobre" target="_blank" rel="noopener noreferrer"> <i class="fas fa-user"></i></a>  
+          <a href="#skills" class="social-icon" data-tooltip="Habilidades"> <i class="fas fa-code"></i></a>
+          <a href="#projects" class="social-icon" data-tooltip="Projetos"> <i class="fas fa-project-diagram"></i></a>
+          <a href="https://github.com/devleocarvalho" target="_blank" rel="noopener noreferrer" class="social-icon" data-tooltip="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/devleocarvalho/" target="_blank" rel="noopener noreferrer" class="social-icon" data-tooltip="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:dev.leocarvalho@gmail.com" class="social-icon" data-tooltip="Email"><i class="fas fa-envelope"></i></a>
+          <a href="whatsapp://send?phone=5571991338859" class="social-icon" target="_blank" data-tooltip="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
     </header>
 
     <section id="about" class="js-section">
-      <h2>Sobre mim</h2>
-      <p>Sou estudante de Análise e Desenvolvimento de Sistemas e estou construindo minha carreira na área de tecnologia, com foco em Full Stack. Atualmente, me preparo para a Carreira Tech & Full Stack e busco constantemente ampliar meus conhecimentos através de cursos renomados, como os ministrados pelo Prof. Gustavo Guanabara e pelo DevMedia.</p>
-      <p>Possuo certificações em Lógica de Programação, HTML5, CSS e JavaScript. Continuo me aprofundando em novas tecnologias e boas práticas de desenvolvimento. Estou sempre em busca de desafios que me permitam evoluir como profissional, aplicando o que aprendi e contribuindo para projetos inovadores.</p>
-      <p>Minha trajetória é marcada pela paixão por aprender, pela prática constante e pelo desejo de construir soluções eficientes e de qualidade. Estou animado com as oportunidades que o mercado de tecnologia oferece e pronto para contribuir com projetos que façam a diferença.</p>
+      <picture>
+        <source srcset="./assets/Gemini_Gene.png" type="image/png">
+        <img src="./assets/Gemini_Gene.png" alt="Foto de Leonardo de Carvalho" class="about-image" data-aos="fade-up"/>
+      </picture>
+      <h2 data-key="aboutTitle">Sobre mim</h2>
+      <p data-key="aboutP1">Olá, eu sou o Leonardo de Carvalho!Sou estudante de Análise e Desenvolvimento de Sistemas e estou construindo minha carreira na área de tecnologia, com foco em Full Stack. Atualmente, me preparo para a Carreira Tech & Full Stack e busco constantemente ampliar meus conhecimentos através de cursos renomados, como os ministrados pelo Prof. Gustavo Guanabara e pelo DevMedia.</p>
+      <p data-key="aboutP2">Possuo certificações em Lógica de Programação, HTML5, CSS e JavaScript. Continuo me aprofundando em novas tecnologias e boas práticas de desenvolvimento. Estou sempre em busca de desafios que me permitam evoluir como profissional, aplicando o que aprendi e contribuindo para projetos inovadores.</p>
+      <p data-key="aboutP3">Minha trajetória é marcada pela paixão por aprender, pela prática constante e pelo desejo de construir soluções eficientes e de qualidade. Estou animado com as oportunidades que o mercado de tecnologia oferece e pronto para contribuir com projetos que façam a diferença.</p>
       <div class="actions">
         <a href="assets/CV- Leonardo Guedes de Carvalho.pdf" download class="action-button">
           <i class="fas fa-download"></i> Download CV PT
@@ -55,13 +75,13 @@
           <i class="fas fa-download"></i> Download CV SPN
         </a> 
         <a href="mailto:dev.leocarvalho@gmail.com" target="_blank" class="action-button">
-          <i class="fas fa-envelope"></i> Entrar em contato
+          <i class="fas fa-envelope"></i> <span data-key="contactBtn">Entrar em contato</span>
         </a>
       </div>
     </section>
 
     <section id="skills" class="js-section">
-      <h2>Habilidades </h2>
+      <h2 data-key="skillsTitle">Habilidades</h2>
       <div class="skills-container">
         <div class="skills-grid">
           <div class="skill-box">
@@ -140,7 +160,7 @@
       </div>
     </section>
         <section id="skills" class="js-section">
-          <h2> Certificações</h2>
+          <h2 data-key="certificationsTitle">Certificações</h2>
           <div class="skills-container" >
             <div class="skills-grid">
               <div class="skill-box">
@@ -153,7 +173,7 @@
                 <img src="./assets/devmedia.jpg" alt="Aprenda a programar de VERDADE, com menos aulas e mais prática" title="DEVMEDIA">
                </div>
                <div class="skill-box">
-                <img src="./assets/Unijorge.png" alt="UNIJORGE" title="UNIJORGE">
+                <img src="./assets/unijorge.png" alt="UNIJORGE" title="UNIJORGE">
               </div>
            </div>
           </div>
@@ -161,81 +181,68 @@
  
       
     <section id="projects" class="js-section">
-      <h2>Meus Projetos</h2>
+      <h2 data-key="projectsTitle">Meus Projetos</h2>
       <div class="projects-container">
               <div class="project-card">
-                <h3>☕ Cafeteria ☕ </h3>
+                <h3 data-key="proj1Title">☕ Cafeteria ☕</h3>
                 <img src="/assets/parallax-imagem3.jpg" alt="Projeto 1">
-                <p>Cafeteria Madrid!         
-                  Bem-vindo ao repositório do projeto Cafeteria Madrid! Este projeto simula o site de uma cafeteria, desenvolvido com HTML5, CSS3 e JavaScript. Ele apresenta o cardápio, informações da loja, galeria de fotos,localização, pagina de administrador e pedidos </p>
-                <a href="https://cafeteria-nine-mu.vercel.app/" class="project-link">Ver projeto</a>
+                <p data-key="proj1Desc">Cafeteria Madrid! Bem-vindo ao repositório do projeto Cafeteria Madrid! Este projeto simula o site de uma cafeteria, desenvolvido com HTML5, CSS3 e JavaScript. Ele apresenta o cardápio, informações da loja, galeria de fotos,localização, pagina de administrador e pedidos</p>
+                <a href="https://cafeteria-nine-mu.vercel.app/" class="project-link" data-key="viewProject">Ver projeto</a>
               </div>
               <div class="project-card">
-                <h3>🏗️ Construtora AM 🏗️ </h3>
+                <h3 data-key="proj2Title">🏗️ Construtora AM 🏗️</h3>
                 <img src="/assets/a.jpg" alt="Projeto 2">
-                <p>Construtora AMPP. Bem-vindo ao repositório do projeto Construtora AM! Este projeto simula o site de uma construtora,
-                   desenvolvido com HTML5, CSS3 e JavaScript. Ele apresenta os serviços oferecidos, informações da empresa, portfólio de projetos,
-                    localização, área do cliente e solicitação de orçamentos. </p>
-                <a href="https://ampla-phi.vercel.app/" class="project-link">Ver projeto</a>
+                <p data-key="proj2Desc">Construtora AMPP. Bem-vindo ao repositório do projeto Construtora AM! Este projeto simula o site de uma construtora, desenvolvido com HTML5, CSS3 e JavaScript. Ele apresenta os serviços oferecidos, informações da empresa, portfólio de projetos, localização, área do cliente e solicitação de orçamentos.</p>
+                <a href="https://ampla-phi.vercel.app/" class="project-link" data-key="viewProject">Ver projeto</a>
               </div>
               <div class="project-card">
-                <h3>Evolution health passos para alta</h3>
+                <h3 data-key="proj3Title">Evolution health passos para alta</h3>
                 <img src="/assets/saude-4.0.jpg" alt="Projeto 3">
-                <p> Em desenvolvimento</p>
-                <a href="https://passospara-alta.vercel.app/" class="project-link">Ver projeto</a>
+                <p data-key="proj3Desc">Em desenvolvimento</p>
+                <a href="https://passospara-alta.vercel.app/" class="project-link" data-key="viewProject">Ver projeto</a>
               </div>
               <div class="project-card">
-                <h3>Make a Move</h3>
+                <h3 data-key="proj4Title">Make a Move</h3>
                 <img src="/assets/3.png" alt="Projeto 4">
-                <p> divirta-se com 🎮 Make a Move. Bem-vindo ao repositório do jogo Make a Move! Este projeto é um jogo interativo de imagem e ação, desenvolvido com HTML5, CSS3 e JavaScript. 
-              O jogador precisa reagir rapidamente a imagens que aparecem na tela, testando reflexos e agilidade em diferentes fases.</p>
-                <a href="https://makeamove-murex.vercel.app/" class="project-link">Ver projeto</a>
+                <p data-key="proj4Desc">divirta-se com 🎮 Make a Move. Bem-vindo ao repositório do jogo Make a Move! Este projeto é um jogo interativo de imagem e ação, desenvolvido com HTML5, CSS3 e JavaScript. O jogador precisa reagir rapidamente a imagens que aparecem na tela, testando reflexos e agilidade em diferentes fases.</p>
+                <a href="https://makeamove-murex.vercel.app/" class="project-link" data-key="viewProject">Ver projeto</a>
               </div>
               <div class="project-card">
-                <h3>Conte...é Fake ou fato</h3>
+                <h3 data-key="proj5Title">Conte...é Fake ou fato</h3>
                 <img src="/assets/n.png" alt="Projeto 5">
-                <p> divirta-se 🔍 Conte-me Esse Fato... É Fake ou Verdade?
-                Bem-vindo ao repositório do aplicativo Conte-me Esse Fato! Este projeto permite verificar se uma informação é falsa ou verdadeira, desenvolvido com HTML5, CSS3 e JavaScript. 
-                O usuário insere um fato e recebe uma resposta baseada em fontes confiáveis e verificadas.</p>
-                <a href="https://me-conteai.vercel.app/" class="project-link">Ver projeto</a>
+                <p data-key="proj5Desc">divirta-se 🔍 Conte-me Esse Fato... É Fake ou Verdade? Bem-vindo ao repositório do aplicativo Conte-me Esse Fato! Este projeto permite verificar se uma informação é falsa ou verdadeira, desenvolvido com HTML5, CSS3 e JavaScript. O usuário insere um fato e recebe uma resposta baseada em fontes confiáveis e verificadas.</p>
+                <a href="https://me-conteai.vercel.app/" class="project-link" data-key="viewProject">Ver projeto</a>
               </div>
               <div class="project-card">
-                  <h3>A Bordados</h3>
+                  <h3 data-key="proj6Title">A Bordados</h3>
                   <img src="./assets/9.webp" alt="Projeto 6">
-                  <p> loja de bordados 🧵 Loja A Bordados
-                Bem-vindo ao repositório do projeto Loja A Bordados! Este site simula uma loja online de bordados, desenvolvido com HTML5, CSS3 e JavaScript.
-                Ele apresenta o catálogo de produtos, informações da loja, galeria de bordados, página de pedidos e contato.</p>
-                  <a href="https://bordados-eight.vercel.app/" class="project-link">Ver projeto</a>
+                  <p data-key="proj6Desc">loja de bordados 🧵 Loja A Bordados. Bem-vindo ao repositório do projeto Loja A Bordados! Este site simula uma loja online de bordados, desenvolvido com HTML5, CSS3 e JavaScript. Ele apresenta o catálogo de produtos, informações da loja, galeria de bordados, página de pedidos e contato.</p>
+                  <a href="https://bordados-eight.vercel.app/" class="project-link" data-key="viewProject">Ver projeto</a>
               </div>
                <div class="project-card">
-                  <h3> virtual cosmeticos</h3>
+                  <h3 data-key="proj7Title">virtual cosmeticos</h3>
                   <img src="./assets/contact-bg.jpg" alt="Projeto 7">
-                  <p> 💄 Loja de Beleza 
-                Bem-vindo ao repositório do projeto Loja  virtual cosmeticos! Este site simula uma loja online de produtos de beleza, desenvolvido com HTML5, CSS3 e JavaScript. 
-                Ele apresenta o catálogo de cosméticos, informações da loja, galeria de produtos, sistema de pedidos e página de contato.</p>
-                  <a href="https://lojavitor-psi.vercel.app/" class="project-link">Ver projeto</a>
+                  <p data-key="proj7Desc">💄 Loja de Beleza. Bem-vindo ao repositório do projeto Loja virtual cosmeticos! Este site simula uma loja online de produtos de beleza, desenvolvido com HTML5, CSS3 e JavaScript. Ele apresenta o catálogo de cosméticos, informações da loja, galeria de produtos, sistema de pedidos e página de contato.</p>
+                  <a href="https://lojavitor-psi.vercel.app/" class="project-link" data-key="viewProject">Ver projeto</a>
               </div>
               <div class="project-card">
-                  <h3> Eventos RCC</h3>
+                  <h3 data-key="proj8Title">Eventos RCC</h3>
                   <img src="/assets/logo-rcc.png" alt="Projeto 8">
-                  <p> 🎉 Loja de Eventos RCC
-                Bem-vindo ao repositório do projeto Loja de Eventos AM! Este site simula uma plataforma de serviços para eventos, desenvolvido com HTML5, CSS3 e JavaScript. 
-                Ele apresenta os pacotes de eventos, informações da empresa, galeria de eventos realizados, sistema de agendamentos e página de contato.</p>
-                  <a href="https://rcc-devleocarvalhoprojects.vercel.app/" class="project-link">Ver projeto</a>
+                  <p data-key="proj8Desc">🎉 Loja de Eventos RCC. Bem-vindo ao repositório do projeto Loja de Eventos AM! Este site simula uma plataforma de serviços para eventos, desenvolvido com HTML5, CSS3 e JavaScript. Ele apresenta os pacotes de eventos, informações da empresa, galeria de eventos realizados, sistema de agendamentos e página de contato.</p>
+                  <a href="https://rcc-devleocarvalhoprojects.vercel.app/" class="project-link" data-key="viewProject">Ver projeto</a>
               </div>
               <div class="project-card">
-                  <h3> mercadolivre--by-unijorge</h3>
+                  <h3 data-key="proj9Title">mercadolivre--by-unijorge</h3>
                   <img src="/assets/unnamed.png" alt="projeto9unijorge">
-                  <p> Mercado libre Brasil 🛒 
-                Bem-vindo ao repositório do projeto Loja de e-comerce simples</p>
-                  <a href="https://mercadolivreby-unijorge.vercel.app/" class="project-link">Ver projeto</a>
+                  <p data-key="proj9Desc">Mercado libre Brasil 🛒 Bem-vindo ao repositório do projeto Loja de e-comerce simples</p>
+                  <a href="https://mercadolivreby-unijorge.vercel.app/" class="project-link" data-key="viewProject">Ver projeto</a>
                
               </div>
               <div class="project-card">
-                      <h3>⏰ Analisador de Jornada de Trabalho</h3>
+                      <h3 data-key="proj10Title">⏰ Analisador de Jornada de Trabalho</h3>
                       <img src="/assets/jt.png" alt="projetou10escritorio">
-                      <p> cole o arquivo de conversas on line e saiba quanto de trabalho extra vc fez</p>
-                      <a href="https://hgysmhc4hnktm5svteurqg.streamlit.app/" class="project-link">Ver projeto</a>
+                      <p data-key="proj10Desc">cole o arquivo de conversas on line e saiba quanto de trabalho extra vc fez</p>
+                      <a href="https://hgysmhc4hnktm5svteurqg.streamlit.app/" class="project-link" data-key="viewProject">Ver projeto</a>
               </div>
         
         </div>
@@ -243,37 +250,37 @@
 
     </section>   
     <section id="contact" class="js-section">
-      <h2>Entre em Contato</h2>
-      <h3>Vamos conversar! <a href="whatsapp://send?phone=5571991338859" class="social-icon" target="_blank"><i class="fab fa-whatsapp" ></i></a></h3>
-      <p>Estou interessado em oportunidades freelance, projetos desafiadores e colaborações. Entre em contato e vamos criar algo incrível juntos!</p>
+      <h2 data-key="contactTitle">Entre em Contato</h2>
+      <h3><span data-key="contactSubtitle">Vamos conversar!</span> <a href="whatsapp://send?phone=5571991338859" class="social-icon" target="_blank"><i class="fab fa-whatsapp" ></i></a></h3>
+      <p data-key="contactDesc">Estou interessado em oportunidades freelance, projetos desafiadores e colaborações. Entre em contato e vamos criar algo incrível juntos!</p>
       
       <div class="contact-info">
-        <h4>Localização</h4>
-        <h4>Salvador, Bahia, Brasil, Mundo</h4>
+        <h4 data-key="locationTitle">Localização</h4>
+        <h4 data-key="location">Salvador, Bahia, Brasil, Mundo</h4>
       </div>
       
       <form action="https://formsubmit.co/dev.leocarvalho@gmail.com" method="POST">
       <div class="form-group">
-      <label for="name">Seu nome:</label>
-      <input type="text" id="name" name="name" placeholder="Seu nome" required>
+      <label for="name" data-key="formName">Seu nome:</label>
+      <input type="text" id="name" name="name" placeholder="Seu nome" required data-key-placeholder="formNamePlaceholder">
         </div>
         <div class="form-group">
-          <label for="email">Seu email:</label>
-          <input type="email" id="email" name="email" placeholder="Seu email" required>
+          <label for="email" data-key="formEmail">Seu email:</label>
+          <input type="email" id="email" name="email" placeholder="Seu email" required data-key-placeholder="formEmailPlaceholder">
         </div>
         <div class="form-group">
-          <label for="message">Sua mensagem:</label>
-          <textarea id="message" name="message" placeholder="Sua mensagem" required></textarea>
+          <label for="message" data-key="formMessage">Sua mensagem:</label>
+          <textarea id="message" name="message" placeholder="Sua mensagem" required data-key-placeholder="formMessagePlaceholder"></textarea>
         </div>
         
-        <button type="submit" class="submit-button">Enviar mensagem</button>
+        <button type="submit" class="submit-button" data-key="formSubmit">Enviar mensagem</button>
       </form>
      </section>  
 
     <footer class="footer">
       <div class="footer-content">
-        <p>&copy; <span id="year"></span> Todos os direitos reservados</p>
-        <p>Desenvolvido por DevLeoCarvalho</p>
+        <p data-key="footerRights">&copy; <span id="year"></span> Todos os direitos reservados</p>
+        <p data-key="footerDev">Desenvolvido por DevLeoCarvalho</p>
         <div class="spotify-player">
           <iframe src="https://open.spotify.com/embed/playlist/0POsey0dCg5sk1MDouBYKl" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div> 
@@ -281,16 +288,15 @@
       
     </footer>
   </div>
-
-  <a href="#home" class="back-to-top" title="Voltar ao topo">
+ 
+  <a href="#home" class="back-to-top" title="Voltar ao topo" data-key="backToTop">
     <i class="fas fa-arrow-up"></i>
   </a>
 
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="translations.js"></script>
   <script src="script.js"></script>
   </body>
 
 </html>
-
-
