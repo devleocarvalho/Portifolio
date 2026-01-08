@@ -1,4 +1,3 @@
-preciso alterarar alguma coisa aqui.:
 document.addEventListener('DOMContentLoaded', function() {
  
   setTimeout(function() {
@@ -197,16 +196,13 @@ document.addEventListener('DOMContentLoaded', function() {
     yearElement.textContent = new Date().getFullYear();
   }
   
-  // --- CÓDIGO DE TRADUÇÃO ---
   const languageSwitcher = document.querySelector('.language-switcher');
   const selectedLanguage = document.querySelector('.selected-language');
   const languageOptions = document.querySelector('.language-options');
   const selectedFlag = document.getElementById('selected-flag');
   const selectedLangText = document.getElementById('selected-lang-text');
 
-  // Função para definir o idioma
   const setLanguage = (lang) => {
-      // Verifica se 'translations' está definido
       if (typeof translations === 'undefined') {
         console.error("Objeto 'translations' não encontrado. Verifique se o arquivo translations.js foi carregado.");
         return;
@@ -220,7 +216,6 @@ document.addEventListener('DOMContentLoaded', function() {
           }
       });
 
-      // Traduzir placeholders
       const placeholderElements = document.querySelectorAll('[data-key-placeholder]');
       placeholderElements.forEach(element => {
           const key = element.getAttribute('data-key-placeholder');
@@ -229,7 +224,6 @@ document.addEventListener('DOMContentLoaded', function() {
           }
       });
 
-      // Atualizar o seletor de idioma
       if (selectedFlag && selectedLangText) {
         const langDisplayNames = {
           'pt-br': 'BR',
@@ -241,13 +235,11 @@ document.addEventListener('DOMContentLoaded', function() {
         selectedLangText.textContent = langDisplayNames[lang] || lang.toUpperCase();
       }
 
-      // Salvar preferência de idioma
       localStorage.setItem('language', lang);
       if (languageOptions) languageOptions.style.display = 'none';
       if (languageSwitcher) languageSwitcher.classList.remove('open');
   };
 
-  // Abrir/fechar o seletor de idiomas
   if (selectedLanguage) {
     selectedLanguage.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -256,7 +248,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Selecionar um idioma
   if (languageOptions) {
     languageOptions.addEventListener('click', (e) => {
         const li = e.target.closest('li');
@@ -267,7 +258,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Fechar ao clicar fora
   document.addEventListener('click', () => {
       if (languageSwitcher && languageOptions) {
         languageSwitcher.classList.remove('open');
@@ -275,7 +265,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   });
 
-  // Carregar idioma salvo ou padrão
   const savedLang = localStorage.getItem('language') || 'pt-br';
   setLanguage(savedLang);
 });
