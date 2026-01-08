@@ -29,7 +29,6 @@ body {
   position: relative;
 }
 
-/* --- TELA DE CARREGAMENTO --- */
 .loading-screen {
   position: fixed;
   top: 0;
@@ -74,7 +73,6 @@ body {
   to { transform: rotate(360deg); }
 }
 
-/* --- LAYOUT PRINCIPAL --- */
 .hero-section {
   position: relative;
   height: 100vh;
@@ -85,15 +83,13 @@ body {
   overflow: hidden;
 }
 
-/* CORREÇÃO PARA O CLIQUE NO FUNDO FUNCIONAR */
 .particles-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0; /* Fica no fundo */
-  /* Removemos o pointer-events: none para permitir interação */
+  z-index: 0;
 }
 
 #particles-js {
@@ -102,14 +98,13 @@ body {
   height: 100%;
 }
 
-/* Conteúdo deve ficar ACIMA das partículas para os botões funcionarem */
 .container {
   width: 100%;
   max-width: 1200px;
   padding: 0 20px;
   margin: 0 auto;
   position: relative;
-  z-index: 5; /* Garante prioridade no clique sobre o fundo */
+  z-index: 5;
 }
 
 .hero-content {
@@ -124,7 +119,6 @@ body {
   z-index: 5;
 }
 
-/* --- FOTO COM EFEITO --- */
 .about-image {
   width: 200px; 
   height: 200px;
@@ -132,18 +126,16 @@ body {
   object-fit: cover;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   margin-bottom: 2rem;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease; /* Animação suave */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
   border: 3px solid transparent;
 }
 
-/* EFEITO AO PASSAR O MOUSE NA FOTO */
 .about-image:hover {
-  transform: scale(1.1) rotate(3deg); /* Aumenta e gira levemente */
-  box-shadow: 0 0 25px rgba(0, 230, 255, 0.6), 0 0 50px rgba(110, 69, 226, 0.4); /* Brilho Neon */
+  transform: scale(1.1) rotate(3deg);
+  box-shadow: 0 0 25px rgba(0, 230, 255, 0.6), 0 0 50px rgba(110, 69, 226, 0.4);
   border-color: #00e6ff;
 }
 
-/* --- TIPOGRAFIA --- */
 .typing-effect {
   font-size: 3rem;
   margin-bottom: 20px;
@@ -169,7 +161,6 @@ h3 { margin-bottom: 20px; font-size: 1.5rem; color: white; text-align: center; }
 h4 { margin-bottom: 10px; font-size: 1.2rem; color: white; text-align: center; }
 p { margin-bottom: 20px; line-height: 1.8; font-size: 1.1rem; color: white; text-align: center; }
 
-/* --- ÍCONES SOCIAIS --- */
 .social-links {
   display: flex;
   justify-content: center;
@@ -209,7 +200,6 @@ p { margin-bottom: 20px; line-height: 1.8; font-size: 1.1rem; color: white; text
   opacity: 1;
 }
 
-/* --- BOTÕES --- */
 .actions {
   display: flex;
   flex-wrap: wrap;
@@ -227,7 +217,7 @@ p { margin-bottom: 20px; line-height: 1.8; font-size: 1.1rem; color: white; text
   text-decoration: none;
   color: #fff;
   transition: var(--transition);
-  background-color: rgba(26, 26, 46, 0.8); /* Fundo escuro semi-transparente para leitura */
+  background-color: rgba(26, 26, 46, 0.8);
   z-index: 10;
 }
 
@@ -240,7 +230,6 @@ p { margin-bottom: 20px; line-height: 1.8; font-size: 1.1rem; color: white; text
   box-shadow: 0 5px 15px rgba(166, 0, 255, 0.4);
 }
 
-/* --- SKILLS --- */
 .skills-container { margin-top: 40px; }
 .skills-grid {
   display: grid;
@@ -269,7 +258,6 @@ p { margin-bottom: 20px; line-height: 1.8; font-size: 1.1rem; color: white; text
   filter: drop-shadow(0 0 5px rgba(0, 230, 255, 0.5));
 }
 
-/* --- PROJETOS --- */
 .projects-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -306,7 +294,6 @@ p { margin-bottom: 20px; line-height: 1.8; font-size: 1.1rem; color: white; text
 }
 .project-link:hover { background: var(--secondary-color); }
 
-/* --- FORMULÁRIO --- */
 .contact-form {
   max-width: 600px;
   margin: 0 auto;
@@ -337,7 +324,6 @@ p { margin-bottom: 20px; line-height: 1.8; font-size: 1.1rem; color: white; text
 }
 .submit-button:hover { background: var(--secondary-color); }
 
-/* --- FOOTER & EXTRAS --- */
 .footer {
   padding: 40px 0;
   background: rgba(0, 0, 0, 0.2);
@@ -378,12 +364,11 @@ p { margin-bottom: 20px; line-height: 1.8; font-size: 1.1rem; color: white; text
 .back-to-top.active { opacity: 1; visibility: visible; }
 .back-to-top:hover { background: var(--primary-color); transform: translateY(-5px); }
 
-/* --- LANGUAGE SWITCHER --- */
 .language-switcher {
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 10001; /* Fica acima de tudo */
+  z-index: 10001; 
 }
 
 .selected-language {
