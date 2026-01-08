@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
- 
-  setTimeout(function() {
+   setTimeout(function() {
     document.querySelector('.loading-screen').classList.add('hidden');
   }, 1500);
 
@@ -219,7 +218,6 @@ document.addEventListener('DOMContentLoaded', function() {
           }
       });
 
-      // Traduzir placeholders
       const placeholderElements = document.querySelectorAll('[data-key-placeholder]');
       placeholderElements.forEach(element => {
           const key = element.getAttribute('data-key-placeholder');
@@ -228,8 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
           }
       });
 
-      // Atualizar o seletor de idioma
-      if (selectedFlag && selectedLangText) {
+        if (selectedFlag && selectedLangText) {
         const langDisplayNames = {
           'pt-br': 'BR',
           'en': 'English',
@@ -240,14 +237,12 @@ document.addEventListener('DOMContentLoaded', function() {
         selectedLangText.textContent = langDisplayNames[lang] || lang.toUpperCase();
       }
 
-      // Salvar preferência de idioma
       localStorage.setItem('language', lang);
       if (languageOptions) languageOptions.style.display = 'none';
       if (languageSwitcher) languageSwitcher.classList.remove('open');
   };
 
-  // Abrir/fechar o seletor de idiomas
-  if (selectedLanguage) {
+   if (selectedLanguage) {
     selectedLanguage.addEventListener('click', (e) => {
         e.stopPropagation();
         const isOpen = languageSwitcher.classList.toggle('open');
@@ -255,7 +250,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Selecionar um idioma
   if (languageOptions) {
     languageOptions.addEventListener('click', (e) => {
         const li = e.target.closest('li');
@@ -266,15 +260,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Fechar ao clicar fora
+ 
   document.addEventListener('click', () => {
       if (languageSwitcher && languageOptions) {
         languageSwitcher.classList.remove('open');
         languageOptions.style.display = 'none';
       }
   });
-
-  // Carregar idioma salvo ou padrão
+ 
   const savedLang = localStorage.getItem('language') || 'pt-br';
   setLanguage(savedLang);
 });
