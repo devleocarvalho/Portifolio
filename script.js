@@ -23,9 +23,16 @@ document.addEventListener('DOMContentLoaded', function() {
         "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
       },
       "interactivity": {
-        "detect_on": "canvas",
-        "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-        "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "push": { "particles_nb": 4 } }
+        "detect_on": "canvas", 
+        "events": { 
+            "onhover": { "enable": true, "mode": "grab" }, 
+            "onclick": { "enable": true, "mode": "push" },
+            "resize": true 
+        },
+        "modes": { 
+            "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, 
+            "push": { "particles_nb": 4 } 
+        }
       },
       "retina_detect": true
     });
@@ -78,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const backToTopBtn = document.querySelector('.back-to-top');
   if (backToTopBtn) {
     window.addEventListener('scroll', function() {
-      // Usando scrollY para maior compatibilidade
       if (window.scrollY > 300) {
         backToTopBtn.classList.add('active');
       } else {
@@ -98,45 +104,38 @@ document.addEventListener('DOMContentLoaded', function() {
   const setLanguage = (lang) => {
     if (typeof translations === 'undefined' || !translations[lang]) return;
 
-    // Traduz HTML
     document.querySelectorAll('[data-key]').forEach(el => {
       const key = el.getAttribute('data-key');
       if (translations[lang][key]) el.innerHTML = translations[lang][key];
     });
 
-    // Traduz Placeholders
     document.querySelectorAll('[data-key-placeholder]').forEach(el => {
       const key = el.getAttribute('data-key-placeholder');
       if (translations[lang][key]) el.placeholder = translations[lang][key];
     });
 
-    // Traduz Tooltips (CORREÇÃO ADICIONADA)
     document.querySelectorAll('[data-key-tooltip]').forEach(el => {
       const key = el.getAttribute('data-key-tooltip');
       if (translations[lang][key]) el.setAttribute('data-tooltip', translations[lang][key]);
     });
 
-    // Atualiza Visual do Menu
     if (selectedFlag) selectedFlag.src = `./assets/flags/${flags[lang]}`;
     if (selectedLangText) selectedLangText.textContent = displayNames[lang];
     if (languageOptions) languageOptions.classList.remove('active');
 
-    // Atualiza Ano (CORREÇÃO ADICIONADA)
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
     localStorage.setItem('language', lang);
   };
 
-  // Toggle Menu
   if (selectedLanguage && languageOptions) {
     selectedLanguage.addEventListener('click', (e) => {
       e.stopPropagation();
-      languageOptions.classList.toggle('active'); // Usa a classe .active do CSS novo
+      languageOptions.classList.toggle('active');
     });
   }
 
-  // Selecionar Opção
   if (languageOptions) {
     languageOptions.addEventListener('click', (e) => {
       const li = e.target.closest('li');
@@ -147,12 +146,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Fechar ao clicar fora
   document.addEventListener('click', () => {
     if (languageOptions) languageOptions.classList.remove('active');
   });
 
-  // Init
   const savedLang = localStorage.getItem('language') || 'pt-br';
   setLanguage(savedLang);
 });
