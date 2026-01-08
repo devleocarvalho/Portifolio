@@ -8,7 +8,21 @@
   <meta name="description" content="Portfólio profissional de Leonardo de Carvalho, Desenvolvedor Full Stack e Analista de Sistemas">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">  
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+
   <link rel="shortcut icon" href="./assets/favicon.ico" type="image/png">
+  
+  <style>
+    .language-options {
+      display: none;
+    }
+    .language-options.active {
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <div class="loading-screen">
@@ -22,7 +36,7 @@
   <div class="language-switcher">
     <div class="selected-language">
       <img src="./assets/flags/br.png" id="selected-flag">
-      <span id="selected-lang-text"></span>
+      <span id="selected-lang-text">BR</span>
       <i class="fas fa-chevron-down"></i>
     </div>
     <ul class="language-options">
@@ -43,16 +57,18 @@
       <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
         <h1 class="typing-effect" data-key="heroTitle">Dev. Leo Carvalho</h1>
         <p class="profession" data-key="heroSubtitle">Full Stack Developer & Systems Analyst</p>
+        
         <div class="social-links">
-          <a href="#about" class="social-icon" data-tooltip="Sobre" target="_blank" rel="noopener noreferrer"> <i class="fas fa-user"></i></a>  
-          <a href="#skills" class="social-icon" data-tooltip="Habilidades"> <i class="fas fa-code"></i></a>
-          <a href="#projects" class="social-icon" data-tooltip="Projetos"> <i class="fas fa-project-diagram"></i></a>
+          <a href="#about" class="social-icon" data-tooltip="Sobre" data-key-tooltip="tooltipAbout" target="_blank" rel="noopener noreferrer"> <i class="fas fa-user"></i></a>  
+          <a href="#skills" class="social-icon" data-tooltip="Habilidades" data-key-tooltip="tooltipSkills"> <i class="fas fa-code"></i></a>
+          <a href="#projects" class="social-icon" data-tooltip="Projetos" data-key-tooltip="tooltipProjects"> <i class="fas fa-project-diagram"></i></a>
+          
           <a href="https://github.com/devleocarvalho" target="_blank" rel="noopener noreferrer" class="social-icon" data-tooltip="GitHub"><i class="fab fa-github"></i></a>
           <a href="https://www.linkedin.com/in/devleocarvalho/" target="_blank" rel="noopener noreferrer" class="social-icon" data-tooltip="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
           <a href="mailto:dev.leocarvalho@gmail.com" class="social-icon" data-tooltip="Email"><i class="fas fa-envelope"></i></a>
           <a href="whatsapp://send?phone=5571991338859" class="social-icon" target="_blank" data-tooltip="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
-      </div>
+        </div>
     </header>
 
     <section id="about" class="js-section">
@@ -63,7 +79,7 @@
       <h2 data-key="aboutTitle">Sobre mim</h2>
       <p data-key="aboutP1">Olá! Sou o Leonardo de Carvalho.Se você olhar meu currículo rapidamente, verá um Desenvolvedor apaixonado por tecnologia. Mas se olhar com atenção, verá uma trajetória dedicada a resolver problemas reais.Minha carreira começou na área da Saúde, onde aprendi a ter precisão, empatia e agir rápido sob pressão. Levei essas habilidades para a Gestão de Vendas, onde desenvolvi liderança e estratégia. 
         Contudo, foi na tecnologia que encontrei a ferramenta definitiva para escalar soluções.</p>
-      <p data-key="aboutP2">"Hoje, dedico minhas horas a dominar o ecossistema Full Stack. Tenho um diferencial que carrego com orgulho: olhar atendo a segurança. Enquanto aprendia a programar em JavaScript e React, também me especializava em Redes (Cisco) e Cibersegurança (Google/Hacker do Bem), porque acredito que um bom software precisa ser, acima de tudo, confiável.</p>
+      <p data-key="aboutP2">Hoje, dedico minhas horas a dominar o ecossistema Full Stack. Tenho um diferencial que carrego com orgulho: olhar atendo a segurança. Enquanto aprendia a programar em JavaScript e React, também me especializava em Redes (Cisco) e Cibersegurança (Google/Hacker do Bem), porque acredito que um bom software precisa ser, acima de tudo, confiável.</p>
       <p data-key="aboutP3">No meu portfólio, você não verá apenas códigos, mas projetos que refletem minha busca por inovação, performance e segurança. Estou sempre aprendendo (seja Java, Python ou novas arquiteturas) e pronto para o próximo desafio</p>
       <div class="actions">
         <a href="assets/CV- Leonardo Guedes de Carvalho.pdf" download class="action-button">
@@ -160,7 +176,7 @@
         </div>
       </div>
     </section>
-        <section id="skills" class="js-section">
+        <section id="certifications" class="js-section">
           <h2 data-key="certificationsTitle">Certificações</h2>
           <div class="skills-container" >
             <div class="skills-grid">
@@ -237,7 +253,7 @@
                   <img src="/assets/unnamed.png" alt="projeto9unijorge">
                   <p data-key="proj9Desc">Mercado libre Brasil 🛒 Bem-vindo ao repositório do projeto Loja de e-comerce simples</p>
                   <a href="https://mercadolivreby-unijorge.vercel.app/" class="project-link" data-key="viewProject">Ver projeto</a>
-               
+                
               </div>
               <div class="project-card">
                       <h3 data-key="proj10Title">⏰ Analisador de Jornada de Trabalho</h3>
@@ -249,7 +265,7 @@
         </div>
       </div>
 
-    </section>   
+    </section>    
     <section id="contact" class="js-section">
       <h2 data-key="contactTitle">Entre em Contato</h2>
       <h3><span data-key="contactSubtitle">Vamos conversar!</span> <a href="whatsapp://send?phone=5571991338859" class="social-icon" target="_blank"><i class="fab fa-whatsapp" ></i></a></h3>
@@ -280,7 +296,7 @@
 
     <footer class="footer">
       <div class="footer-content">
-        <p data-key="footerRights">&copy; <span id="year"></span> Todos os direitos reservados</p>
+        <p data-key="footerRights">© <span id="year"></span> Todos os direitos reservados</p>
         <p data-key="footerDev">Desenvolvido por DevLeoCarvalho</p>
         <div class="spotify-player">
           <iframe src="https://open.spotify.com/embed/playlist/0POsey0dCg5sk1MDouBYKl" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
@@ -301,7 +317,3 @@
   </body>
 
 </html>
-
-
-
-
