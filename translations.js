@@ -7,7 +7,7 @@ const translations = {
     "tooltipProjects": "Projetos",
     "aboutTitle": "Sobre mim",
     "aboutP1": "Olá! Sou o Leonardo de Carvalho. Se você olhar meu currículo rapidamente, verá um Desenvolvedor apaixonado por tecnologia. Mas se olhar com atenção, verá uma trajetória dedicada a resolver problemas reais. Minha carreira começou na área da Saúde, onde aprendi a ter precisão, empatia e agir rápido sob pressão. Levei essas habilidades para a Gestão de Vendas, onde desenvolvi liderança e estratégia. Contudo, foi na tecnologia que encontrei a ferramenta definitiva para escalar soluções.",
-    "aboutP2": "Hoje, dedico minhas horas a dominar o ecossistema Full Stack e Mobile. Tenho um diferencial que carrego com orgulho: a obsessão por segurança. Enquanto aprendia a programar em JavaScript e React, também me especializava em Redes (Cisco) e Cibersegurança (Google/Hacker do Bem), porque acredito que um bom software precisa ser, acima de tudo, confiável.",
+    "aboutP2": "Hoje, dedico minhas horas a dominar o ecossistema Full Stack. Tenho um diferencial que carrego com orgulho: olhar atendo para a segurança. Enquanto aprendia a programar em JavaScript e React, também me especializava em Redes (Cisco) e Cibersegurança (Google/Hacker do Bem), porque acredito que um bom software precisa ser, acima de tudo, confiável.",
     "aboutP3": "No meu portfólio, você não verá apenas códigos, mas projetos que refletem minha busca por inovação, performance e segurança. Estou sempre aprendendo (seja Java, Python ou novas arquiteturas) e pronto para o próximo desafio.",
     "contactBtn": "Entrar em contato",
     "skillsTitle": "Habilidades",
@@ -113,5 +113,6 @@ const translations = {
     "aboutP3": "En mi portafolio, no solo verás código, sino proyectos que reflejan mi búsqueda de innovación, rendimiento y seguridad. Siempre estoy aprendiendo (ya sea Java, Python o nuevas arquitecturas) y listo para el próximo desafío.",
     "contactBtn": "Contacta conmigo",
     "skillsTitle": "Habilidades",
+
 
 
