@@ -5,14 +5,10 @@ const translations = {
     "tooltipAbout": "Sobre",
     "tooltipSkills": "Habilidades",
     "tooltipProjects": "Projetos",
-    
-   
     "aboutTitle": "Sobre mim",
     "aboutP1": "Olá! Sou o Leonardo de Carvalho. Se você olhar meu currículo rapidamente, verá um Desenvolvedor apaixonado por tecnologia. Mas se olhar com atenção, verá uma trajetória dedicada a resolver problemas reais. Minha carreira começou na área da Saúde, onde aprendi a ter precisão, empatia e agir rápido sob pressão. Levei essas habilidades para a Gestão de Vendas, onde desenvolvi liderança e estratégia. Contudo, foi na tecnologia que encontrei a ferramenta definitiva para escalar soluções.",
     "aboutP2": "Hoje, dedico minhas horas a dominar o ecossistema Full Stack e Mobile. Tenho um diferencial que carrego com orgulho: a obsessão por segurança. Enquanto aprendia a programar em JavaScript e React, também me especializava em Redes (Cisco) e Cibersegurança (Google/Hacker do Bem), porque acredito que um bom software precisa ser, acima de tudo, confiável.",
     "aboutP3": "No meu portfólio, você não verá apenas códigos, mas projetos que refletem minha busca por inovação, performance e segurança. Estou sempre aprendendo (seja Java, Python ou novas arquiteturas) e pronto para o próximo desafio.",
-   
-    
     "contactBtn": "Entrar em contato",
     "skillsTitle": "Habilidades",
     "certificationsTitle": "Certificações",
@@ -115,12 +111,11 @@ const translations = {
     "tooltipSkills": "Habilidades",
     "tooltipProjects": "Proyectos",
     
-   
     "aboutTitle": "Sobre mí",
     "aboutP1": "¡Hola! Soy Leonardo de Carvalho. Si miras mi currículum rápidamente, verás a un Desarrollador apasionado por la tecnología. Pero si miras con atención, verás una trayectoria dedicada a resolver problemas reales. Mi carrera comenzó en el área de Salud, donde aprendí precisión, empatía y a actuar rápido bajo presión. Llevé esas habilidades a la Gestión de Ventas, donde desarrollé liderazgo y estrategia. Sin embargo, fue en la tecnología donde encontré la herramienta definitiva para escalar soluciones.",
     "aboutP2": "Hoy, dedico mis horas a dominar el ecosistema Full Stack y Mobile. Tengo un diferencial que llevo con orgullo: la obsesión por la seguridad. Mientras aprendía a programar en JavaScript y React, también me especializaba en Redes (Cisco) y Ciberseguridad (Google/Hacker do Bem), porque creo que un buen software debe ser, ante todo, confiable.",
     "aboutP3": "En mi portafolio, no solo verás código, sino proyectos que reflejan mi búsqueda de innovación, rendimiento y seguridad. Siempre estoy aprendiendo (ya sea Java, Python o nuevas arquitecturas) y listo para el próximo desafío.",
-   
     
     "contactBtn": "Contacta conmigo",
     "skillsTitle": "Habilidades",
+
