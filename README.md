@@ -1,27 +1,23 @@
-   <h1> <a href="https://portifolio-gules-tau.vercel.app/" target="blank"> 👨‍💻 Portfólio Pessoal - Dev Leo Carvalho  </a></h1>
+<h1> <a href="https://portifolio-gules-tau.vercel.app/" target="blank"> 👨‍💻 Portfólio Pessoal - Dev Leo Carvalho  </a></h1>
 
-🔹 **Portfólio profissional** criado para exibir projetos, habilidades e trajetória acadêmica em **Análise e Desenvolvimento de Sistemas**.  
-
-## 🚀 Tecnologias Utilizadas  
-- **HTML5** → Estrutura semântica.  
-- **CSS3** → Design responsivo e animações.  
-- **JavaScript** → Lógica e interatividade.  
-- **React** → Componentes dinâmicos (ex: projetos, contato).  
-- **Git/GitHub** → Versionamento de código.  
-
-## 📌 Funcionalidades  
-✅ **Seção "Sobre Mim"** com formação acadêmica (UNIJORGE - Salvador/BA).  
-✅ **Galeria de Projetos** (filtros por tecnologia: HTML, CSS, JS, React).  
-✅ **Formulário de Contato** com validação em JS.  
-✅ **Design Responsivo** (mobile-first).  
-✅ **Modo Claro/Escuro** (opcional, usando CSS/JS).  
-
-## ⚙️ Como Executar Localmente  
-1. Clone o repositório:  
-[git clone https://github.com/seu-usuario/portfolio-dev.git  
-cd portfolio-dev](https://github.com/devleocarvalho/portfolio/tree/main)
-
-## 🎯 Objetivos  
-- Me especializar em Front-end com Reacst.  
-- Contribuir para projetos open-source.  
-
+Sou desenvolvedor em formação com foco em **Segurança Cibernética** e **Desenvolvimento FullStack**.  
+Apaixonado por criar soluções eficientes e proteger dados em ambientes digitais, busco aplicar minhas habilidades técnicas e valores éticos para contribuir em projetos que impactem positivamente pessoas e organizações.  
+## 🛠️ Habilidades Técnicas
+- **Front-end:** HTML5, CSS3, JavaScript, React.js, React Native  
+- **Back-end:** Node.js, Java, SQL/MySQL  
+- **Ferramentas:** Git & GitHub, VS Code, Postman  
+- **Segurança Cibernética:** Fundamentos do CISSP, modelo CIA (Confidencialidade, Integridade e Disponibilidade), análise de vulnerabilidades, monitoramento de incidentes  
+- **Soft Skills:** Comunicação clara, gestão de tempo, aprendizado contínuo  
+## 📂 Projetos em Destaque
+- **Aplicações React** – Projetos práticos com foco em UI responsiva e integração de APIs  
+- **Scripts Python para Segurança** – Automação de tarefas e análise de logs  
+---
+## 🎓 Formação & Certificados
+- **Análise e Desenvolvimento de Sistemas** – UNIJORGE, Salvador/BA  
+- **Google Cybersecurity Certificate** – Foundations of Cybersecurity (em andamento)  
+- Certificados DevMedia: React, REST, JavaScript, Vue.js, CSS, HTML, Algoritmos, Programação  
+---
+## 🌐 Conecte-se comigo
+- 💼 [LinkedIn](https://www.linkedin.com/in/devleocarvalho/)  
+- 📂 [GitHub](https://github.com/devleocarvalho/Portifolio)  
+- 🌍 [Portfólio Online](https://portifolio-git-main-devleocarvalhoprojects.vercel.app)  
