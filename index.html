@@ -1,295 +1,409 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dev Leonardo de Carvalho | Full Stack Developer & Systems Analyst</title>
-  <meta name="description" content="Portfólio profissional de Leonardo de Carvalho, Desenvolvedor Full Stack e Analista de Sistemas">
+  <meta name="description"
+    content="Portfólio profissional de Leonardo de Carvalho, Desenvolvedor Full Stack e Analista de Sistemas">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">  
-  <link rel="shortcut icon" href="./assets/favicon.ico" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/606/606203.png" type="image/png">
 </head>
+
 <body>
   <div class="loading-screen">
-    <div class="loading-spinner">
-      <div class="spinner-sector spinner-sector-1"></div>
-      <div class="spinner-sector spinner-sector-2"></div>
-      <div class="spinner-sector spinner-sector-3"></div>
+    <div class="loading-spinner"></div>
+  </div>
+
+  <nav class="top-nav">
+    <div class="nav-container">
+      <a href="#home" class="logo">Dev.Leo</a>
+      <div class="nav-links">
+        <a href="#about" data-key="tooltipAbout">Sobre</a>
+        <a href="#skills" data-key="tooltipSkills">Habilidades</a>
+        <a href="#projects" data-key="tooltipProjects">Projetos</a>
+        <a href="#contact" data-key="contactBtn">Contato</a>
+      </div>
+      <div class="language-switcher">
+        <div class="selected-language">
+          <img src="https://flagcdn.com/w40/br.png" id="selected-flag">
+          <span id="selected-lang-text">BR</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="language-dropdown" id="language-dropdown">
+          <div class="language-option" data-lang="pt-br" data-flag="https://flagcdn.com/w40/br.png">
+            <img src="https://flagcdn.com/w40/br.png"> Portuguese
+          </div>
+          <div class="language-option" data-lang="en" data-flag="https://flagcdn.com/w40/us.png">
+            <img src="https://flagcdn.com/w40/us.png"> English
+          </div>
+          <div class="language-option" data-lang="es" data-flag="https://flagcdn.com/w40/es.png">
+            <img src="https://flagcdn.com/w40/es.png"> Español
+          </div>
+        </div>
+      </div>
+  </nav>
+
+  <header id="home" class="hero-section">
+    <div class="particles-container">
+      <div id="particles-js"></div>
     </div>
-  </div>
-  
-  <div class="container">
-    <header id="home" class="hero-section">
-      <div class="particles-container">
-        <div id="particles-js"></div>
+    <div class="hero-content" data-aos="fade-up">
+      <h1 class="typing-effect" data-key="heroTitle">Dev. Leo Carvalho</h1>
+      <p class="profession" data-key="heroSubtitle">Full Stack Developer & Systems Analyst</p>
+      <div class="hero-socials">
+        <a href="https://github.com/devleocarvalho" target="_blank" data-tooltip="GitHub"><i
+            class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/devleocarvalho/" target="_blank" data-tooltip="LinkedIn"><i
+            class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:dev.leocarvalho@gmail.com" data-tooltip="Email"><i class="fas fa-envelope"></i></a>
+        <a href="whatsapp://send?phone=5571991338859" target="_blank" data-tooltip="WhatsApp"><i
+            class="fab fa-whatsapp"></i></a>
       </div>
-      <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-        <h1 class="typing-effect">Dev. Leo Carvalho</h1>
-        <p class="profession">Full Stack Developer & Systems Analyst</p>
-        <div class="social-links">
-          <a href="#about" class="nav-link" data-tooltip="Sobre"><i class="fas fa-user"></i></a>
-          <a href="#skills" class="nav-link" data-tooltip="Habilidades"><i class="fas fa-code"></i></a>
-          <a href="#projects" class="nav-link" data-tooltip="Projetos"><i class="fas fa-project-diagram"></i></a>
-          <a href="https://github.com/devleocarvalho" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/devleocarvalho/" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-          <a href="mailto:dev.leocarvalho@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
-          <a href="whatsapp://send?phone=5571991338859" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="about">
+      <div class="section-title" data-aos="fade-up">
+        <h2 data-key="aboutTitle">Sobre mim</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-image-container" data-aos="fade-right">
+          <img src="./assets/ge.png" alt="Leonardo de Carvalho" class="about-image" />
         </div>
-      </div>
-    </header>
-
-    <section id="about" class="js-section">
-      <h2>Sobre mim</h2>
-      <p>Sou estudante de Análise e Desenvolvimento de Sistemas e estou construindo minha carreira na área de tecnologia, com foco em Full Stack. Atualmente, me preparo para a Carreira Tech & Full Stack e busco constantemente ampliar meus conhecimentos através de cursos renomados, como os ministrados pelo Prof. Gustavo Guanabara e pelo DevMedia.</p>
-      <p>Possuo certificações em Lógica de Programação, HTML5, CSS e JavaScript. Continuo me aprofundando em novas tecnologias e boas práticas de desenvolvimento. Estou sempre em busca de desafios que me permitam evoluir como profissional, aplicando o que aprendi e contribuindo para projetos inovadores.</p>
-      <p>Minha trajetória é marcada pela paixão por aprender, pela prática constante e pelo desejo de construir soluções eficientes e de qualidade. Estou animado com as oportunidades que o mercado de tecnologia oferece e pronto para contribuir com projetos que façam a diferença.</p>
-      <div class="actions">
-        <a href="assets/CV- Leonardo Guedes de Carvalho.pdf" download class="action-button">
-          <i class="fas fa-download"></i> Download CV PT
-        </a>
-        <a href="assets/CV- ENG Leonardo Guedes de Carvalho.pdf" download class="action-button">
-          <i class="fas fa-download"></i> Download CV ENG
-        </a>
-        <a href="assets/CV- SPN Leonardo Guedes de Carvalho.pdf" download class="action-button">
-          <i class="fas fa-download"></i> Download CV SPN
-        </a> 
-        <a href="mailto:dev.leocarvalho@gmail.com" target="_blank" class="action-button">
-          <i class="fas fa-envelope"></i> Entrar em contato
-        </a>
-      </div>
-    </section>
-
-    <section id="skills" class="js-section">
-      <h2>Habilidades </h2>
-      <div class="skills-container">
-        <div class="skills-grid">
-          <div class="skill-box">
-            <img src="./assets/alg.png" alt="Lógica de Programação" title="Lógica de Programação 60h* 2024"> 
-          </div>
-          
-          <div class="skill-box">
-            <img src="./assets/PROGRA.png" alt="Programação Básica" title="Programação Básica 60h *2024 *">
-             
-          </div>
-          <div class="skill-box">
-            <img src="./assets/visual-basico.png" alt="Visual Basic" title="Visual Basic 60h *2024 * ">
-             
-          </div>
-          <div class="skill-box">
-            <img src="./assets/HTML5.png" alt="HTML5" title="HTML5 60h *2024 *">
-            
-          </div>
-          <div class="skill-box">
-            <img src="./assets/css.png" alt="CSS3" title="CSS3 11h *2024 *">
-             
-          </div>
-          <div class="skill-box">
-            <img src="./assets/java.PNG" alt="JavaScript" title="JavaScript 125h *2024 * ">
-            
-          </div>
-          <div class="skill-box">
-            <img src="./assets/git.png" alt="git" title="git 80h *2025 *">
-             
-          </div>
-          <div class="skill-box">
-            <img src="./assets/frontend.png" alt="Frontend" title="Frontend 138h *2024 * ">
-             
-          </div>
-          <div class="skill-box">
-            <img src="./assets/python.jpg" alt="python" title="python 13h *2025 *">
-             
-          </div>
-          <div class="skill-box">
-            <img src="./assets/node-js.png" alt="Node.js" title="Node.js 73h *2024 *">
-             
-          </div>
-          <div class="skill-box">
-            <img src="./assets/vue-js.png" alt="Vue.js" title="Vue.js 60h *2024 *">
-             
-          </div>
-          <div class="skill-box">
-            <img src="./assets/react.png" alt="React" title="React 60h *2024 *">
-              
-          </div>
-          <div class="skill-box">
-            <img src="./assets/reactnative.png" alt="ReactNative" title="ReactNative 170h *2024 *">
-             
-          </div>
-          <div class="skill-box">
-            <img src="./assets/sql.png" alt="SQL" title="SQL 60h *2024 *">
-             
-          </div>
-          <div class="skill-box">
-            <img src="./assets/sql2.png" alt="Banco de Dados" title="Banco de Dados 60h *2025*">
-            
-          </div>
-          <div class="skill-box">
-            <img src="./assets/powerbi.png" alt="powerbi" title="powerbi 8h *2024 *">
-             
-          </div>
-          <div class="skill-box">
-            <img src="./assets/ciberseguranca.png" alt="Ciberseguranaça" title="Ciberseguranaça 170h *2025 *">
-           
-          </div>
-          <div class="skill-box">
-            <img src="./assets/chatbox.png" alt="Chatbots" title="Chatbots 10h *2025 *">
-            
+        <div class="about-info" data-aos="fade-left">
+          <p class="about-p" data-key="aboutP1"></p>
+          <p class="about-p" data-key="aboutP2"></p>
+          <p class="about-p" data-key="aboutP3"></p>
+          <div class="about-actions">
+            <a href="assets/CV- Leonardo Guedes de Carvalho.pdf" download class="btn btn-primary">
+              <i class="fas fa-download"></i> PT
+            </a>
+            <a href="assets/CV- ENG Leonardo Guedes de Carvalho.pdf" download class="btn btn-outline">
+              <i class="fas fa-download"></i> EN
+            </a>
+            <a href="assets/CV- ESP Leonardo Guedes de Carvalho.pdf" download class="btn btn-outline">
+              <i class="fas fa-download"></i> ES
+            </a>
+            <a href="#contact" class="btn btn-primary" data-key="contactBtn">Fale Comigo</a>
           </div>
         </div>
       </div>
     </section>
-        <section id="skills" class="js-section">
-          <h2> Certificações </h2>
-          <div class="skills-container">
-            <div class="skills-grid">
-              <div class="skill-box">
-                <img src="./assets/cisco.png" alt="Cisco Networking Academy ou NetAcad" title="Cisco Networking Academy ou NetAcad">
-                <img src="./assets/coursera.png" alt="é uma empresa de tecnologia educacional norte-americana" title="coursera">
-                <img src="./assets/devmedia.jpg" alt="Aprenda a programar de VERDADE, com menos aulas e mais prática" title="DEVMEDIA">
-                 <img src="./assets/unijorge.png" alt="UNIJORGE" title="UNIJORGE">
-              </div>
-           </div>
+
+    <section id="skills">
+      <div class="section-title" data-aos="fade-up">
+        <h2 data-key="skillsTitle">Habilidades</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card" data-aos="zoom-in" data-aos-delay="100">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+          <span>HTML5</span>
+        </div>
+        <div class="skill-card" data-aos="zoom-in" data-aos-delay="150">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+          <span>CSS3</span>
+        </div>
+        <div class="skill-card" data-aos="zoom-in" data-aos-delay="200">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+            alt="JavaScript">
+          <span>JavaScript</span>
+        </div>
+        <div class="skill-card" data-aos="zoom-in" data-aos-delay="250">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
+          <span>Java</span>
+        </div>
+        <div class="skill-card" data-aos="zoom-in" data-aos-delay="300">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+          <span>Node.js</span>
+        </div>
+        <div class="skill-card" data-aos="zoom-in" data-aos-delay="350">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+          <span>React</span>
+        </div>
+        <div class="skill-card" data-aos="zoom-in" data-aos-delay="400">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js">
+          <span>Vue.js</span>
+        </div>
+        <div class="skill-card" data-aos="zoom-in" data-aos-delay="450">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+          <span>Python</span>
+        </div>
+        <div class="skill-card" data-aos="zoom-in" data-aos-delay="500">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL">
+          <span>MySQL / SQL</span>
+        </div>
+        <div class="skill-card" data-aos="zoom-in" data-aos-delay="550">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/powerbi.svg" alt="Power BI"
+            style="filter: brightness(0) invert(1);">
+          <span>Power BI</span>
+        </div>
+        <div class="skill-card" data-aos="zoom-in" data-aos-delay="600">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+          <span>Git</span>
+        </div>
+        <div class="skill-card" data-aos="zoom-in" data-aos-delay="650">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="Native">
+          <span>React Native</span>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top: 6rem;" data-aos="fade-up">
+        <h2 data-key="certificationsTitle">Certificações</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Cisco_logo.svg" alt="Cisco">
+        </div>
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg" alt="Coursera">
+        </div>
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
+          <img src="https://www.devmedia.com.br/favicon.png" alt="DevMedia" style="width: 40px;">
+        </div>
+        <div class="skill-card" data-aos="fade-up" data-aos-delay="400">
+          <img src="./assets/image copy.png" alt="Unijorge">
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-title" data-aos="fade-up">
+        <h2 data-key="projectsTitle">Meus Projetos</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card" data-aos="fade-up">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800"
+              alt="Cafeteria">
           </div>
-         </div> 
- 
-      
-    <section id="projects" class="js-section">
-      <h2>Meus Projetos</h2>
-      <div class="projects-container">
-              <div class="project-card">
-                <h3>☕ Cafeteria ☕ </h3>
-                <img src="/assets/parallax-imagem3.jpg" alt="Projeto 1">
-                <p>Cafeteria Madrid!         
-                  Bem-vindo ao repositório do projeto Cafeteria Madrid! Este projeto simula o site de uma cafeteria, desenvolvido com HTML5, CSS3 e JavaScript. Ele apresenta o cardápio, informações da loja, galeria de fotos,localização, pagina de administrador e pedidos </p>
-                <a href="https://cafeteria-nine-mu.vercel.app/" class="project-link">Ver projeto</a>
-              </div>
-              <div class="project-card">
-                <h3>🏗️ Construtora AM 🏗️ </h3>
-                <img src="/assets/a.jpg" alt="Projeto 2">
-                <p>Construtora AMPP. Bem-vindo ao repositório do projeto Construtora AM! Este projeto simula o site de uma construtora,
-                   desenvolvido com HTML5, CSS3 e JavaScript. Ele apresenta os serviços oferecidos, informações da empresa, portfólio de projetos,
-                    localização, área do cliente e solicitação de orçamentos. </p>
-                <a href="https://ampla-phi.vercel.app/" class="project-link">Ver projeto</a>
-              </div>
-              <div class="project-card">
-                <h3>Evolution health passos para alta</h3>
-                <img src="/assets/saude-4.0.jpg" alt="Projeto 3">
-                <p> Em desenvolvimento</p>
-                <a href="https://passospara-alta.vercel.app/" class="project-link">Ver projeto</a>
-              </div>
-              <div class="project-card">
-                <h3>Make a Move</h3>
-                <img src="/assets/3.png" alt="Projeto 4">
-                <p> divirta-se com 🎮 Make a Move. Bem-vindo ao repositório do jogo Make a Move! Este projeto é um jogo interativo de imagem e ação, desenvolvido com HTML5, CSS3 e JavaScript. 
-              O jogador precisa reagir rapidamente a imagens que aparecem na tela, testando reflexos e agilidade em diferentes fases.</p>
-                <a href="https://makeamove-murex.vercel.app/" class="project-link">Ver projeto</a>
-              </div>
-              <div class="project-card">
-                <h3>Conte...é Fake ou fato</h3>
-                <img src="/assets/n.png" alt="Projeto 5">
-                <p> divirta-se 🔍 Conte-me Esse Fato... É Fake ou Verdade?
-                Bem-vindo ao repositório do aplicativo Conte-me Esse Fato! Este projeto permite verificar se uma informação é falsa ou verdadeira, desenvolvido com HTML5, CSS3 e JavaScript. 
-                O usuário insere um fato e recebe uma resposta baseada em fontes confiáveis e verificadas.</p>
-                <a href="https://me-conteai.vercel.app/" class="project-link">Ver projeto</a>
-              </div>
-              <div class="project-card">
-                  <h3>A Bordados</h3>
-                  <img src="./assets/9.webp" alt="Projeto 6">
-                  <p> loja de bordados 🧵 Loja A Bordados
-                Bem-vindo ao repositório do projeto Loja A Bordados! Este site simula uma loja online de bordados, desenvolvido com HTML5, CSS3 e JavaScript.
-                Ele apresenta o catálogo de produtos, informações da loja, galeria de bordados, página de pedidos e contato.</p>
-                  <a href="https://bordados-eight.vercel.app/" class="project-link">Ver projeto</a>
-              </div>
-               <div class="project-card">
-                  <h3> virtual cosmeticos</h3>
-                  <img src="./assets/contact-bg.jpg" alt="Projeto 7">
-                  <p> 💄 Loja de Beleza 
-                Bem-vindo ao repositório do projeto Loja  virtual cosmeticos! Este site simula uma loja online de produtos de beleza, desenvolvido com HTML5, CSS3 e JavaScript. 
-                Ele apresenta o catálogo de cosméticos, informações da loja, galeria de produtos, sistema de pedidos e página de contato.</p>
-                  <a href="https://lojavitor-psi.vercel.app/" class="project-link">Ver projeto</a>
-              </div>
-              <div class="project-card">
-                  <h3> Eventos RCC</h3>
-                  <img src="/assets/logo-rcc.png" alt="Projeto 8">
-                  <p> 🎉 Loja de Eventos RCC
-                Bem-vindo ao repositório do projeto Loja de Eventos AM! Este site simula uma plataforma de serviços para eventos, desenvolvido com HTML5, CSS3 e JavaScript. 
-                Ele apresenta os pacotes de eventos, informações da empresa, galeria de eventos realizados, sistema de agendamentos e página de contato.</p>
-                  <a href="https://rcc-devleocarvalhoprojects.vercel.app/" class="project-link">Ver projeto</a>
-              </div>
-              <div class="project-card">
-                  <h3> mercadolivre--by-unijorge</h3>
-                  <img src="/assets/unnamed.png" alt="projeto9unijorge">
-                  <p> Mercado libre Brasil 🛒 
-                Bem-vindo ao repositório do projeto Loja de e-comerce simples</p>
-                  <a href="https://mercadolivreby-unijorge.vercel.app/" class="project-link">Ver projeto</a>
-               
-              </div>
-              <div class="project-card">
-                      <h3>⏰ Analisador de Jornada de Trabalho</h3>
-                      <img src="/assets/jt.png" alt="projetou10escritorio">
-                      <p> cole o arquivo de conversas on line e saiba quanto de trabalho extra vc fez</p>
-                      <a href="https://hgysmhc4hnktm5svteurqg.streamlit.app/" class="project-link">Ver projeto</a>
-              </div>
-        
+          <div class="project-body">
+            <h3 data-key="proj1Title">Cafeteria Madrid</h3>
+            <p data-key="proj1Desc"></p>
+            <div class="project-footer">
+              <a href="https://cafeteria-nine-mu.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver
+                projeto</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800"
+              alt="Construtora">
+          </div>
+          <div class="project-body">
+            <h3 data-key="proj2Title">Construtora AM</h3>
+            <p data-key="proj2Desc"></p>
+            <div class="project-footer">
+              <a href="https://ampla-phi.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1505751172107-573225a92305?auto=format&fit=crop&q=80&w=800"
+              alt="Health">
+          </div>
+          <div class="project-body">
+            <h3 data-key="proj3Title">Evolution Health</h3>
+            <p data-key="proj3Desc"></p>
+            <div class="project-footer">
+              <a href="https://passospara-alta.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver
+                projeto</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card" data-aos="fade-up">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=800"
+              alt="Make a Move">
+          </div>
+          <div class="project-body">
+            <h3 data-key="proj4Title">Make a Move</h3>
+            <p data-key="proj4Desc"></p>
+            <div class="project-footer">
+              <a href="https://makeamove-murex.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver
+                projeto</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&q=80&w=800"
+              alt="Fake or Fact">
+          </div>
+          <div class="project-body">
+            <h3 data-key="proj5Title">Fake or Fact</h3>
+            <p data-key="proj5Desc"></p>
+            <div class="project-footer">
+              <a href="https://me-conteai.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1610484826967-09c5720778c7?auto=format&fit=crop&q=80&w=800"
+              alt="A Bordados">
+          </div>
+          <div class="project-body">
+            <h3 data-key="proj6Title">A Bordados</h3>
+            <p data-key="proj6Desc"></p>
+            <div class="project-footer">
+              <a href="https://bordados-eight.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver
+                projeto</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 7 -->
+        <div class="project-card" data-aos="fade-up">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=800"
+              alt="Virtual Cosméticos">
+          </div>
+          <div class="project-body">
+            <h3 data-key="proj7Title">Virtual Cosméticos</h3>
+            <p data-key="proj7Desc"></p>
+            <div class="project-footer">
+              <a href="#" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 8 -->
+        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80&w=800"
+              alt="Eventos RCC">
+          </div>
+          <div class="project-body">
+            <h3 data-key="proj8Title">Eventos RCC</h3>
+            <p data-key="proj8Desc"></p>
+            <div class="project-footer">
+              <a href="#" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 9 -->
+        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=800"
+              alt="E-commerce Unijorge">
+          </div>
+          <div class="project-body">
+            <h3 data-key="proj9Title">E-commerce Unijorge</h3>
+            <p data-key="proj9Desc"></p>
+            <div class="project-footer">
+              <a href="#" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 10 -->
+        <div class="project-card" data-aos="fade-up">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1542621334-a254cf47733d?auto=format&fit=crop&q=80&w=800"
+              alt="Jornada de Trabalho">
+          </div>
+          <div class="project-body">
+            <h3 data-key="proj10Title">Jornada de Trabalho</h3>
+            <p data-key="proj10Desc"></p>
+            <div class="project-footer">
+              <a href="#" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-    </section>   
-    <section id="contact" class="js-section">
-      <h2>Entre em Contato</h2>
-      <h3>Vamos conversar! <a href="whatsapp://send?phone=5571991338859" class="social-icon" target="_blank"><i class="fab fa-whatsapp" ></i></a></h3>
-      <p>Estou interessado em oportunidades freelance, projetos desafiadores e colaborações. Entre em contato e vamos criar algo incrível juntos!</p>
-      
-      <div class="contact-info">
-        <h4>Localização</h4>
-        <h4>Salvador, Bahia, Brasil, Mundo</h4>
+    <section id="contact">
+      <div class="section-title" data-aos="fade-up">
+        <h2 data-key="contactTitle">Contato</h2>
+        <div class="divider"></div>
       </div>
-      
-      <form action="https://formsubmit.co/dev.leocarvalho@gmail.com" method="POST">
-      <div class="form-group">
-      <label for="name">Seu nome:</label>
-      <input type="text" id="name" name="name" placeholder="Seu nome" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Seu email:</label>
-          <input type="email" id="email" name="email" placeholder="Seu email" required>
-        </div>
-        <div class="form-group">
-          <label for="message">Sua mensagem:</label>
-          <textarea id="message" name="message" placeholder="Sua mensagem" required></textarea>
-        </div>
-        
-        <button type="submit" class="submit-button">Enviar mensagem</button>
-      </form>
-     </section>  
-
-    <footer class="footer">
-      <div class="footer-content">
-        <p>&copy; <span id="year"></span> Todos os direitos reservados</p>
-        <p>Desenvolvido por DevLeoCarvalho</p>
-        <div class="spotify-player">
-          <iframe src="https://open.spotify.com/embed/playlist/0POsey0dCg5sk1MDouBYKl" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-        </div> 
+      <div class="contact-container" data-aos="fade-up">
+        <p data-key="contactDesc" style="text-align: center; margin-bottom: 2rem;"></p>
+        <form action="https://formsubmit.co/dev.leocarvalho@gmail.com" method="POST">
+          <div class="form-group">
+            <label for="name" data-key="formName">Seu nome:</label>
+            <input type="text" id="name" name="name" required data-key-placeholder="formNamePlaceholder">
+          </div>
+          <div class="form-group">
+            <label for="email" data-key="formEmail">Seu email:</label>
+            <input type="email" id="email" name="email" required data-key-placeholder="formEmailPlaceholder">
+          </div>
+          <div class="form-group">
+            <label for="message" data-key="formMessage">Sua mensagem:</label>
+            <textarea id="message" name="message" required data-key-placeholder="formMessagePlaceholder"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;" data-key="formSubmit">Enviar
+            mensagem</button>
+        </form>
       </div>
-      
-    </footer>
-  </div>
+    </section>
+  </main>
 
-  <a href="#home" class="back-to-top" title="Voltar ao topo">
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-info">
+          <a href="#" class="logo">Dev.Leo</a>
+          <p data-key="heroSubtitle"></p>
+          <div class="hero-socials" style="justify-content: flex-start; margin-top: 1.5rem;">
+            <a href="https://github.com/devleocarvalho" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/devleocarvalho/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4 data-key="tooltipProjects">Projetos</h4>
+          <ul>
+            <li><a href="#projects">Portfolio</a></li>
+            <li><a href="#projects">Projetos Recentes</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Playlist</h4>
+          <div class="spotify-widget">
+            <iframe src="https://open.spotify.com/embed/playlist/0POsey0dCg5sk1MDouBYKl" width="100%" height="80"
+              frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-key="footerRights"></p>
+        <p data-key="footerDev" style="font-size: 0.8rem; margin-top: 0.5rem;"></p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#home" class="back-to-top" id="backToTop">
     <i class="fas fa-arrow-up"></i>
   </a>
 
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="translations.js"></script>
   <script src="script.js"></script>
-  </body>
+</body>
 
 </html>
-
-
-
-
-
-
-
