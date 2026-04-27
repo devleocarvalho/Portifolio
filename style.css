@@ -9,7 +9,7 @@
   --accent: #22d3ee;
   --bg-dark: #030712;
   --bg-card: rgba(17, 24, 39, 0.7);
-  --text-main: #f8fafc;
+  --text-main: #ffffff;
   --text-muted: #94a3b8;
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-bg: rgba(255, 255, 255, 0.03);
@@ -35,7 +35,11 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, .typing-effect {
+h1,
+h2,
+h3,
+h4,
+.typing-effect {
   font-family: 'Outfit', sans-serif;
 }
 
@@ -50,13 +54,16 @@ h1, h2, h3, h4, .typing-effect {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-dark);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--glass-border);
   border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
 }
@@ -88,8 +95,13 @@ h1, h2, h3, h4, .typing-effect {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Navigation & Language Switcher bar */
@@ -137,7 +149,8 @@ h1, h2, h3, h4, .typing-effect {
   transition: var(--transition);
 }
 
-.nav-links a:hover, .nav-links a.active {
+.nav-links a:hover,
+.nav-links a.active {
   color: var(--text-main);
 }
 
@@ -256,10 +269,10 @@ section {
 }
 
 .about-p {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    margin-bottom: 1.5rem;
-    text-align: left;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  text-align: left;
 }
 
 .about-actions {
@@ -437,7 +450,8 @@ section {
   color: var(--text-main);
 }
 
-.form-group input, .form-group textarea {
+.form-group input,
+.form-group textarea {
   width: 100%;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--glass-border);
@@ -448,7 +462,8 @@ section {
   transition: var(--transition);
 }
 
-.form-group input:focus, .form-group textarea:focus {
+.form-group input:focus,
+.form-group textarea:focus {
   outline: none;
   border-color: var(--primary);
   background: rgba(255, 255, 255, 0.08);
@@ -610,15 +625,15 @@ section {
     grid-template-columns: 1fr;
     text-align: center;
   }
-  
+
   .about-image {
     margin: 0 auto;
   }
-  
+
   .about-p {
     text-align: center;
   }
-  
+
   .about-actions {
     justify-content: center;
   }
@@ -626,19 +641,19 @@ section {
 
 @media (max-width: 768px) {
   .nav-links {
-    display: none; /* Mobile menu needed but keeping it simple for now */
+    display: none;
+    /* Mobile menu needed but keeping it simple for now */
   }
-  
+
   .hero-socials {
     flex-wrap: wrap;
   }
-  
+
   .projects-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .contact-container {
     padding: 1.5rem;
   }
 }
-
