@@ -16,12 +16,4 @@
 ✅ **Design Responsivo** (mobile-first).  
 ✅ **Modo Claro/Escuro** (opcional, usando CSS/JS).  
 
-## ⚙️ Como Executar Localmente  
-1. Clone o repositório:  
-[git clone https://github.com/seu-usuario/portfolio-dev.git  
-cd portfolio-dev](https://github.com/devleocarvalho/portfolio/tree/main)
-
-## 🎯 Objetivos  
-- Me especializar em Front-end com Reacst.  
-- Contribuir para projetos open-source.  
 
