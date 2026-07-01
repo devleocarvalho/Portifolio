@@ -8,12 +8,22 @@
   <title>Dev Leonardo de Carvalho | Full Stack Developer & Systems Analyst & Devsecops</title>
   <meta name="description"
     content="Portfólio profissional de Leonardo de Carvalho, Desenvolvedor Full Stack e Analista de Sistemas">
+
+  <!-- Open Graph / SEO -->
+  <meta property="og:title" content="Dev Leonardo de Carvalho | Full Stack Developer">
+  <meta property="og:description"
+    content="Portfólio profissional de Leonardo de Carvalho, Desenvolvedor Full Stack e Analista de Sistemas">
+  <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/929/929429.png">
+  <meta property="og:type" content="website">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/929/929429.png" type="image/png">
 </head>
 
 <body>
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
   <div class="loading-screen">
     <div class="loading-spinner"></div>
   </div>
@@ -29,22 +39,25 @@
       </div>
       <div class="language-switcher">
         <div class="selected-language">
-          <img src="https://flagcdn.com/w40/br.png" id="selected-flag">
+          <img src="https://flagcdn.com/w40/br.png" id="selected-flag" alt="Bandeira do idioma">
           <span id="selected-lang-text">BR</span>
           <i class="fas fa-chevron-down"></i>
         </div>
         <div class="language-dropdown" id="language-dropdown">
           <div class="language-option" data-lang="pt-br" data-flag="https://flagcdn.com/w40/br.png">
-            <img src="https://flagcdn.com/w40/br.png"> Portuguese
+            <img src="https://flagcdn.com/w40/br.png" alt="Português"> Portuguese
           </div>
           <div class="language-option" data-lang="en" data-flag="https://flagcdn.com/w40/us.png">
-            <img src="https://flagcdn.com/w40/us.png"> English
+            <img src="https://flagcdn.com/w40/us.png" alt="English"> English
           </div>
           <div class="language-option" data-lang="es" data-flag="https://flagcdn.com/w40/es.png">
-            <img src="https://flagcdn.com/w40/es.png"> Español
+            <img src="https://flagcdn.com/w40/es.png" alt="Español"> Español
           </div>
         </div>
       </div>
+      <button class="mobile-menu-btn" aria-label="Abrir menu">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </nav>
 
@@ -56,13 +69,14 @@
       <h1 class="typing-effect" data-key="heroTitle">Dev. Leo Carvalho</h1>
       <p class="profession" data-key="heroSubtitle">Full Stack Developer & Systems Analyst</p>
       <div class="hero-socials">
-        <a href="https://github.com/devleocarvalho" target="_blank" data-tooltip="GitHub"><i
+        <a href="https://github.com/devleocarvalho" target="_blank" data-tooltip="GitHub" aria-label="Acessar GitHub"><i
             class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/devleocarvalho/" target="_blank" data-tooltip="LinkedIn"><i
-            class="fab fa-linkedin-in"></i></a>
-        <a href="mailto:dev.leocarvalho@gmail.com" data-tooltip="Email"><i class="fas fa-envelope"></i></a>
-        <a href="whatsapp://send?phone=5571991338859" target="_blank" data-tooltip="WhatsApp"><i
-            class="fab fa-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/in/devleocarvalho/" target="_blank" data-tooltip="LinkedIn"
+          aria-label="Acessar LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:dev.leocarvalho@gmail.com" data-tooltip="Email" aria-label="Enviar Email"><i
+            class="fas fa-envelope"></i></a>
+        <a href="whatsapp://send?phone=5571991338859" target="_blank" data-tooltip="WhatsApp"
+          aria-label="Falar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
   </header>
@@ -82,7 +96,7 @@
           <p class="about-p" data-key="aboutP2"></p>
           <p class="about-p" data-key="aboutP3"></p>
           <div class="about-actions">
-            <a href="assets/CV- Leonardo Guedes de Carvalho.pdf" download class="btn btn-primary">
+            <a href="assets/CV- Leonardo Guedes de Carvalho.pdf" download class="btn btn-outline">
               <i class="fas fa-download"></i> PT
             </a>
             <a href="assets/CV- ENG Leonardo Guedes de Carvalho.pdf" download class="btn btn-outline">
@@ -102,103 +116,120 @@
         <h2 data-key="skillsTitle">Habilidades</h2>
         <div class="divider"></div>
       </div>
-      <div class="skills-grid">
+
+      <div class="skills-tabs" data-aos="fade-up">
+        <button class="skill-tab active" data-tab="frontend">Frontend & Linguagens</button>
+        <button class="skill-tab" data-tab="backend">Databases & Cloud</button>
+        <button class="skill-tab" data-tab="tools">Ferramentas</button>
+      </div>
+
+      <div class="skills-grid" id="skills-grid">
         <!-- Frontend & Languages -->
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="100">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+        <div class="skill-card" data-category="frontend" data-aos="zoom-in" data-aos-delay="100">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"
+            loading="lazy">
           <span>HTML5</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="150">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+        <div class="skill-card" data-category="frontend" data-aos="zoom-in" data-aos-delay="150">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"
+            loading="lazy">
           <span>CSS3</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="200">
+        <div class="skill-card" data-category="frontend" data-aos="zoom-in" data-aos-delay="200">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-            alt="JavaScript">
+            alt="JavaScript" loading="lazy">
           <span>JavaScript</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="300">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+        <div class="skill-card" data-category="frontend" data-aos="zoom-in" data-aos-delay="300">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"
+            loading="lazy">
           <span>React</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="350">
+        <div class="skill-card" data-category="frontend" data-aos="zoom-in" data-aos-delay="350">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js"
-            style="filter: brightness(0) invert(1);">
+            loading="lazy" style="filter: brightness(0) invert(1);">
           <span>Next.js</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="400">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="Native">
+        <div class="skill-card" data-category="frontend" data-aos="zoom-in" data-aos-delay="400">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="Native"
+            loading="lazy">
           <span>React Native</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="450">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+        <div class="skill-card" data-category="frontend" data-aos="zoom-in" data-aos-delay="450">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"
+            loading="lazy">
           <span>Node.js</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="500">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
+        <div class="skill-card" data-category="frontend" data-aos="zoom-in" data-aos-delay="500">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"
+            loading="lazy">
           <span>Java</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="550">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+        <div class="skill-card" data-category="frontend" data-aos="zoom-in" data-aos-delay="550">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"
+            loading="lazy">
           <span>Python</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="600">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/cisco.svg" alt="Cisco"
+        <div class="skill-card" data-category="frontend" data-aos="zoom-in" data-aos-delay="600">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/cisco.svg" alt="Cisco" loading="lazy"
             style="filter: brightness(0) invert(1);">
           <span>Redes / Networking</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="650">
-          <img src="https://cdn-icons-png.flaticon.com/512/8037/8037114.png" alt="CyberOps"
+        <div class="skill-card" data-category="frontend" data-aos="zoom-in" data-aos-delay="650">
+          <img src="https://cdn-icons-png.flaticon.com/512/8037/8037114.png" alt="CyberOps" loading="lazy"
             style="filter: brightness(0) invert(1);">
           <span>Cisco CyberOps</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="700">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/google.svg" alt="Google"
+        <div class="skill-card" data-category="frontend" data-aos="zoom-in" data-aos-delay="700">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/google.svg" alt="Google" loading="lazy"
             style="filter: brightness(0) invert(1);">
           <span>Google Cybersecurity</span>
         </div>
 
         <!-- Databases & Cloud -->
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="750">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL">
+        <div class="skill-card" data-category="backend" data-aos="zoom-in" data-aos-delay="750">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL"
+            loading="lazy">
           <span>MySQL / SQL</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="800">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB">
+        <div class="skill-card" data-category="backend" data-aos="zoom-in" data-aos-delay="800">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"
+            loading="lazy">
           <span>MongoDB</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="850">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase">
+        <div class="skill-card" data-category="backend" data-aos="zoom-in" data-aos-delay="850">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase"
+            loading="lazy">
           <span>Firebase</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="900">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/supabase.svg" alt="Supabase"
+        <div class="skill-card" data-category="backend" data-aos="zoom-in" data-aos-delay="900">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/supabase.svg" alt="Supabase" loading="lazy"
             style="filter: brightness(0) invert(1);">
           <span>Supabase</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="950">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/neon.svg" alt="Neon"
+        <div class="skill-card" data-category="backend" data-aos="zoom-in" data-aos-delay="950">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/neon.svg" alt="Neon" loading="lazy"
             style="filter: brightness(0) invert(1);">
           <span>Neon</span>
         </div>
 
         <!-- Tools -->
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="1000">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+        <div class="skill-card" data-category="tools" data-aos="zoom-in" data-aos-delay="1000">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" loading="lazy">
           <span>Git</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="1050">
+        <div class="skill-card" data-category="tools" data-aos="zoom-in" data-aos-delay="1050">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"
-            style="filter: brightness(0) invert(1);">
+            loading="lazy" style="filter: brightness(0) invert(1);">
           <span>GitHub</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="1100">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/vercel.svg" alt="Vercel"
+        <div class="skill-card" data-category="tools" data-aos="zoom-in" data-aos-delay="1100">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/vercel.svg" alt="Vercel" loading="lazy"
             style="filter: brightness(0) invert(1);">
           <span>Vercel</span>
         </div>
-        <div class="skill-card" data-aos="zoom-in" data-aos-delay="1150">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/powerbi.svg" alt="Power BI"
+        <div class="skill-card" data-category="tools" data-aos="zoom-in" data-aos-delay="1150">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/powerbi.svg" alt="Power BI" loading="lazy"
             style="filter: brightness(0) invert(1);">
           <span>Power BI</span>
         </div>
@@ -232,398 +263,15 @@
         <h2 data-key="projectsTitle">Meus Projetos</h2>
         <div class="divider"></div>
       </div>
-      <div class="projects-grid">
-        <!-- Project 1 -->
-        <div class="project-card" data-aos="fade-up">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800"
-              alt="Cafeteria">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj1Title">Cafeteria Madrid</h3>
-            <p data-key="proj1Desc"></p>
-            <div class="project-footer">
-              <a href="https://cafeteria-nine-mu.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver
-                projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 2 -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800"
-              alt="Construtora">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj2Title">Construtora AM</h3>
-            <p data-key="proj2Desc"></p>
-            <div class="project-footer">
-              <a href="https://ampla-phi.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 3 -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="project-image">
-            <img
-              src="https://plus.unsplash.com/premium_photo-1699387204388-120141c76d51?q=80&w=1978&auto=format&fit=crop"
-              alt="Health">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj3Title">Evolution Health</h3>
-            <p data-key="proj3Desc"></p>
-            <div class="project-footer">
-              <a href="https://steptodischarge.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver
-                projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 4 -->
-        <div class="project-card" data-aos="fade-up">
-          <div class="project-image">
-            <img
-              src="https://media.istockphoto.com/id/1813070414/pt/foto/family-playing-guessing-game-at-home.jpg?s=1024x1024&w=is&k=20&c=G3YIMWgJEFbP8mYVaKh3Yd6IhtlzfXj7pQgxEEn3kuw="
-              alt="Make a Move">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj4Title">Make a Move</h3>
-            <p data-key="proj4Desc"></p>
-            <div class="project-footer">
-              <a href="https://makeamove-murex.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver
-                projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 5 -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&q=80&w=800"
-              alt="Fake or Fact">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj5Title">Fake or Fact</h3>
-            <p data-key="proj5Desc"></p>
-            <div class="project-footer">
-              <a href="https://me-conteai.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 6 -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?auto=format&fit=crop&q=80&w=800"
-              alt="Ana Paula Bordados">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj6Title">Ana Paula Bordados</h3>
-            <p data-key="proj6Desc"></p>
-            <div class="project-footer">
-              <a href="https://anapaulabordados.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver
-                projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 7 -->
-        <div class="project-card" data-aos="fade-up">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=800"
-              alt="Virtual Cosméticos">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj7Title">Virtual Cosméticos</h3>
-            <p data-key="proj7Desc"></p>
-            <div class="project-footer">
-              <a href="https://lojavitor-psi.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 8 -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&q=80&w=800"
-              alt="Eventos RCC">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj8Title">Eventos RCC</h3>
-            <p data-key="proj8Desc"></p>
-            <div class="project-footer">
-              <a href="https://rcc-vert.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 9 -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=800&q=80"
-              alt="E-commerce Unijorge">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj9Title">E-commerce Unijorge</h3>
-            <p data-key="proj9Desc"></p>
-            <div class="project-footer">
-              <a href="https://mercadolivreby-unijorge.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver
-                projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 10 -->
-        <div class="project-card" data-aos="fade-up">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=800&q=80"
-              alt="Jornada de Trabalho">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj10Title">Jornada de Trabalho extra?</h3>
-            <p data-key="proj10Desc"></p>
-            <div class="project-footer">
-              <a href="https://hgysmhc4hnktm5svteurqg.streamlit.app/" class="btn btn-primary" data-key="viewProject">Ver
-                projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 11 -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="0">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&q=80&w=800"
-              alt="Cash ou Milhas">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj11Title">Cash ou Milhas</h3>
-            <p data-key="proj11Desc"></p>
-            <div class="project-footer">
-              <a href="https://cash-ou-milhas.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver
-                projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 12 -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800"
-              alt="LeadFlow Pro">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj12Title">LeadFlow Pro</h3>
-            <p data-key="proj12Desc"></p>
-            <div class="project-footer">
-              <a href="https://cadastroleads.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 13 -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1763736809873-79ff9eb96f8a?auto=format&fit=crop&q=80&w=800"
-              alt="Sua Compra com Troco">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj13Title">Sua Compra com Troco</h3>
-            <p data-key="proj13Desc"></p>
-            <div class="project-footer">
-              <a href="https://suacompracomtroco.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver
-                projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 14 -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="0">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800"
-              alt="Dra. Melline Ortega">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj14Title">Dra. Melline Ortega</h3>
-            <p data-key="proj14Desc"></p>
-            <div class="project-footer">
-              <a href="https://espaco-terapeutico.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver
-                projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 15 -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&q=80&w=800"
-              alt="Ribalta Sonora">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj15Title">Ribalta Sonora</h3>
-            <p data-key="proj15Desc"></p>
-            <div class="project-footer">
-              <a href="https://podcast-teatro.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver
-                projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 16 -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=800"
-              alt="Vitor Cosméticos">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj16Title">V Cosméticos</h3>
-            <p data-key="proj16Desc"></p>
-            <div class="project-footer">
-              <a href="https://lojavitor2.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 17 -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="0">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800"
-              alt="Barbearia Stylus">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj17Title">Barbearia Stylus</h3>
-            <p data-key="proj17Desc"></p>
-            <div class="project-footer">
-              <a href="https://barbearia-mu-sandy.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver
-                projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 18 -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1614935151651-0bea6508db6b?auto=format&fit=crop&q=80&w=800"
-              alt="BioMed Laboratório">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj18Title">BioMed Laboratório</h3>
-            <p data-key="proj18Desc"></p>
-            <div class="project-footer">
-              <a href="https://biomedlucelia.com.br/" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 19 -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1607538563957-27ae51a73c5f?auto=format&fit=crop&q=80&w=800"
-              alt="CrowdCheck">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj19Title">CrowdCheck</h3>
-            <p data-key="proj19Desc"></p>
-            <div class="project-footer">
-              <a href="https://crowd8.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 20 -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="0">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=800"
-              alt="Eletroposto W">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj20Title">Eletroposto W</h3>
-            <p data-key="proj20Desc"></p>
-            <div class="project-footer">
-              <a href="https://eletropostow.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Projeto Hibonita -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1630398777649-cdfc7c5e8a24?auto=format&fit=crop&q=80&w=800"
-              alt="Hibonita">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj21Title">Hibonita</h3>
-            <p data-key="proj21Desc">E-commerce de produtos naturais para o corpo.</p>
-            <div class="project-footer">
-              <a href="https://hibonita.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Projeto FastSheet -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1672264416172-7fc1886d1b8c?auto=format&fit=crop&q=80&w=800"
-              alt="FastSheet">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj22Title">FastSheet</h3>
-            <p data-key="proj22Desc">Ferramenta para eventos sem fila.</p>
-            <div class="project-footer">
-              <a href="https://fastsheet.vercel.app/" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Projeto Frutos do Senhor -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="0">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1475319122043-5ca9eeceefaf?auto=format&fit=crop&q=80&w=800"
-              alt="Frutos do Senhor">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj23Title">Frutos do Senhor</h3>
-            <p data-key="proj23Desc">Site com conteúdo cristão e mensagens inspiradoras.</p>
-            <div class="project-footer">
-              <a href="https://frutosdosenhor-a0070.web.app/" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Projeto Ogui Imports -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1737748612418-e39bcd6503a2?auto=format&fit=crop&q=80&w=800"
-              alt="Ogui Imports">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj24Title">Ogui Imports</h3>
-            <p data-key="proj24Desc">Loja especializada em importação de produtos exclusivos.</p>
-            <div class="project-footer">
-              <a href="https://oguiimports-2f94d.web.app/" class="btn btn-primary" data-key="viewProject">Ver
-                projeto</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- NOVO: Projeto Eventos e Encontros -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="project-image">
-            <img
-              src="https://plus.unsplash.com/premium_photo-1718674394245-9f270c5fd2b3?auto=format&fit=crop&q=80&w=800"
-              alt="Eventos e Encontros">
-          </div>
-          <div class="project-body">
-            <h3 data-key="proj25Title">Eventos e Encontros</h3>
-            <p data-key="proj25Desc">Plataforma voltada para organização e gestão de encontros.</p>
-            <div class="project-footer">
-              <a href="https://eventoseencontros.web.app" class="btn btn-primary" data-key="viewProject">Ver projeto</a>
-            </div>
-          </div>
-        </div>
-
-      </div> <!-- Fechamento da projects-grid -->
+      <div class="projects-filter" data-aos="fade-up">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+        <button class="filter-btn" data-filter="sistema">Sistemas</button>
+        <button class="filter-btn" data-filter="institucional">Institucional</button>
+      </div>
+      <div class="projects-grid" id="projects-container">
+        <!-- Projetos serão renderizados dinamicamente pelo JavaScript -->
+      </div>
     </section>
 
     <section id="contact">
@@ -633,7 +281,12 @@
       </div>
       <div class="contact-container" data-aos="fade-up">
         <p data-key="contactDesc" style="text-align: center; margin-bottom: 2rem;"></p>
-        <form action="https://formsubmit.co/dev.leocarvalho@gmail.com" method="POST" name="contact">
+        <form action="https://formsubmit.co/dev.leocarvalho@gmail.com" method="POST" name="contact" id="contact-form">
+          <!-- Prevent Captcha -->
+          <input type="hidden" name="_captcha" value="false">
+          <!-- Prevent Redirect -->
+          <input type="hidden" name="_next" value="">
+          
           <div class="form-group">
             <label for="name" data-key="formName">Seu nome:</label>
             <input type="text" id="name" name="name" required data-key-placeholder="formNamePlaceholder">
@@ -646,14 +299,13 @@
             <label for="message" data-key="formMessage">Sua mensagem:</label>
             <textarea id="message" name="message" required data-key-placeholder="formMessagePlaceholder"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary" style="width: 100%;" data-key="formSubmit">Enviar
-            mensagem</button>
+          <button type="submit" class="btn btn-primary" style="width: 100%;" data-key="formSubmit">Enviar mensagem</button>
         </form>
       </div>
     </section>
   </main>
 
-  <a href="https://wa.me/5571991338859" class="whatsapp-float" target="_blank">
+  <a href="https://wa.me/5571991338859" class="whatsapp-float" target="_blank" aria-label="Falar no WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
 
@@ -664,8 +316,10 @@
           <a href="#" class="logo">Dev.Leo</a>
           <p data-key="heroSubtitle"></p>
           <div class="hero-socials" style="justify-content: flex-start; margin-top: 1.5rem;">
-            <a href="https://github.com/devleocarvalho" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/devleocarvalho/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/devleocarvalho" target="_blank" aria-label="Acessar GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/devleocarvalho/" target="_blank" aria-label="Acessar LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="mailto:dev.leocarvalho@gmail.com" aria-label="Enviar Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://wa.me/5571991338859" target="_blank" aria-label="Falar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
           </div>
         </div>
         <div class="footer-links">
@@ -690,12 +344,14 @@
     </div>
   </footer>
 
-  <a href="#home" class="back-to-top" id="backToTop">
+  <a href="#home" class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
     <i class="fas fa-arrow-up"></i>
   </a>
 
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
   <script src="translations.js"></script>
   <script src="script.js"></script>
 </body>

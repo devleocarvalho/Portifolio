@@ -218,7 +218,219 @@ document.addEventListener('DOMContentLoaded', function () {
   const savedLang = localStorage.getItem('language') || 'pt-br';
   setLanguage(savedLang);
 
-  // Footer Year
-  const yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-});
+  // Mobile Menu
+  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+  const navLinksContainer = document.querySelector('.nav-links');
+
+  if (mobileMenuBtn && navLinksContainer) {
+    mobileMenuBtn.addEventListener('click', () => {
+      navLinksContainer.classList.toggle('active');
+    });
+
+    // Close menu when clicking a link
+    navLinksContainer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinksContainer.classList.remove('active');
+      });
+    });
+  }
+
+  // Skills Tabs
+  const skillTabs = document.querySelectorAll('.skill-tab');
+  const skillCards = document.querySelectorAll('.skill-card');
+
+  skillTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      skillTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const category = tab.getAttribute('data-tab');
+      skillCards.forEach(card => {
+        if (card.getAttribute('data-category') === category || category === 'all') {
+          card.classList.remove('hidden-card');
+        } else {
+          card.classList.add('hidden-card');
+        }
+      });
+    });
+  });
+
+  const activeSkillTab = document.querySelector('.skill-tab.active');
+  if (activeSkillTab) activeSkillTab.click();
+
+  // Dynamic Projects
+  const projectsData = [
+    { key: 1, category: "sistema", image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800", link: "https://cafeteria-nine-mu.vercel.app/" },
+    { key: 2, category: "institucional", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800", link: "https://ampla-phi.vercel.app/" },
+    { key: 3, category: "sistema", image: "https://plus.unsplash.com/premium_photo-1699387204388-120141c76d51?q=80&w=1978&auto=format&fit=crop", link: "https://steptodischarge.vercel.app/" },
+    { key: 4, category: "sistema", image: "https://media.istockphoto.com/id/1813070414/pt/foto/family-playing-guessing-game-at-home.jpg?s=1024x1024&w=is&k=20&c=G3YIMWgJEFbP8mYVaKh3Yd6IhtlzfXj7pQgxEEn3kuw=", link: "https://makeamove-murex.vercel.app/" },
+    { key: 5, category: "sistema", image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&q=80&w=800", link: "https://me-conteai.vercel.app/" },
+    { key: 6, category: "ecommerce", image: "https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?auto=format&fit=crop&q=80&w=800", link: "https://anapaulabordados.vercel.app/" },
+    { key: 7, category: "ecommerce", image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=800", link: "https://lojavitor-psi.vercel.app/" },
+    { key: 8, category: "institucional", image: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&q=80&w=800", link: "https://rcc-vert.vercel.app/" },
+    { key: 9, category: "ecommerce", image: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=800&q=80", link: "https://mercadolivreby-unijorge.vercel.app/" },
+    { key: 10, category: "sistema", image: "https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=800&q=80", link: "https://hgysmhc4hnktm5svteurqg.streamlit.app/" },
+    { key: 11, category: "sistema", image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&q=80&w=800", link: "https://cash-ou-milhas.vercel.app/" },
+    { key: 12, category: "sistema", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800", link: "https://cadastroleads.vercel.app/" },
+    { key: 13, category: "sistema", image: "https://images.unsplash.com/photo-1763736809873-79ff9eb96f8a?auto=format&fit=crop&q=80&w=800", link: "https://suacompracomtroco.vercel.app/" },
+    { key: 14, category: "institucional", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800", link: "https://espaco-terapeutico.vercel.app/" },
+    { key: 15, category: "institucional", image: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&q=80&w=800", link: "https://podcast-teatro.vercel.app/" },
+    { key: 16, category: "ecommerce", image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=800", link: "https://lojavitor2.vercel.app/" },
+    { key: 17, category: "institucional", image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800", link: "https://barbearia-mu-sandy.vercel.app/" },
+    { key: 18, category: "institucional", image: "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?auto=format&fit=crop&q=80&w=800", link: "https://biomedlucelia.com.br/" },
+    { key: 19, category: "sistema", image: "https://images.unsplash.com/photo-1607538563957-27ae51a73c5f?auto=format&fit=crop&q=80&w=800", link: "https://crowd8.vercel.app/" },
+    { key: 20, category: "sistema", image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=800", link: "https://eletropostow.vercel.app/" },
+    { key: 21, category: "ecommerce", image: "https://images.unsplash.com/photo-1630398777649-cdfc7c5e8a24?auto=format&fit=crop&q=80&w=800", link: "https://hibonita.vercel.app/" },
+    { key: 22, category: "sistema", image: "https://images.unsplash.com/photo-1672264416172-7fc1886d1b8c?auto=format&fit=crop&q=80&w=800", link: "https://fastsheet.vercel.app/" },
+    { key: 23, category: "institucional", image: "https://images.unsplash.com/photo-1475319122043-5ca9eeceefaf?auto=format&fit=crop&q=80&w=800", link: "https://frutosdosenhor-a0070.web.app/" },
+    { key: 24, category: "ecommerce", image: "https://images.unsplash.com/photo-1737748612418-e39bcd6503a2?auto=format&fit=crop&q=80&w=800", link: "https://oguiimports-2f94d.web.app/" },
+    { key: 25, category: "sistema", image: "https://plus.unsplash.com/premium_photo-1718674394245-9f270c5fd2b3?auto=format&fit=crop&q=80&w=800", link: "https://eventoseencontros.web.app" }
+  ];
+
+  const projectsContainer = document.getElementById('projects-container');
+  const renderProjects = (filter) => {
+    if (!projectsContainer) return;
+    projectsContainer.innerHTML = '';
+
+    let delay = 0;
+    projectsData.forEach((proj) => {
+      if (filter === 'all' || proj.category === filter) {
+        const div = document.createElement('div');
+        div.className = 'project-card';
+        div.setAttribute('data-aos', 'fade-up');
+        if (delay > 0) div.setAttribute('data-aos-delay', delay.toString());
+        delay += 100;
+        if (delay > 200) delay = 0;
+
+        div.innerHTML = `
+          <div class="project-image">
+            <img src="${proj.image}" alt="Projeto ${proj.key}" loading="lazy">
+          </div>
+          <div class="project-body">
+            <h3 data-key="proj${proj.key}Title"></h3>
+            <p data-key="proj${proj.key}Desc"></p>
+            <div class="project-footer">
+              <a href="${proj.link}" class="btn btn-primary" data-key="viewProject" target="_blank"></a>
+            </div>
+          </div>
+        `;
+        // Fade in new projects smoothly with GSAP if available
+        if (typeof gsap !== 'undefined') {
+          gsap.fromTo(div,
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.6, delay: (delay / 100) * 0.1, ease: "power2.out" }
+          );
+        }
+
+        const currentLang = localStorage.getItem('language') || 'pt-br';
+        setLanguage(currentLang);
+      };
+
+      if (projectsContainer) {
+        renderProjects('all');
+      }
+
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderProjects(btn.getAttribute('data-filter'));
+        });
+      });
+
+      // Footer Year
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Contact Form AJAX
+      const contactForm = document.getElementById('contact-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          const submitBtn = this.querySelector('button[type="submit"]');
+          const originalText = submitBtn.textContent;
+          submitBtn.textContent = 'Enviando...';
+          submitBtn.disabled = true;
+
+          const formData = new FormData(this);
+
+          fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          })
+            .then(response => {
+              if (response.ok) {
+                alert('Mensagem enviada com sucesso! Obrigado pelo contato.');
+                this.reset();
+              } else {
+                alert('Ocorreu um erro ao enviar. Tente novamente mais tarde.');
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              alert('Ocorreu um erro ao enviar. Verifique sua conexão e tente novamente.');
+            })
+            .finally(() => {
+              submitBtn.textContent = originalText;
+              submitBtn.disabled = false;
+            });
+        });
+      }
+
+      // --- LUSION STYLE PREMIUM EFFECTS ---
+
+      // 1. Custom Cursor (GSAP)
+      if (window.innerWidth > 768 && typeof gsap !== 'undefined') {
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+          const posX = e.clientX;
+          const posY = e.clientY;
+
+          // Dot is instant
+          gsap.to(cursorDot, {
+            x: posX,
+            y: posY,
+            duration: 0.1
+          });
+
+          // Outline has delay (spring effect)
+          gsap.to(cursorOutline, {
+            x: posX,
+            y: posY,
+            duration: 0.5,
+            ease: "power2.out"
+          });
+        });
+
+        // Hover effects on links/buttons
+        const hoverElements = document.querySelectorAll('a, button, .skill-card, .project-card');
+        hoverElements.forEach(el => {
+          el.addEventListener('mouseenter', () => {
+            cursorOutline.classList.add('hover-state');
+          });
+          el.addEventListener('mouseleave', () => {
+            cursorOutline.classList.remove('hover-state');
+          });
+        });
+      }
+
+      // 2. Vanilla Tilt for Skills Cards (3D Effect)
+      if (typeof VanillaTilt !== 'undefined') {
+        VanillaTilt.init(document.querySelectorAll(".skill-card"), {
+          max: 15,
+          speed: 400,
+          glare: true,
+          "max-glare": 0.2,
+          perspective: 1000,
+          scale: 1.05
+        });
+      }
+
+    });
