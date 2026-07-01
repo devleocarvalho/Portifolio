@@ -237,7 +237,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Skills Tabs
   const skillTabs = document.querySelectorAll('.skill-tab');
-  const skillCards = document.querySelectorAll('.skill-card');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  // Selecionar apenas os cards dentro da seção de habilidades, ignorando as certificações
+  const stackContainer = document.querySelector('.skills-grid');
+  const skillCards = stackContainer ? stackContainer.querySelectorAll('.skill-card') : [];
 
   skillTabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -316,8 +319,8 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
         // Fade in new projects smoothly with GSAP if available
         if (typeof gsap !== 'undefined') {
-          gsap.fromTo(div, 
-            { opacity: 0, y: 30 }, 
+          gsap.fromTo(div,
+            { opacity: 0, y: 30 },
             { opacity: 1, y: 0, duration: 0.6, delay: (delay / 100) * 0.1, ease: "power2.out" }
           );
         }
@@ -325,115 +328,116 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-        const currentLang = localStorage.getItem('language') || 'pt-br';
-        setLanguage(currentLang);
-      };
+    const currentLang = localStorage.getItem('language') || 'pt-br';
+    setLanguage(currentLang);
+  };
 
-      if (projectsContainer) {
-        renderProjects('all');
-      }
+  if (projectsContainer) {
+    renderProjects('all');
+  }
 
-      const filterBtns = document.querySelectorAll('.filter-btn');
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          filterBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          renderProjects(btn.getAttribute('data-filter'));
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProjects(btn.getAttribute('data-filter'));
+    });
+  });
+
+  // Footer Year
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // Contact Form AJAX
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Enviando...';
+      submitBtn.disabled = true;
+
+      const formData = new FormData(this);
+
+      fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+        .then(response => {
+          if (response.ok) {
+            alert('Mensagem enviada com sucesso! Obrigado pelo contato.');
+            this.reset();
+          } else {
+            alert('Ocorreu um erro ao enviar. Tente novamente mais tarde.');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Ocorreu um erro ao enviar. Verifique sua conexão e tente novamente.');
+        })
+        .finally(() => {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
         });
+    });
+  }
+
+  // --- LUSION STYLE PREMIUM EFFECTS ---
+
+  // 1. Custom Cursor (GSAP)
+  if (window.innerWidth > 768 && typeof gsap !== 'undefined') {
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorOutline = document.querySelector('.cursor-outline');
+
+    window.addEventListener('mousemove', (e) => {
+      const posX = e.clientX;
+      const posY = e.clientY;
+
+      // Dot is instant
+      gsap.to(cursorDot, {
+        x: posX,
+        y: posY,
+        duration: 0.05,
+        ease: "none"
       });
 
-      // Footer Year
-      const yearEl = document.getElementById('year');
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-      // Contact Form AJAX
-      const contactForm = document.getElementById('contact-form');
-      if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
-          e.preventDefault();
-
-          const submitBtn = this.querySelector('button[type="submit"]');
-          const originalText = submitBtn.textContent;
-          submitBtn.textContent = 'Enviando...';
-          submitBtn.disabled = true;
-
-          const formData = new FormData(this);
-
-          fetch(this.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-              'Accept': 'application/json'
-            }
-          })
-            .then(response => {
-              if (response.ok) {
-                alert('Mensagem enviada com sucesso! Obrigado pelo contato.');
-                this.reset();
-              } else {
-                alert('Ocorreu um erro ao enviar. Tente novamente mais tarde.');
-              }
-            })
-            .catch(error => {
-              console.error('Error:', error);
-              alert('Ocorreu um erro ao enviar. Verifique sua conexão e tente novamente.');
-            })
-            .finally(() => {
-              submitBtn.textContent = originalText;
-              submitBtn.disabled = false;
-            });
-        });
-      }
-
-      // --- LUSION STYLE PREMIUM EFFECTS ---
-
-      // 1. Custom Cursor (GSAP)
-      if (window.innerWidth > 768 && typeof gsap !== 'undefined') {
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
-
-        window.addEventListener('mousemove', (e) => {
-          const posX = e.clientX;
-          const posY = e.clientY;
-
-          // Dot is instant
-          gsap.to(cursorDot, {
-            x: posX,
-            y: posY,
-            duration: 0.1
-          });
-
-          // Outline has delay (spring effect)
-          gsap.to(cursorOutline, {
-            x: posX,
-            y: posY,
-            duration: 0.5,
-            ease: "power2.out"
-          });
-        });
-
-        // Hover effects on links/buttons
-        const hoverElements = document.querySelectorAll('a, button, .skill-card, .project-card');
-        hoverElements.forEach(el => {
-          el.addEventListener('mouseenter', () => {
-            cursorOutline.classList.add('hover-state');
-          });
-          el.addEventListener('mouseleave', () => {
-            cursorOutline.classList.remove('hover-state');
-          });
-        });
-      }
-
-      // 2. Vanilla Tilt for Skills Cards (3D Effect)
-      if (typeof VanillaTilt !== 'undefined') {
-        VanillaTilt.init(document.querySelectorAll(".skill-card"), {
-          max: 15,
-          speed: 400,
-          glare: true,
-          "max-glare": 0.2,
-          perspective: 1000,
-          scale: 1.05
-        });
-      }
-
+      // Outline has delay (spring effect)
+      gsap.to(cursorOutline, {
+        x: posX,
+        y: posY,
+        duration: 0.15,
+        ease: "power2.out"
+      });
     });
+
+    // Hover effects on links/buttons
+    const hoverElements = document.querySelectorAll('a, button, .skill-card, .project-card');
+    hoverElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursorOutline.classList.add('hover-state');
+      });
+      el.addEventListener('mouseleave', () => {
+        cursorOutline.classList.remove('hover-state');
+      });
+    });
+  }
+
+  // 2. Vanilla Tilt for Skills Cards (3D Effect)
+  if (typeof VanillaTilt !== 'undefined') {
+    VanillaTilt.init(document.querySelectorAll(".skill-card"), {
+      max: 15,
+      speed: 400,
+      glare: true,
+      "max-glare": 0.2,
+      perspective: 1000,
+      scale: 1.05
+    });
+  }
+
+});
