@@ -316,11 +316,14 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
         // Fade in new projects smoothly with GSAP if available
         if (typeof gsap !== 'undefined') {
-          gsap.fromTo(div,
-            { opacity: 0, y: 30 },
+          gsap.fromTo(div, 
+            { opacity: 0, y: 30 }, 
             { opacity: 1, y: 0, duration: 0.6, delay: (delay / 100) * 0.1, ease: "power2.out" }
           );
         }
+        projectsContainer.appendChild(div);
+      }
+    });
 
         const currentLang = localStorage.getItem('language') || 'pt-br';
         setLanguage(currentLang);
