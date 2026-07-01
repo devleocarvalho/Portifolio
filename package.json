@@ -1,0 +1,26 @@
+{
+  "name": "portifolio",
+  "version": "1.0.0",
+  "description": "<h1> <a href=\"https://portifolio-gules-tau.vercel.app/\" target=\"blank\"> 👨‍💻 Portfólio Pessoal - Dev Leo Carvalho  </a></h1>",
+  "main": "script.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devleocarvalho/Portifolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/devleocarvalho/Portifolio/issues"
+  },
+  "homepage": "https://github.com/devleocarvalho/Portifolio#readme",
+  "devDependencies": {
+    "vite": "^8.1.2"
+  }
+}

@@ -640,55 +640,6 @@ section {
   transform: scale(1.1);
 }
 
-/* Custom Cursor */
-@media (min-width: 769px) {
-  * {
-    cursor: none !important;
-  }
-}
-
-.cursor-dot {
-  display: none;
-}
-
-.cursor-outline {
-  display: none;
-}
-
-@media (min-width: 769px) {
-
-  .cursor-dot,
-  .cursor-outline {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    z-index: 9999;
-    pointer-events: none;
-  }
-
-  .cursor-dot {
-    width: 8px;
-    height: 8px;
-    background-color: var(--primary);
-  }
-
-  .cursor-outline {
-    width: 40px;
-    height: 40px;
-    border: 2px solid rgba(0, 240, 255, 0.5);
-    transition: width 0.2s, height 0.2s, background-color 0.2s;
-  }
-
-  .cursor-outline.hover-state {
-    width: 60px;
-    height: 60px;
-    background-color: rgba(0, 240, 255, 0.1);
-  }
-}
-
 /* Tabs and Filters */
 .skills-tabs,
 .projects-filter {

@@ -313,7 +313,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <h3 data-key="proj${proj.key}Title"></h3>
             <p data-key="proj${proj.key}Desc"></p>
             <div class="project-footer">
-              <a href="${proj.link}" class="btn btn-primary" data-key="viewProject" target="_blank"></a>
+              <a href="${proj.link}" class="btn btn-primary" data-key="viewProject" target="_blank" rel="noopener noreferrer"></a>
             </div>
           </div>
         `;
@@ -336,12 +336,14 @@ document.addEventListener('DOMContentLoaded', function () {
     renderProjects('all');
   }
 
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  filterBtns.forEach(btn => {
+  const projectFilterBtns = document.querySelectorAll('.filter-btn');
+  projectFilterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
+      projectFilterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      renderProjects(btn.getAttribute('data-filter'));
+
+      const filter = btn.getAttribute('data-filter');
+      renderProjects(filter);
     });
   });
 
@@ -390,45 +392,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // --- LUSION STYLE PREMIUM EFFECTS ---
 
-  // 1. Custom Cursor (GSAP)
-  if (window.innerWidth > 768 && typeof gsap !== 'undefined') {
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
-
-    window.addEventListener('mousemove', (e) => {
-      const posX = e.clientX;
-      const posY = e.clientY;
-
-      // Dot is instant
-      gsap.to(cursorDot, {
-        x: posX,
-        y: posY,
-        duration: 0.05,
-        ease: "none"
-      });
-
-      // Outline has delay (spring effect)
-      gsap.to(cursorOutline, {
-        x: posX,
-        y: posY,
-        duration: 0.15,
-        ease: "power2.out"
-      });
-    });
-
-    // Hover effects on links/buttons
-    const hoverElements = document.querySelectorAll('a, button, .skill-card, .project-card');
-    hoverElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursorOutline.classList.add('hover-state');
-      });
-      el.addEventListener('mouseleave', () => {
-        cursorOutline.classList.remove('hover-state');
-      });
-    });
-  }
-
-  // 2. Vanilla Tilt for Skills Cards (3D Effect)
+  // 1. Vanilla Tilt for Skills Cards (3D Effect)
   if (typeof VanillaTilt !== 'undefined') {
     VanillaTilt.init(document.querySelectorAll(".skill-card"), {
       max: 15,

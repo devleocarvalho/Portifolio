@@ -22,8 +22,6 @@
 </head>
 
 <body>
-  <div class="cursor-dot"></div>
-  <div class="cursor-outline"></div>
   <div class="loading-screen">
     <div class="loading-spinner"></div>
   </div>
@@ -69,13 +67,13 @@
       <h1 class="typing-effect" data-key="heroTitle">Dev. Leo Carvalho</h1>
       <p class="profession" data-key="heroSubtitle">Full Stack Developer & Systems Analyst</p>
       <div class="hero-socials">
-        <a href="https://github.com/devleocarvalho" target="_blank" data-tooltip="GitHub" aria-label="Acessar GitHub"><i
-            class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/devleocarvalho/" target="_blank" data-tooltip="LinkedIn"
-          aria-label="Acessar LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/devleocarvalho" target="_blank" rel="noopener noreferrer" data-tooltip="GitHub"
+          aria-label="Acessar GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/devleocarvalho/" target="_blank" rel="noopener noreferrer"
+          data-tooltip="LinkedIn" aria-label="Acessar LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         <a href="mailto:dev.leocarvalho@gmail.com" data-tooltip="Email" aria-label="Enviar Email"><i
             class="fas fa-envelope"></i></a>
-        <a href="whatsapp://send?phone=5571991338859" target="_blank" data-tooltip="WhatsApp"
+        <a href="whatsapp://send?phone=5571991338859" target="_blank" rel="noopener noreferrer" data-tooltip="WhatsApp"
           aria-label="Falar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
@@ -208,7 +206,8 @@
           <span>Supabase</span>
         </div>
         <div class="skill-card" data-category="backend" data-aos="zoom-in" data-aos-delay="950">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/neon.svg" alt="Neon" loading="lazy" style="filter: brightness(0) invert(1);">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/neon.svg" alt="Neon" loading="lazy"
+            style="filter: brightness(0) invert(1);">
           <span>Neon</span>
         </div>
 
@@ -285,7 +284,7 @@
           <input type="hidden" name="_captcha" value="false">
           <!-- Prevent Redirect -->
           <input type="hidden" name="_next" value="">
-          
+
           <div class="form-group">
             <label for="name" data-key="formName">Seu nome:</label>
             <input type="text" id="name" name="name" required data-key-placeholder="formNamePlaceholder">
@@ -298,13 +297,15 @@
             <label for="message" data-key="formMessage">Sua mensagem:</label>
             <textarea id="message" name="message" required data-key-placeholder="formMessagePlaceholder"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary" style="width: 100%;" data-key="formSubmit">Enviar mensagem</button>
+          <button type="submit" class="btn btn-primary" style="width: 100%;" data-key="formSubmit">Enviar
+            mensagem</button>
         </form>
       </div>
     </section>
   </main>
 
-  <a href="https://wa.me/5571991338859" class="whatsapp-float" target="_blank" aria-label="Falar no WhatsApp">
+  <a href="https://wa.me/5571991338859" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+    aria-label="Falar no WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
 
@@ -315,10 +316,13 @@
           <a href="#" class="logo">Dev.Leo</a>
           <p data-key="heroSubtitle"></p>
           <div class="hero-socials" style="justify-content: flex-start; margin-top: 1.5rem;">
-            <a href="https://github.com/devleocarvalho" target="_blank" aria-label="Acessar GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/devleocarvalho/" target="_blank" aria-label="Acessar LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/devleocarvalho" target="_blank" rel="noopener noreferrer"
+              aria-label="Acessar GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/devleocarvalho/" target="_blank" rel="noopener noreferrer"
+              aria-label="Acessar LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             <a href="mailto:dev.leocarvalho@gmail.com" aria-label="Enviar Email"><i class="fas fa-envelope"></i></a>
-            <a href="https://wa.me/5571991338859" target="_blank" aria-label="Falar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://wa.me/5571991338859" target="_blank" rel="noopener noreferrer"
+              aria-label="Falar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
           </div>
         </div>
         <div class="footer-links">
@@ -351,8 +355,8 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
-  <script src="translations.js"></script>
-  <script src="script.js"></script>
+  <script type="module" src="translations.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 
 </html>
