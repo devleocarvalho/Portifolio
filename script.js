@@ -1,3 +1,5 @@
+import { translations } from './translations.js';
+
 document.addEventListener('DOMContentLoaded', function () {
   // Loading Screen
   const loadingScreen = document.querySelector('.loading-screen');

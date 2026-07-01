@@ -1,4 +1,4 @@
-const translations = {
+export const translations = {
   "pt-br": {
     "heroTitle": "Leo Carvalho",
     "heroSubtitle": "Desenvolvedor Full Stack & Analista de Sistemas",
