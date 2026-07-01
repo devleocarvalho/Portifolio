@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Loading Screen
   const loadingScreen = document.querySelector('.loading-screen');
   if (loadingScreen) {
@@ -39,20 +39,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Typing Effect
   const professions = [
-    "Full Stack Developer", 
-    "Systems Analyst", 
-    "Web Designer", 
+    "Full Stack Developer",
+    "Systems Analyst",
+    "Web Designer",
     "Tech Enthusiast"
   ];
   let professionIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
   const professionElement = document.querySelector('.profession');
-  
+
   function typeWriter() {
     if (!professionElement) return;
     const currentProfession = professions[professionIndex];
-    
+
     if (isDeleting) {
       professionElement.textContent = currentProfession.substring(0, charIndex - 1);
       charIndex--;
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
       professionElement.textContent = currentProfession.substring(0, charIndex + 1);
       charIndex++;
     }
-    
+
     if (!isDeleting && charIndex === currentProfession.length) {
       isDeleting = true;
       setTimeout(typeWriter, 2000);
@@ -73,31 +73,51 @@ document.addEventListener('DOMContentLoaded', function() {
       setTimeout(typeWriter, typingSpeed);
     }
   }
-  
+
   setTimeout(typeWriter, 1500);
 
   // Active Link Highlighting on Scroll
-  const sections = document.querySelectorAll('section, header');
+  const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
 
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      if (window.pageYOffset >= (sectionTop - 150)) {
-        current = section.getAttribute('id');
+  const observerOptions = {
+    rootMargin: '-80px 0px -50% 0px', // Adjusts the "trigger area"
+  };
+
+  const sectionObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const currentId = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href').includes(currentId)) {
+            link.classList.add('active');
+          }
+        });
       }
     });
+  }, observerOptions);
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link && current && link.getAttribute('href').includes(current)) {
-        link.classList.add('active');
+  sections.forEach(section => {
+    sectionObserver.observe(section);
+  });
+
+  // Throttle function to limit how often a function can run
+  const throttle = (func, limit) => {
+    let inThrottle;
+    return function () {
+      const args = arguments;
+      const context = this;
+      if (!inThrottle) {
+        func.apply(context, args);
+        inThrottle = true;
+        setTimeout(() => inThrottle = false, limit);
       }
-    });
+    }
+  };
 
-    // Back to top visibility
+  // Back to top visibility on scroll
+  const handleScroll = () => {
     const backToTopBtn = document.getElementById('backToTop');
     if (backToTopBtn) {
       if (window.pageYOffset > 500) {
@@ -106,17 +126,19 @@ document.addEventListener('DOMContentLoaded', function() {
         backToTopBtn.classList.remove('active');
       }
     }
-  });
+  };
+
+  window.addEventListener('scroll', throttle(handleScroll, 100));
 
   // Smooth Scroll
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
       if (targetId === '#' || !targetId) return;
-      
+
       e.preventDefault();
       const targetElement = document.querySelector(targetId);
-      
+
       if (targetElement) {
         const offset = 80;
         const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
@@ -136,33 +158,34 @@ document.addEventListener('DOMContentLoaded', function() {
   const selectedLangText = document.getElementById('selected-lang-text');
 
   const setLanguage = (lang) => {
-    if (typeof translations === 'undefined') return;
+    if (typeof translations === 'undefined' || !translations[lang]) {
+      console.error(`Translations for language "${lang}" not found.`);
+      return;
+    }
 
     // Set active language text and flag
     const langNames = { 'pt-br': 'BR', 'en': 'EN', 'es': 'ES' };
-    const flags = { 
-      'pt-br': 'https://flagcdn.com/w40/br.png', 
-      'en': 'https://flagcdn.com/w40/us.png', 
-      'es': 'https://flagcdn.com/w40/es.png' 
+    const flags = {
+      'pt-br': 'https://flagcdn.com/w40/br.png',
+      'en': 'https://flagcdn.com/w40/us.png',
+      'es': 'https://flagcdn.com/w40/es.png'
     };
-    
+
     if (selectedFlag) selectedFlag.src = flags[lang];
     if (selectedLangText) selectedLangText.textContent = langNames[lang];
 
-    // Main translations
-    document.querySelectorAll('[data-key]').forEach(el => {
-      const key = el.getAttribute('data-key');
-      if (translations[lang] && translations[lang][key]) {
-        el.innerHTML = translations[lang][key];
-      }
-    });
+    const currentTranslations = translations[lang];
 
-    // Placeholders
+    // Translate elements with data-key (for innerHTML) and data-key-placeholder (for placeholders)
     document.querySelectorAll('[data-key-placeholder]').forEach(el => {
       const key = el.getAttribute('data-key-placeholder');
-      if (translations[lang] && translations[lang][key]) {
-        el.placeholder = translations[lang][key];
-      }
+      el.placeholder = currentTranslations[key] || el.placeholder;
+    });
+
+    document.querySelectorAll('[data-key]').forEach(el => {
+      const key = el.getAttribute('data-key');
+      // Use innerHTML to correctly render tags like <span> in the footer
+      el.innerHTML = currentTranslations[key] || el.innerHTML;
     });
 
     localStorage.setItem('language', lang);
@@ -199,4 +222,3 @@ document.addEventListener('DOMContentLoaded', function() {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
-

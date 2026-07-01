@@ -16,13 +16,17 @@
 ✅ **Design Responsivo** (mobile-first).  
 ✅ **Modo Claro/Escuro** (opcional, usando CSS/JS).  
 
-## ⚙️ Como Executar Localmente  
-1. Clone o repositório:  
+## 🎯 Objetivos
+- Me especializar em Front-end com React.
+- Contribuir para projetos open-source.
+
+## ⚙️ Como Executar Localmente
+1. Clone o repositório:
 ```bash
 git clone https://github.com/devleocarvalho/portfolio.git
 cd portfolio
 ```
 
-## 🎯 Objetivos  
-- Me especializar em Front-end com Reacst.  
-- Contribuir para projetos open-source.  
+## 🎯 Objetivos
+- Me especializar em Front-end com React.
+- Contribuir para projetos open-source.
