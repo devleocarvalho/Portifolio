@@ -18,10 +18,11 @@
 
 ## ⚙️ Como Executar Localmente  
 1. Clone o repositório:  
-[git clone https://github.com/seu-usuario/portfolio-dev.git  
-cd portfolio-dev](https://github.com/devleocarvalho/portfolio/tree/main)
+```bash
+git clone https://github.com/devleocarvalho/portfolio.git
+cd portfolio
+```
 
 ## 🎯 Objetivos  
 - Me especializar em Front-end com Reacst.  
 - Contribuir para projetos open-source.  
-
