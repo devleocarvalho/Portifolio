@@ -347,6 +347,15 @@ section {
 }
 
 .skill-card img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.2));
+}
+
+.skill-card:hover img {
   transform: scale(1.35) translateY(-5px);
   filter: grayscale(0) drop-shadow(0 0 10px rgba(99, 102, 241, 0.5));
 }
