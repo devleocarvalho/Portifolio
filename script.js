@@ -1,12 +1,30 @@
 import { translations } from './translations.js';
 
 document.addEventListener('DOMContentLoaded', function () {
-  // --- Cursor Energy Trail ---
+  // --- Cursor Energy Trail (PREVIEW MODE) ---
   const canvas = document.getElementById('cursor-trail');
   if (canvas && window.matchMedia("(pointer: fine)").matches) {
     const ctx = canvas.getContext('2d');
     let particles = [];
+    let currentMode = 4;  
     
+    // UI Selector Logic
+    const cursorOptions = document.querySelectorAll('.cursor-option');
+    if (cursorOptions.length > 0) {
+      cursorOptions.forEach(option => {
+        option.addEventListener('click', function(e) {
+          e.preventDefault();
+          // Remove active class from all
+          cursorOptions.forEach(opt => opt.classList.remove('active'));
+          // Add active to clicked
+          this.classList.add('active');
+          // Change mode
+          currentMode = parseInt(this.getAttribute('data-mode'));
+          particles = []; // clear particles on switch
+        });
+      });
+    }
+
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -15,43 +33,121 @@ document.addEventListener('DOMContentLoaded', function () {
     resize();
 
     window.addEventListener('mousemove', (e) => {
-      // Add multiple particles for a denser energy feel
-      for (let i = 0; i < 3; i++) {
+      if (currentMode === 1) { 
+        for (let i = 0; i < 3; i++) {
+          particles.push({
+            x: e.clientX, y: e.clientY,
+            vx: (Math.random() - 0.5) * 1.5, vy: (Math.random() - 0.5) * 1.5,
+            life: 1, size: Math.random() * 2.5 + 1.5, hue: 240 + Math.random() * 50
+          });
+        }
+      } 
+      else if (currentMode === 2) { // Binary Code
+        if (particles.length === 0 || Math.random() > 0.3) {
+          particles.push({ 
+            x: e.clientX, y: e.clientY, 
+            vx: 0, vy: Math.random() * 1.5 + 1, // fall down
+            life: 1, 
+            text: Math.random() > 0.5 ? '0' : '1', 
+            hue: 120 // Hacker green
+          });
+        }
+      }
+      else if (currentMode === 3) { 
+        for (let i = 0; i < 2; i++) {
+          particles.push({
+            x: e.clientX + (Math.random() - 0.5) * 10, y: e.clientY + (Math.random() - 0.5) * 10,
+            vx: 0, vy: Math.random() * 2 + 1,
+            life: 1, size: Math.floor(Math.random() * 4 + 2), hue: 160 + Math.random() * 40
+          });
+        }
+      }
+      else if (currentMode === 4) { 
         particles.push({
-          x: e.clientX,
-          y: e.clientY,
-          vx: (Math.random() - 0.5) * 1.5,
-          vy: (Math.random() - 0.5) * 1.5,
-          life: 1,
-          size: Math.random() * 2.5 + 1.5,
-          hue: 240 + Math.random() * 50 // Blue to cyan/purple range
+          x: e.clientX, y: e.clientY,
+          vx: (Math.random() - 0.5) * 1, vy: (Math.random() - 0.5) * 1,
+          life: 1, size: 1.5, hue: 200
         });
+      }
+      else if (currentMode === 5) { 
+        if (particles.length === 0 || particles[particles.length-1].life < 0.9) {
+          particles.push({ x: e.clientX, y: e.clientY, life: 1, size: 2 });
+        }
       }
     });
 
     const animateTrail = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      for (let i = 0; i < particles.length; i++) {
-        let p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        p.life -= 0.03; // Fade speed
-        
-        if (p.life <= 0) {
-          particles.splice(i, 1);
-          i--;
-          continue;
+      if (currentMode === 1) { // Sparks
+        for (let i = 0; i < particles.length; i++) {
+          let p = particles[i];
+          p.x += p.vx; p.y += p.vy; p.life -= 0.03;
+          if (p.life <= 0) { particles.splice(i, 1); i--; continue; }
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = `hsla(${p.hue}, 100%, 65%, ${p.life})`;
+          ctx.fill();
         }
-        
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${p.hue}, 100%, 65%, ${p.life})`;
-        // Super lightweight glow
-        ctx.shadowBlur = 4;
-        ctx.shadowColor = `hsl(${p.hue}, 100%, 65%)`;
-        ctx.fill();
+      } 
+      else if (currentMode === 2) { // Binary Code
+        ctx.font = "bold 14px monospace";
+        ctx.textAlign = "center";
+        for (let i = 0; i < particles.length; i++) {
+          let p = particles[i];
+          p.y += p.vy; 
+          p.life -= 0.02; // Fade
+          if (p.life <= 0) { particles.splice(i, 1); i--; continue; }
+          ctx.fillStyle = `rgba(34, 197, 94, ${p.life})`; // Hacker green
+          ctx.fillText(p.text, p.x, p.y);
+        }
       }
+      else if (currentMode === 3) { // Pixels Matrix
+        for (let i = 0; i < particles.length; i++) {
+          let p = particles[i];
+          p.x += p.vx; p.y += p.vy; p.life -= 0.02;
+          if (p.life <= 0) { particles.splice(i, 1); i--; continue; }
+          ctx.fillStyle = `hsla(${p.hue}, 100%, 50%, ${p.life})`;
+          ctx.fillRect(p.x, p.y, p.size, p.size);
+        }
+      }
+      else if (currentMode === 4) { // Geo Web
+        for (let i = 0; i < particles.length; i++) {
+          let p = particles[i];
+          p.x += p.vx; p.y += p.vy; p.life -= 0.02;
+          if (p.life <= 0) { particles.splice(i, 1); i--; continue; }
+          
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = `hsla(${p.hue}, 100%, 65%, ${p.life})`;
+          ctx.fill();
+
+          for (let j = i + 1; j < particles.length; j++) {
+            let p2 = particles[j];
+            let dx = p.x - p2.x; let dy = p.y - p2.y;
+            let dist = Math.sqrt(dx*dx + dy*dy);
+            if (dist < 50) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = `hsla(${p.hue}, 100%, 65%, ${p.life * (1 - dist/50)})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+      else if (currentMode === 5) { // Sonar
+        for (let i = 0; i < particles.length; i++) {
+          let p = particles[i];
+          p.size += 1.5; p.life -= 0.03;
+          if (p.life <= 0) { particles.splice(i, 1); i--; continue; }
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(34, 211, 238, ${p.life})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+      
       requestAnimationFrame(animateTrail);
     };
     animateTrail();

@@ -316,7 +316,7 @@ section {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   gap: 4rem;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .about-image-container {
@@ -333,11 +333,16 @@ section {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
+.about-info {
+  padding-top: 2rem;
+}
+
 .about-p {
-  font-size: 1.1rem;
+  font-size: 0.92rem;
   color: var(--text-muted);
   margin-bottom: 1.5rem;
-  text-align: left;
+  text-align: justify;
+  line-height: 1.7;
 }
 
 .about-actions {
@@ -345,6 +350,51 @@ section {
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 2rem;
+  align-items: center;
+}
+
+.cursor-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  background: transparent;
+  padding: 0.2rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  margin-left: 0.5rem;
+  opacity: 0.25;
+  transition: all 0.4s ease;
+  transform: scale(0.9);
+}
+
+.cursor-selector:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  transform: scale(1);
+}
+
+.cursor-option {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: var(--text-muted);
+  transition: var(--transition);
+  font-size: 0.85rem;
+}
+
+.cursor-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+}
+
+.cursor-option.active {
+  background: rgba(99, 102, 241, 0.2);
+  color: var(--primary);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
 }
 
 .btn {
@@ -785,7 +835,7 @@ section {
   }
 
   .about-p {
-    text-align: center;
+    text-align: left;
   }
 
   .about-actions {
