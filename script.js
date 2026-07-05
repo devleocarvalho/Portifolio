@@ -1,6 +1,63 @@
 import { translations } from './translations.js';
 
 document.addEventListener('DOMContentLoaded', function () {
+  // --- Cursor Energy Trail ---
+  const canvas = document.getElementById('cursor-trail');
+  if (canvas && window.matchMedia("(pointer: fine)").matches) {
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', resize);
+    resize();
+
+    window.addEventListener('mousemove', (e) => {
+      // Add multiple particles for a denser energy feel
+      for (let i = 0; i < 3; i++) {
+        particles.push({
+          x: e.clientX,
+          y: e.clientY,
+          vx: (Math.random() - 0.5) * 1.5,
+          vy: (Math.random() - 0.5) * 1.5,
+          life: 1,
+          size: Math.random() * 2.5 + 1.5,
+          hue: 240 + Math.random() * 50 // Blue to cyan/purple range
+        });
+      }
+    });
+
+    const animateTrail = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      for (let i = 0; i < particles.length; i++) {
+        let p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= 0.03; // Fade speed
+        
+        if (p.life <= 0) {
+          particles.splice(i, 1);
+          i--;
+          continue;
+        }
+        
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${p.hue}, 100%, 65%, ${p.life})`;
+        // Super lightweight glow
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = `hsl(${p.hue}, 100%, 65%)`;
+        ctx.fill();
+      }
+      requestAnimationFrame(animateTrail);
+    };
+    animateTrail();
+  }
+  // ---------------------------
+
   // Loading Screen
   const loadingScreen = document.querySelector('.loading-screen');
   if (loadingScreen) {
@@ -403,6 +460,35 @@ document.addEventListener('DOMContentLoaded', function () {
       "max-glare": 0.2,
       perspective: 1000,
       scale: 1.05
+    });
+  }
+
+  // 2. GSAP ScrollTrigger for About Section Parallax
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Image moving slightly down
+    gsap.to(".about-image-container", {
+      y: 50,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#about",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+
+    // Info moving slightly up
+    gsap.to(".about-info", {
+      y: -30,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#about",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+      }
     });
   }
 
