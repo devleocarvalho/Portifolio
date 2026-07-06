@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://devleocarvalho.vercel.app/sitemap.xml
