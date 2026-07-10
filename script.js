@@ -1,3 +1,6 @@
+import { inject } from '@vercel/analytics';
+inject();
+
 import { translations } from './translations.js';
 
 document.addEventListener('DOMContentLoaded', function () {
