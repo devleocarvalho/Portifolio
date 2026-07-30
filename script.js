@@ -445,7 +445,10 @@ document.addEventListener('DOMContentLoaded', function () {
     { key: 22, category: "sistema", image: "https://images.unsplash.com/photo-1672264416172-7fc1886d1b8c?auto=format&fit=crop&q=80&w=800", link: "https://fastsheet.vercel.app/" },
     { key: 23, category: "institucional", image: "https://images.unsplash.com/photo-1475319122043-5ca9eeceefaf?auto=format&fit=crop&q=80&w=800", link: "https://frutosdosenhor-a0070.web.app/" },
     { key: 24, category: "ecommerce", image: "https://images.unsplash.com/photo-1737748612418-e39bcd6503a2?auto=format&fit=crop&q=80&w=800", link: "https://oguiimports-2f94d.web.app/" },
-    { key: 25, category: "sistema", image: "https://plus.unsplash.com/premium_photo-1718674394245-9f270c5fd2b3?auto=format&fit=crop&q=80&w=800", link: "https://eventoseencontros.web.app" }
+    { key: 25, category: "sistema", image: "https://plus.unsplash.com/premium_photo-1718674394245-9f270c5fd2b3?auto=format&fit=crop&q=80&w=800", link: "https://eventoseencontros.web.app" },
+    { key: 26, category: "sistema", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80", link: "https://rh-three-tau.vercel.app/" },
+    { key: 27, category: "ecommerce", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80", link: "https://lojadaconstrucao.vercel.app/" },
+    { key: 28, category: "sistema", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80", link: "https://bybluetooth.vercel.app/" }
   ];
 
   const projectsContainer = document.getElementById('projects-container');
