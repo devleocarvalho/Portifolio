@@ -292,11 +292,7 @@
       </div>
       <div class="contact-container" data-aos="fade-up">
         <p data-key="contactDesc" style="text-align: center; margin-bottom: 2rem;"></p>
-        <form action="https://formsubmit.co/dev.leocarvalho@gmail.com" method="POST" name="contact" id="contact-form">
-          <!-- Prevent Captcha -->
-          <input type="hidden" name="_captcha" value="false">
-          <!-- Prevent Redirect -->
-          <input type="hidden" name="_next" value="">
+        <form action="/api/contact" method="POST" name="contact" id="contact-form">
 
           <div class="form-group">
             <label for="name" data-key="formName">Seu nome:</label>

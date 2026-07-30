@@ -524,11 +524,13 @@ document.addEventListener('DOMContentLoaded', function () {
       submitBtn.disabled = true;
 
       const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
 
       fetch(this.action, {
         method: 'POST',
-        body: formData,
+        body: JSON.stringify(data),
         headers: {
+          'Content-Type': 'application/json',
           'Accept': 'application/json'
         }
       })

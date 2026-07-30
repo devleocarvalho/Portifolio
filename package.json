@@ -24,6 +24,7 @@
     "vite": "^8.1.2"
   },
   "dependencies": {
-    "@vercel/analytics": "^2.0.1"
+    "@vercel/analytics": "^2.0.1",
+    "resend": "^6.18.1"
   }
 }
