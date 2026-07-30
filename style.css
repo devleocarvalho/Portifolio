@@ -910,3 +910,18 @@ section {
   height: 100%;
   background: rgba(3, 7, 18, 0.6);
 }
+
+/* Custom Text Highlights */
+.highlight-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  padding: 0 2px;
+}
+
+/* Text Reveal Style */
+.reveal-text {
+  opacity: 0.3;
+  transition: opacity 0.5s ease;
+}

@@ -594,6 +594,21 @@ document.addEventListener('DOMContentLoaded', function () {
         scrub: true
       }
     });
+
+    // Text Reveal Effect
+    gsap.fromTo(".about-p", 
+      { opacity: 0.3 },
+      {
+        opacity: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#about",
+          start: "top center",
+          end: "center center",
+          scrub: true
+        }
+      }
+    );
   }
 
 });
