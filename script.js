@@ -436,7 +436,7 @@ document.addEventListener('DOMContentLoaded', function () {
     { key: 13, category: "sistema", image: "https://images.unsplash.com/photo-1763736809873-79ff9eb96f8a?auto=format&fit=crop&q=80&w=800", link: "https://suacompracomtroco.vercel.app/" },
     { key: 14, category: "institucional", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800", link: "https://espaco-terapeutico.vercel.app/" },
     { key: 15, category: "institucional", image: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&q=80&w=800", link: "https://podcast-teatro.vercel.app/" },
-    { key: 16, category: "ecommerce", image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=800", link: "https://lojavitor2.vercel.app/" },
+    { key: 16, category: "ecommerce", image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=800", link: "https://lojavitor-psi.vercel.app/" },
     { key: 17, category: "institucional", image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800", link: "https://barbearia-mu-sandy.vercel.app/" },
     { key: 18, category: "institucional", image: "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?auto=format&fit=crop&q=80&w=800", link: "https://biomedlucelia.com.br/" },
     { key: 19, category: "sistema", image: "https://images.unsplash.com/photo-1607538563957-27ae51a73c5f?auto=format&fit=crop&q=80&w=800", link: "https://crowd8.vercel.app/" },
