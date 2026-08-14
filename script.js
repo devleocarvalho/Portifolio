@@ -448,7 +448,9 @@ document.addEventListener('DOMContentLoaded', function () {
     { key: 25, category: "sistema", image: "https://plus.unsplash.com/premium_photo-1718674394245-9f270c5fd2b3?auto=format&fit=crop&q=80&w=800", link: "https://eventoseencontros.web.app" },
     { key: 26, category: "sistema", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80", link: "https://rh-three-tau.vercel.app/" },
     { key: 27, category: "ecommerce", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80", link: "https://lojadaconstrucao.vercel.app/" },
-    { key: 28, category: "sistema", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80", link: "https://bybluetooth.vercel.app/" }
+    { key: 28, category: "sistema", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80", link: "https://bybluetooth.vercel.app/" },
+    { key: 29, category: "sistema", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80", link: "https://quedadesinal.web.app/" },
+    { key: 30, category: "sistema", image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&w=800&q=80", link: "https://qualquerbet.netlify.app/" }
   ];
 
   const projectsContainer = document.getElementById('projects-container');
