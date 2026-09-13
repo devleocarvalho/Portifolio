@@ -450,7 +450,11 @@ document.addEventListener('DOMContentLoaded', function () {
     { key: 27, category: "ecommerce", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80", link: "https://lojadaconstrucao.vercel.app/" },
     { key: 28, category: "sistema", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80", link: "https://bybluetooth.vercel.app/" },
     { key: 29, category: "sistema", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80", link: "https://quedadesinal.web.app/" },
-    { key: 30, category: "sistema", image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&w=800&q=80", link: "https://qualquerbet.netlify.app/" }
+    { key: 30, category: "sistema", image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&w=800&q=80", link: "https://qualquerbet.netlify.app/" },
+    { key: 31, category: "institucional", image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80", link: "https://neriemantuano.web.app/" },
+    { key: 32, category: "sistema", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800", link: "https://web-sand-nu-18.vercel.app/" },
+    { key: 33, category: "sistema", image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800", link: "https://rentalmanager8-ca6thi4re-devleocarvalhoprojects.vercel.app/" },
+    { key: 34, category: "sistema", image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800", link: "https://care-azure.vercel.app/" }
   ];
 
   const projectsContainer = document.getElementById('projects-container');
