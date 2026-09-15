@@ -451,7 +451,7 @@ document.addEventListener('DOMContentLoaded', function () {
     { key: 28, category: "sistema", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80", link: "https://bybluetooth.vercel.app/" },
     { key: 29, category: "sistema", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80", link: "https://quedadesinal.web.app/" },
     { key: 30, category: "sistema", image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&w=800&q=80", link: "https://qualquerbet.netlify.app/" },
-    { key: 31, category: "institucional", image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=800&q=80", link: "https://neriemantuano.web.app/" },
+    { key: 31, category: "institucional", image: "https://images.unsplash.com/photo-1589578527966-fdac0f44566c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", link: "https://neriemantuano.web.app/" },
     { key: 32, category: "sistema", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800", link: "https://web-sand-nu-18.vercel.app/" },
     { key: 33, category: "sistema", image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800", link: "https://rentalmanager8-ca6thi4re-devleocarvalhoprojects.vercel.app/" },
     { key: 34, category: "sistema", image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800", link: "https://care-azure.vercel.app/" }
