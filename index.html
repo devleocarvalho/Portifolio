@@ -18,7 +18,9 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
-  <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/929/929429.png" type="image/png">
+  <link rel="icon" type="image/png" href="/baixados.png">
+  <link rel="shortcut icon" href="/baixados.png" type="image/png">
+  <link rel="apple-touch-icon" href="/baixados.png">
   <script>
     (function() {
       const savedTheme = localStorage.getItem('theme');
@@ -38,7 +40,10 @@
 
   <nav class="top-nav">
     <div class="nav-container">
-      <a href="#home" class="logo">Dev.Leo</a>
+      <a href="#home" class="logo nav-logo-brand">
+        <img src="/logo1.png" alt="Leo de Carvalho Logo" class="nav-logo-img">
+        <span class="logo-text">Leo de Carvalho</span>
+      </a>
       <div class="nav-links">
         <a href="#about" data-key="tooltipAbout">Sobre</a>
         <a href="#skills" data-key="tooltipSkills">Habilidades</a>
@@ -545,33 +550,83 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-info">
-          <a href="#" class="logo">Dev.Leo</a>
-          <p data-key="heroSubtitle"></p>
-          <div class="hero-socials" style="justify-content: flex-start; margin-top: 1.5rem;">
+        <div class="footer-col footer-col-brand">
+          <a href="#home" class="footer-logo-link" aria-label="Dev.Leo Home">
+            <img src="/logo2.png" alt="Dev.Leo" class="footer-logo-img">
+          </a>
+          <p class="footer-desc" data-key="heroSubtitle">Desenvolvedor Full Stack &amp; Analista de Sistemas</p>
+          <div class="footer-status">
+            <span class="status-pulse"></span>
+            <span data-key="footerStatus">Disponível para novos projetos</span>
+          </div>
+          <div class="hero-socials footer-socials">
             <a href="https://github.com/devleocarvalho" target="_blank" rel="noopener noreferrer"
-              aria-label="Acessar GitHub"><i class="fab fa-github"></i></a>
+              aria-label="Acessar GitHub" title="GitHub"><i class="fab fa-github"></i></a>
             <a href="https://www.linkedin.com/in/devleocarvalho/" target="_blank" rel="noopener noreferrer"
-              aria-label="Acessar LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="mailto:dev.leocarvalho@gmail.com" aria-label="Enviar Email"><i class="fas fa-envelope"></i></a>
+              aria-label="Acessar LinkedIn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="mailto:dev.leocarvalho@gmail.com" aria-label="Enviar Email" title="Email"><i class="fas fa-envelope"></i></a>
             <a href="https://wa.me/34603370153" target="_blank" rel="noopener noreferrer"
-              aria-label="Falar no WhatsApp Espanha"><i class="fab fa-whatsapp"></i></a>
+              aria-label="Falar no WhatsApp Espanha" title="WhatsApp Espanha"><i class="fab fa-whatsapp"></i><span class="flag-badge">ES</span></a>
             <a href="https://wa.me/5571991338859" target="_blank" rel="noopener noreferrer"
-              aria-label="Falar no WhatsApp Brasil"><i class="fab fa-whatsapp"></i></a>
+              aria-label="Falar no WhatsApp Brasil" title="WhatsApp Brasil"><i class="fab fa-whatsapp"></i><span class="flag-badge">BR</span></a>
           </div>
         </div>
-        <div class="footer-links">
-          <h4 data-key="tooltipProjects">Projetos</h4>
+
+        <div class="footer-col footer-col-links">
+          <h4 data-key="footerNavTitle">Navegação</h4>
           <ul>
-            <li><a href="#projects">Portfolio</a></li>
-            <li><a href="#projects">Projetos Recentes</a></li>
+            <li><a href="#home"><i class="fas fa-chevron-right"></i> <span data-key="tooltipHome">Início</span></a></li>
+            <li><a href="#about"><i class="fas fa-chevron-right"></i> <span data-key="tooltipAbout">Sobre</span></a></li>
+            <li><a href="#skills"><i class="fas fa-chevron-right"></i> <span data-key="tooltipSkills">Habilidades</span></a></li>
+            <li><a href="#projects"><i class="fas fa-chevron-right"></i> <span data-key="tooltipProjects">Projetos</span></a></li>
+            <li><a href="#contact"><i class="fas fa-chevron-right"></i> <span data-key="tooltipContact">Contato</span></a></li>
           </ul>
         </div>
+
+        <div class="footer-col footer-col-services">
+          <h4 data-key="footerServicesTitle">Especialidades</h4>
+          <ul>
+            <li><span data-key="footerSpecWeb">Desenvolvimento Web Full Stack</span></li>
+            <li><span data-key="footerSpecLanding">Landing Pages de Alta Conversão</span></li>
+            <li><span data-key="footerSpecApi">APIs REST &amp; Cloud</span></li>
+            <li><span data-key="footerSpecCyber">Cibersegurança &amp; Redes</span></li>
+            <li><span data-key="footerSpecEcom">Lojas Virtuais &amp; E-commerce</span></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-col-contact">
+          <h4 data-key="footerContactTitle">Contato &amp; Consultoria</h4>
+          <ul class="footer-contact-list">
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span data-key="footerLocation">Valência (Espanha) &amp; Salvador (Brasil)</span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:dev.leocarvalho@gmail.com">dev.leocarvalho@gmail.com</a>
+            </li>
+            <li>
+              <i class="fab fa-whatsapp"></i>
+              <a href="https://wa.me/34603370153" target="_blank" rel="noopener noreferrer">+34 603 37 01 53 (ES)</a>
+            </li>
+            <li>
+              <i class="fab fa-whatsapp"></i>
+              <a href="https://wa.me/5571991338859" target="_blank" rel="noopener noreferrer">+55 71 99133-8859 (BR)</a>
+            </li>
+          </ul>
+          <div class="footer-consulting-card">
+            <i class="fas fa-briefcase"></i>
+            <div>
+              <strong data-key="footerConsulting">Consultoria: 50€/hora</strong>
+              <small data-key="footerConsultingDesc">Arquitetura, Código e Segurança</small>
+            </div>
+          </div>
+        </div>
       </div>
+
       <div class="footer-bottom">
-        <p data-key="footerRights"></p>
-        <p data-key="footerConsulting" style="font-size: 0.8rem; margin-top: 0.5rem;"></p>
-        <p data-key="footerDev" style="font-size: 0.8rem; margin-top: 0.5rem;"></p>
+        <p data-key="footerRights">© <span id="year">2026</span> Leo de Carvalho. Todos os direitos reservados.</p>
+        <p data-key="footerDev">Projetado e codificado por Leonardo Carvalho</p>
       </div>
     </div>
   </footer>

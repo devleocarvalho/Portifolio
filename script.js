@@ -367,6 +367,9 @@ function initPortfolio() {
       }
     });
 
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
     localStorage.setItem('language', lang);
     if (typeof updateCalculatorUI === 'function') {
       updateCalculatorUI(lang);
