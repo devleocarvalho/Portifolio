@@ -4,26 +4,21 @@ inject();
 import { translations } from './translations.js';
 
 document.addEventListener('DOMContentLoaded', function () {
-  // --- Cursor Energy Trail (PREVIEW MODE) ---
   const canvas = document.getElementById('cursor-trail');
   if (canvas && window.matchMedia("(pointer: fine)").matches) {
     const ctx = canvas.getContext('2d');
     let particles = [];
     let currentMode = 4;  
     
-    // UI Selector Logic
     const cursorOptions = document.querySelectorAll('.cursor-option');
     if (cursorOptions.length > 0) {
       cursorOptions.forEach(option => {
         option.addEventListener('click', function(e) {
           e.preventDefault();
-          // Remove active class from all
           cursorOptions.forEach(opt => opt.classList.remove('active'));
-          // Add active to clicked
           this.classList.add('active');
-          // Change mode
           currentMode = parseInt(this.getAttribute('data-mode'));
-          particles = []; // clear particles on switch
+          particles = [];
         });
       });
     }
@@ -45,14 +40,14 @@ document.addEventListener('DOMContentLoaded', function () {
           });
         }
       } 
-      else if (currentMode === 2) { // Binary Code
+      else if (currentMode === 2) {
         if (particles.length === 0 || Math.random() > 0.3) {
           particles.push({ 
             x: e.clientX, y: e.clientY, 
-            vx: 0, vy: Math.random() * 1.5 + 1, // fall down
+            vx: 0, vy: Math.random() * 1.5 + 1,
             life: 1, 
             text: Math.random() > 0.5 ? '0' : '1', 
-            hue: 120 // Hacker green
+            hue: 120
           });
         }
       }
@@ -82,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const animateTrail = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      if (currentMode === 1) { // Sparks
+      if (currentMode === 1) {
         for (let i = 0; i < particles.length; i++) {
           let p = particles[i];
           p.x += p.vx; p.y += p.vy; p.life -= 0.03;
@@ -92,19 +87,19 @@ document.addEventListener('DOMContentLoaded', function () {
           ctx.fill();
         }
       } 
-      else if (currentMode === 2) { // Binary Code
+      else if (currentMode === 2) {
         ctx.font = "bold 14px monospace";
         ctx.textAlign = "center";
         for (let i = 0; i < particles.length; i++) {
           let p = particles[i];
           p.y += p.vy; 
-          p.life -= 0.02; // Fade
+          p.life -= 0.02;
           if (p.life <= 0) { particles.splice(i, 1); i--; continue; }
-          ctx.fillStyle = `rgba(34, 197, 94, ${p.life})`; // Hacker green
+          ctx.fillStyle = `rgba(34, 197, 94, ${p.life})`;
           ctx.fillText(p.text, p.x, p.y);
         }
       }
-      else if (currentMode === 3) { // Pixels Matrix
+      else if (currentMode === 3) {
         for (let i = 0; i < particles.length; i++) {
           let p = particles[i];
           p.x += p.vx; p.y += p.vy; p.life -= 0.02;
@@ -113,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
           ctx.fillRect(p.x, p.y, p.size, p.size);
         }
       }
-      else if (currentMode === 4) { // Geo Web
+      else if (currentMode === 4) {
         for (let i = 0; i < particles.length; i++) {
           let p = particles[i];
           p.x += p.vx; p.y += p.vy; p.life -= 0.02;
@@ -138,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         }
       }
-      else if (currentMode === 5) { // Sonar
+      else if (currentMode === 5) {
         for (let i = 0; i < particles.length; i++) {
           let p = particles[i];
           p.size += 1.5; p.life -= 0.03;
@@ -155,9 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
     animateTrail();
   }
-  // ---------------------------
 
-  // Loading Screen
   const loadingScreen = document.querySelector('.loading-screen');
   if (loadingScreen) {
     setTimeout(() => {
@@ -165,7 +158,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 1000);
   }
 
-  // AOS Initialization
   if (typeof AOS !== 'undefined') {
     AOS.init({
       duration: 1000,
@@ -175,7 +167,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Particles Background
   if (document.getElementById('particles-js')) {
     particlesJS('particles-js', {
       "particles": {
@@ -195,7 +186,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Typing Effect
   const professions = [
     "Full Stack Developer",
     "Systems Analyst",
@@ -234,12 +224,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   setTimeout(typeWriter, 1500);
 
-  // Active Link Highlighting on Scroll
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
 
   const observerOptions = {
-    rootMargin: '-80px 0px -50% 0px', // Adjusts the "trigger area"
+    rootMargin: '-80px 0px -50% 0px',
   };
 
   const sectionObserver = new IntersectionObserver((entries, observer) => {
@@ -260,7 +249,6 @@ document.addEventListener('DOMContentLoaded', function () {
     sectionObserver.observe(section);
   });
 
-  // Throttle function to limit how often a function can run
   const throttle = (func, limit) => {
     let inThrottle;
     return function () {
@@ -274,7 +262,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
-  // Back to top visibility on scroll
   const handleScroll = () => {
     const backToTopBtn = document.getElementById('backToTop');
     if (backToTopBtn) {
@@ -288,7 +275,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   window.addEventListener('scroll', throttle(handleScroll, 100));
 
-  // Smooth Scroll
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
@@ -308,7 +294,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Translation System
   const languageSwitcher = document.querySelector('.language-switcher');
   const selectedLanguage = document.querySelector('.selected-language');
   const languageDropdown = document.getElementById('language-dropdown');
@@ -321,7 +306,6 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    // Set active language text and flag
     const langNames = { 'pt-br': 'BR', 'en': 'EN', 'es': 'ES' };
     const flags = {
       'pt-br': 'https://flagcdn.com/w40/br.png',
@@ -334,7 +318,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const currentTranslations = translations[lang];
 
-    // Translate elements with data-key (for innerHTML) and data-key-placeholder (for placeholders)
     document.querySelectorAll('[data-key-placeholder]').forEach(el => {
       const key = el.getAttribute('data-key-placeholder');
       el.placeholder = currentTranslations[key] || el.placeholder;
@@ -342,11 +325,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('[data-key]').forEach(el => {
       const key = el.getAttribute('data-key');
-      // Use innerHTML to correctly render tags like <span> in the footer
       el.innerHTML = currentTranslations[key] || el.innerHTML;
     });
 
+    document.querySelectorAll('[data-key-title]').forEach(el => {
+      const key = el.getAttribute('data-key-title');
+      if (currentTranslations[key]) {
+        el.setAttribute('title', currentTranslations[key]);
+      }
+    });
+
     localStorage.setItem('language', lang);
+    if (typeof updateCalculatorUI === 'function') {
+      updateCalculatorUI(lang);
+    }
   };
 
   if (selectedLanguage && languageDropdown) {
@@ -372,11 +364,32 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Initial language load
   const savedLang = localStorage.getItem('language') || 'pt-br';
   setLanguage(savedLang);
 
-  // Mobile Menu
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const applyTheme = (theme) => {
+    if (theme === 'light') {
+      document.documentElement.classList.add('light-mode');
+      document.body.classList.add('light-mode');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.classList.remove('light-mode');
+      document.body.classList.remove('light-mode');
+      localStorage.setItem('theme', 'dark');
+    }
+  };
+
+  const initialTheme = localStorage.getItem('theme') || 'dark';
+  applyTheme(initialTheme);
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const isCurrentlyLight = document.body.classList.contains('light-mode');
+      applyTheme(isCurrentlyLight ? 'dark' : 'light');
+    });
+  }
+
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
   const navLinksContainer = document.querySelector('.nav-links');
 
@@ -385,7 +398,6 @@ document.addEventListener('DOMContentLoaded', function () {
       navLinksContainer.classList.toggle('active');
     });
 
-    // Close menu when clicking a link
     navLinksContainer.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navLinksContainer.classList.remove('active');
@@ -393,10 +405,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Skills Tabs
   const skillTabs = document.querySelectorAll('.skill-tab');
   const filterBtns = document.querySelectorAll('.filter-btn');
-  // Selecionar apenas os cards dentro da seção de habilidades, ignorando as certificações
   const stackContainer = document.querySelector('.skills-grid');
   const skillCards = stackContainer ? stackContainer.querySelectorAll('.skill-card') : [];
 
@@ -419,7 +429,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const activeSkillTab = document.querySelector('.skill-tab.active');
   if (activeSkillTab) activeSkillTab.click();
 
-  // Dynamic Projects
   const projectsData = [
     { key: 1, category: "sistema", image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800", link: "https://cafeteria-nine-mu.vercel.app/" },
     { key: 2, category: "institucional", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800", link: "https://ampla-bvt7.vercel.app/" },
@@ -484,7 +493,6 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
           </div>
         `;
-        // Fade in new projects smoothly with GSAP if available
         if (typeof gsap !== 'undefined') {
           gsap.fromTo(div,
             { opacity: 0, y: 30 },
@@ -514,11 +522,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Footer Year
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // Contact Form AJAX
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
@@ -559,9 +565,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // --- LUSION STYLE PREMIUM EFFECTS ---
-
-  // 1. Vanilla Tilt for Skills Cards (3D Effect)
   if (typeof VanillaTilt !== 'undefined') {
     VanillaTilt.init(document.querySelectorAll(".skill-card"), {
       max: 15,
@@ -573,11 +576,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // 2. GSAP ScrollTrigger for About Section Parallax
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Image moving slightly down
     gsap.to(".about-image-container", {
       y: 50,
       ease: "none",
@@ -589,7 +590,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    // Info moving slightly up
     gsap.to(".about-info", {
       y: -30,
       ease: "none",
@@ -601,7 +601,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    // Text Reveal Effect
     gsap.fromTo(".about-p", 
       { opacity: 0.3 },
       {
@@ -617,4 +616,221 @@ document.addEventListener('DOMContentLoaded', function () {
     );
   }
 
+  const calcOverlay = document.getElementById('calcOverlay');
+  const calcOpenBtn = document.getElementById('calcOpenBtn');
+  const calcCloseBtn = document.getElementById('calcCloseBtn');
+  const calcWhatsBtn = document.getElementById('calcWhatsBtn');
+  const calcTargetNumber = document.getElementById('calcTargetNumber');
+  const calcResInfra = document.getElementById('calcResInfra');
+  const calcResDev = document.getElementById('calcResDev');
+
+  let calcLastFocus = null;
+
+  function formatCurrency(value, lang) {
+    if (lang === 'pt-br') {
+      return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+    return value.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
+  }
+
+  function getOptionName(input) {
+    const parent = input.closest('.calc-option');
+    if (!parent) return '';
+    const nameEl = parent.querySelector('.calc-opt-name');
+    return nameEl ? nameEl.textContent.trim() : '';
+  }
+
+  function updateCalculatorUI(lang) {
+    if (!calcOverlay) return;
+    const currentLang = lang || localStorage.getItem('language') || 'pt-br';
+    const isBrl = (currentLang === 'pt-br');
+
+    calcOverlay.querySelectorAll('.calc-badge-price').forEach(badge => {
+      const priceBrl = badge.getAttribute('data-price-brl');
+      const priceEur = badge.getAttribute('data-price-eur');
+      if (!priceBrl) return;
+
+      const input = badge.closest('.calc-option')?.querySelector('input');
+      const isInfra = input && input.classList.contains('calc-input-infra');
+      const isRadioBase = input && input.type === 'radio' && input.name === 'calc_project_type';
+
+      const formattedVal = isBrl 
+        ? `R$ ${parseInt(priceBrl, 10).toLocaleString('pt-BR')}` 
+        : `€ ${parseInt(priceEur, 10)}`;
+
+      if (isRadioBase) {
+        if (currentLang === 'pt-br') badge.textContent = `a partir de ${formattedVal}`;
+        else if (currentLang === 'en') badge.textContent = `from ${formattedVal}`;
+        else badge.textContent = `a partir de ${formattedVal}`;
+      } else if (isInfra) {
+        if (currentLang === 'pt-br') badge.textContent = `+ ${formattedVal}/ano`;
+        else if (currentLang === 'en') badge.textContent = `+ ${formattedVal}/year`;
+        else badge.textContent = `+ ${formattedVal}/año`;
+      } else {
+        badge.textContent = `+ ${formattedVal}`;
+      }
+    });
+
+    if (calcTargetNumber && !calcTargetNumber.dataset.userChanged) {
+      if (currentLang === 'pt-br') {
+        calcTargetNumber.value = '5571991338859';
+      } else {
+        calcTargetNumber.value = '34603370153';
+      }
+    }
+
+    calculateTotal(currentLang);
+  }
+
+  function calculateTotal(lang) {
+    if (!calcOverlay) return;
+    const currentLang = lang || localStorage.getItem('language') || 'pt-br';
+    const isBrl = (currentLang === 'pt-br');
+
+    let devBase = 0;
+    let infraTotal = 0;
+
+    calcOverlay.querySelectorAll('.calc-input-dev:checked').forEach(input => {
+      const val = isBrl ? parseFloat(input.value) : parseFloat(input.getAttribute('data-eur') || input.value);
+      devBase += isNaN(val) ? 0 : val;
+    });
+
+    calcOverlay.querySelectorAll('.calc-input-infra:checked').forEach(input => {
+      const val = isBrl ? parseFloat(input.value) : parseFloat(input.getAttribute('data-eur') || input.value);
+      infraTotal += isNaN(val) ? 0 : val;
+    });
+
+    const prazoEl = calcOverlay.querySelector('.calc-input-prazo:checked');
+    const multiplier = prazoEl ? parseFloat(prazoEl.value) : 1;
+    const devTotal = Math.round(devBase * multiplier);
+
+    if (calcResInfra) calcResInfra.textContent = formatCurrency(infraTotal, currentLang);
+    if (calcResDev) calcResDev.textContent = formatCurrency(devTotal, currentLang);
+
+    updateWhatsAppLink(infraTotal, devTotal, currentLang);
+  }
+
+  function updateWhatsAppLink(infraTotal, devTotal, lang) {
+    if (!calcWhatsBtn || !calcOverlay) return;
+    const currentLang = lang || localStorage.getItem('language') || 'pt-br';
+    const targetNumber = calcTargetNumber ? calcTargetNumber.value : '5571991338859';
+
+    const projectTypeEl = calcOverlay.querySelector('.calc-input-dev[type="radio"]:checked');
+    const projectTypeName = projectTypeEl ? getOptionName(projectTypeEl) : '';
+
+    const extraFeatures = [];
+    calcOverlay.querySelectorAll('.calc-input-dev[type="checkbox"]:checked').forEach(el => {
+      extraFeatures.push(getOptionName(el));
+    });
+
+    const infraItems = [];
+    calcOverlay.querySelectorAll('.calc-input-infra:checked').forEach(el => {
+      infraItems.push(getOptionName(el));
+    });
+
+    const prazoEl = calcOverlay.querySelector('.calc-input-prazo:checked');
+    const prazoName = prazoEl ? getOptionName(prazoEl) : '';
+
+    let message = '';
+    const formattedDev = formatCurrency(devTotal, currentLang);
+    const formattedInfra = formatCurrency(infraTotal, currentLang);
+
+    if (currentLang === 'pt-br') {
+      message = `Olá Leo! Realizei uma simulação de projeto pelo seu portfólio:\n\n` +
+        `📌 *Tipo de Projeto:*\n- ${projectTypeName}\n\n` +
+        (extraFeatures.length ? `✨ *Recursos Extras:*\n${extraFeatures.map(f => `- ${f}`).join('\n')}\n\n` : '') +
+        (infraItems.length ? `⚙️ *Infraestrutura (Anual):*\n${infraItems.map(i => `- ${i}`).join('\n')}\n\n` : '') +
+        `⏱️ *Prazo Desejado:* ${prazoName}\n\n` +
+        `💰 *Estimativa Base:*\n` +
+        `- Desenvolvimento: a partir de ${formattedDev}\n` +
+        `- Infraestrutura anual: ${formattedInfra}\n\n` +
+        `Gostaria de agendar uma conversa para detalharmos o escopo e darmos início!`;
+    } else if (currentLang === 'es') {
+      message = `¡Hola Leo! He realizado una simulación de proyecto en tu portafolio:\n\n` +
+        `📌 *Tipo de Proyecto:*\n- ${projectTypeName}\n\n` +
+        (extraFeatures.length ? `✨ *Recursos Adicionales:*\n${extraFeatures.map(f => `- ${f}`).join('\n')}\n\n` : '') +
+        (infraItems.length ? `⚙️ *Infraestructura (Anual):*\n${infraItems.map(i => `- ${i}`).join('\n')}\n\n` : '') +
+        `⏱️ *Plazo Deseado:* ${prazoName}\n\n` +
+        `💰 *Estimación Base:*\n` +
+        `- Desarrollo: a partir de ${formattedDev}\n` +
+        `- Infraestructura anual: ${formattedInfra}\n\n` +
+        `¡Me gustaría agendar una reunión breve para afinar los detalles técnicos!`;
+    } else {
+      message = `Hi Leo! I just configured a project estimate on your portfolio:\n\n` +
+        `📌 *Project Type:*\n- ${projectTypeName}\n\n` +
+        (extraFeatures.length ? `✨ *Extra Features:*\n${extraFeatures.map(f => `- ${f}`).join('\n')}\n\n` : '') +
+        (infraItems.length ? `⚙️ *Infrastructure (Annual):*\n${infraItems.map(i => `- ${i}`).join('\n')}\n\n` : '') +
+        `⏱️ *Timeline:* ${prazoName}\n\n` +
+        `💰 *Base Estimate:*\n` +
+        `- Development: from ${formattedDev}\n` +
+        `- Annual Infrastructure: ${formattedInfra}\n\n` +
+        `I'd like to schedule a quick chat to discuss technical details and get started!`;
+    }
+
+    calcWhatsBtn.href = `https://wa.me/${targetNumber}?text=${encodeURIComponent(message)}`;
+  }
+
+  function openCalcModal() {
+    if (!calcOverlay) return;
+    calcLastFocus = document.activeElement;
+    calcOverlay.classList.add('is-open');
+    calcOverlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('calc-no-scroll');
+    if (calcCloseBtn) calcCloseBtn.focus();
+    updateCalculatorUI();
+    document.addEventListener('keydown', handleCalcKeydown);
+  }
+
+  function closeCalcModal() {
+    if (!calcOverlay) return;
+    calcOverlay.classList.remove('is-open');
+    calcOverlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('calc-no-scroll');
+    document.removeEventListener('keydown', handleCalcKeydown);
+    if (calcLastFocus && typeof calcLastFocus.focus === 'function') {
+      calcLastFocus.focus();
+    }
+  }
+
+  function handleCalcKeydown(e) {
+    if (e.key === 'Escape') {
+      closeCalcModal();
+      return;
+    }
+    if (e.key === 'Tab') {
+      const focusables = calcOverlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  }
+
+  if (calcOpenBtn) calcOpenBtn.addEventListener('click', openCalcModal);
+  if (calcCloseBtn) calcCloseBtn.addEventListener('click', closeCalcModal);
+  if (calcOverlay) {
+    calcOverlay.addEventListener('click', (e) => {
+      if (e.target === calcOverlay) closeCalcModal();
+    });
+    calcOverlay.querySelectorAll('input').forEach(input => {
+      input.addEventListener('change', () => calculateTotal());
+    });
+  }
+
+  if (calcTargetNumber) {
+    calcTargetNumber.addEventListener('change', () => {
+      calcTargetNumber.dataset.userChanged = 'true';
+      calculateTotal();
+    });
+  }
+
+  updateCalculatorUI();
+
 });
+
