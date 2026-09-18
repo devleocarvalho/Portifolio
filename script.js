@@ -3,7 +3,39 @@ inject();
 
 import { translations } from './translations.js';
 
-document.addEventListener('DOMContentLoaded', function () {
+function initPortfolio() {
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const applyTheme = (theme) => {
+    if (theme === 'light') {
+      document.documentElement.classList.add('light-mode');
+      document.body.classList.add('light-mode');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.classList.remove('light-mode');
+      document.body.classList.remove('light-mode');
+      localStorage.setItem('theme', 'dark');
+    }
+  };
+
+  const initialTheme = localStorage.getItem('theme') || 'dark';
+  applyTheme(initialTheme);
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const isCurrentlyLight = document.body.classList.contains('light-mode');
+      applyTheme(isCurrentlyLight ? 'dark' : 'light');
+    });
+  }
+
+  const calcOverlay = document.getElementById('calcOverlay');
+  const calcOpenBtn = document.getElementById('calcOpenBtn');
+  const calcCloseBtn = document.getElementById('calcCloseBtn');
+  const calcWhatsBtn = document.getElementById('calcWhatsBtn');
+  const calcTargetNumber = document.getElementById('calcTargetNumber');
+  const calcResInfra = document.getElementById('calcResInfra');
+  const calcResDev = document.getElementById('calcResDev');
+  let calcLastFocus = null;
+
   const canvas = document.getElementById('cursor-trail');
   if (canvas && window.matchMedia("(pointer: fine)").matches) {
     const ctx = canvas.getContext('2d');
@@ -167,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  if (document.getElementById('particles-js')) {
+  if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
     particlesJS('particles-js', {
       "particles": {
         "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
@@ -366,29 +398,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const savedLang = localStorage.getItem('language') || 'pt-br';
   setLanguage(savedLang);
-
-  const themeToggleBtn = document.getElementById('themeToggleBtn');
-  const applyTheme = (theme) => {
-    if (theme === 'light') {
-      document.documentElement.classList.add('light-mode');
-      document.body.classList.add('light-mode');
-      localStorage.setItem('theme', 'light');
-    } else {
-      document.documentElement.classList.remove('light-mode');
-      document.body.classList.remove('light-mode');
-      localStorage.setItem('theme', 'dark');
-    }
-  };
-
-  const initialTheme = localStorage.getItem('theme') || 'dark';
-  applyTheme(initialTheme);
-
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const isCurrentlyLight = document.body.classList.contains('light-mode');
-      applyTheme(isCurrentlyLight ? 'dark' : 'light');
-    });
-  }
 
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
   const navLinksContainer = document.querySelector('.nav-links');
@@ -616,16 +625,6 @@ document.addEventListener('DOMContentLoaded', function () {
     );
   }
 
-  const calcOverlay = document.getElementById('calcOverlay');
-  const calcOpenBtn = document.getElementById('calcOpenBtn');
-  const calcCloseBtn = document.getElementById('calcCloseBtn');
-  const calcWhatsBtn = document.getElementById('calcWhatsBtn');
-  const calcTargetNumber = document.getElementById('calcTargetNumber');
-  const calcResInfra = document.getElementById('calcResInfra');
-  const calcResDev = document.getElementById('calcResDev');
-
-  let calcLastFocus = null;
-
   function formatCurrency(value, lang) {
     if (lang === 'pt-br') {
       return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -671,7 +670,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    if (calcTargetNumber && !calcTargetNumber.dataset.userChanged) {
+    if (calcTargetNumber && !calcTargetNumber.dataset?.userChanged) {
       if (currentLang === 'pt-br') {
         calcTargetNumber.value = '5571991338859';
       } else {
@@ -825,12 +824,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (calcTargetNumber) {
     calcTargetNumber.addEventListener('change', () => {
-      calcTargetNumber.dataset.userChanged = 'true';
+      if (calcTargetNumber.dataset) calcTargetNumber.dataset.userChanged = 'true';
       calculateTotal();
     });
   }
 
   updateCalculatorUI();
+}
 
-});
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPortfolio);
+} else {
+  initPortfolio();
+}
 
