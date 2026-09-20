@@ -3,6 +3,18 @@ inject();
 
 import { translations } from './translations.js';
 
+// Função de sanitização defensiva para prevenção de DOM XSS
+function sanitizeHtml(htmlString) {
+  if (typeof htmlString !== 'string') return '';
+  let clean = htmlString.replace(/<\s*(script|iframe|object|embed|applet|base|form|input|button|link|meta)[^>]*>.*?<\s*\/\s*\1\s*>/gis, '');
+  clean = clean.replace(/<\s*(script|iframe|object|embed|applet|base|form|input|button|link|meta)[^>]*>/gis, '');
+  clean = clean.replace(/\s+on[a-z]+\s*=\s*(['"]).*?\1/gis, '');
+  clean = clean.replace(/\s+on[a-z]+\s*=\s*[^ >]+/gis, '');
+  clean = clean.replace(/href\s*=\s*(['"])\s*(javascript|data|vbscript):.*?\1/gis, 'href="#"');
+  clean = clean.replace(/src\s*=\s*(['"])\s*(javascript|vbscript):.*?\1/gis, 'src=""');
+  return clean;
+}
+
 function initPortfolio() {
   const themeToggleBtn = document.getElementById('themeToggleBtn');
   const applyTheme = (theme) => {
@@ -357,7 +369,7 @@ function initPortfolio() {
 
     document.querySelectorAll('[data-key]').forEach(el => {
       const key = el.getAttribute('data-key');
-      el.innerHTML = currentTranslations[key] || el.innerHTML;
+      el.innerHTML = sanitizeHtml(currentTranslations[key] || el.innerHTML);
     });
 
     document.querySelectorAll('[data-key-title]').forEach(el => {
@@ -558,12 +570,13 @@ function initPortfolio() {
           'Accept': 'application/json'
         }
       })
-        .then(response => {
+        .then(async response => {
           if (response.ok) {
             alert('Mensagem enviada com sucesso! Obrigado pelo contato.');
             this.reset();
           } else {
-            alert('Ocorreu um erro ao enviar. Tente novamente mais tarde.');
+            const errData = await response.json().catch(() => ({}));
+            alert(errData.error || 'Ocorreu um erro ao enviar. Tente novamente mais tarde.');
           }
         })
         .catch(error => {
