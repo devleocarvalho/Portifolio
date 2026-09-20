@@ -1,6 +1,6 @@
 export const translations = {
   "pt-br": {
-    "heroTitle": "Leo Carvalho",
+    "heroTitle": "Leonardo de Carvalho",
     "heroSubtitle": "Desenvolvedor Full Stack & Analista de Sistemas",
     "tooltipHome": "Início",
     "tooltipAbout": "Sobre",
@@ -150,7 +150,7 @@ export const translations = {
     "footerSpecEcom": "Lojas Virtuais & E-commerce"
   },
   "en": {
-    "heroTitle": "Leo Carvalho",
+    "heroTitle": "Leonardo de Carvalho",
     "heroSubtitle": "Full Stack Developer & Systems Analyst",
     "tooltipHome": "Home",
     "tooltipAbout": "About",
@@ -300,7 +300,7 @@ export const translations = {
     "footerSpecEcom": "Online Stores & E-commerce"
   },
   "es": {
-    "heroTitle": "Leo Carvalho",
+    "heroTitle": "Leonardo de Carvalho",
     "heroSubtitle": "Desarrollador Full Stack & Analista de Sistemas",
     "tooltipHome": "Inicio",
     "tooltipAbout": "Sobre mí",
