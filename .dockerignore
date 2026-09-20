@@ -1,0 +1,27 @@
+# Docker Build Context Exclusions
+.git
+.gitignore
+node_modules
+dist
+build
+.env
+.env.*
+!.env.example
+credentials*.json
+serviceAccount*.json
+secrets*.json
+*.pem
+*.key
+*.p8
+*.p12
+*.crt
+tests/
+__tests__/
+*.test.js
+*.test.mjs
+*.spec.js
+*.log
+.DS_Store
+.vscode
+.idea
+.vercel

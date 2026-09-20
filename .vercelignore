@@ -1,0 +1,23 @@
+# Vercel Deployment Exclusions
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+credentials*.json
+serviceAccount*.json
+secrets*.json
+*.pem
+*.key
+*.p8
+*.p12
+*.crt
+tests/
+__tests__/
+*.test.js
+*.test.mjs
+*.spec.js
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
