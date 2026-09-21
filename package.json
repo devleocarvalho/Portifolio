@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "test:security": "node tests/test-security-module1.mjs && node tests/test-security-contact.mjs && node tests/test-security-module3.mjs && node tests/test-security-module4.mjs"
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",

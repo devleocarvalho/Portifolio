@@ -1,6 +1,35 @@
 const { Resend } = require('resend');
 const crypto = require('crypto');
-const { createAuditLog } = require('../lib/auditLogger');
+const SENSITIVE_KEYS = new Set([
+  'password', 'pass', 'senha', 'token', 'access_token', 'refresh_token',
+  'auth', 'authorization', 'apikey', 'api_key', 'secret', 'resend_api_key'
+]);
+
+function maskSensitiveData(data) {
+  if (!data || typeof data !== 'object') return data;
+  const masked = Array.isArray(data) ? [] : {};
+  for (const [key, value] of Object.entries(data)) {
+    if (SENSITIVE_KEYS.has(key.toLowerCase())) {
+      masked[key] = '[REDACTED]';
+    } else if (typeof value === 'object' && value !== null) {
+      masked[key] = maskSensitiveData(value);
+    } else {
+      masked[key] = value;
+    }
+  }
+  return masked;
+}
+
+function createAuditLog({ action, ip = 'unknown', correlationId = crypto.randomUUID(), status = 'SUCCESS', details = {} }) {
+  return JSON.stringify({
+    timestamp: new Date().toISOString(),
+    correlationId,
+    ip,
+    action,
+    status,
+    details: maskSensitiveData(details)
+  });
+}
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
