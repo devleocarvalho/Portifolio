@@ -535,14 +535,13 @@ function initPortfolio() {
     const langData = cProj[currentLang] || cProj['pt-br'];
     const card = document.createElement('div');
     card.className = 'project-card cyber-project-card';
-    const previewTags = (cProj.stack || []).slice(0, 4).map(t => `<span class="tech-tag-mini">${escapeText(t)}</span>`).join('');
-    const extraCount = (cProj.stack || []).length > 4 ? `<span class="tech-tag-mini">+${cProj.stack.length - 4}</span>` : '';
+    const previewTags = (cProj.stack || []).slice(0, 3).map(t => `<span class="tech-tag-mini">${escapeText(t)}</span>`).join('');
+    const extraCount = (cProj.stack || []).length > 3 ? `<span class="tech-tag-mini">+${cProj.stack.length - 3}</span>` : '';
 
     card.innerHTML = `
       <div class="project-image cyber-project-image">
         <img src="${cProj.image}" alt="${escapeText(langData.title)}" loading="lazy">
         <span class="cyber-card-badge"><i class="fas fa-shield-halved"></i> ${escapeText(cProj.badge)}</span>
-        <span class="cyber-card-code">${escapeText(cProj.code)}</span>
       </div>
       <div class="project-body">
         <h3>${escapeText(langData.title)}</h3>
@@ -550,7 +549,7 @@ function initPortfolio() {
         <div class="project-mini-tags">${previewTags}${extraCount}</div>
         <div class="project-footer">
           <button type="button" class="btn btn-primary btn-cyber-dossier" data-cyber-id="${cProj.id}">
-            <i class="fas fa-file-shield"></i> <span data-key="viewDossier">Dossiê Técnico</span>
+            <i class="fas fa-eye"></i> <span data-key="viewProject">Ver Projeto</span>
           </button>
           <button type="button" class="btn btn-outline btn-cyber-details" data-cyber-id="${cProj.id}">
             <i class="fas fa-layer-group"></i> <span data-key="viewDetails">Detalhes</span>
@@ -676,49 +675,103 @@ function initPortfolio() {
     activeDetailsContext = { type: 'cyber', id: cyberId, mode };
     const langData = cProj[currentLang] || cProj['pt-br'];
 
-    if (detailsModalIcon) detailsModalIcon.innerHTML = '<i class="fas fa-shield-halved"></i>';
-    if (detailsModalCategory) detailsModalCategory.textContent = `${cProj.code} • ${cProj.badge}`;
-    if (detailsModalTitle) detailsModalTitle.textContent = langData.title;
-
     const stackBadges = (cProj.stack || []).map(tech => `<span class="details-stack-pill cyber-stack-pill"><i class="fas fa-terminal"></i> ${escapeText(tech)}</span>`).join('');
-    const highlightsList = (langData.highlights || []).map(item => `<li><i class="fas fa-shield-check"></i> <span>${escapeText(item)}</span></li>`).join('');
 
-    const pdfButtonsHtml = `
-      ${cProj.reportPdf ? `<a href="${cProj.reportPdf}" class="btn btn-primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf"></i> ${escapeText(t.viewReportPdf)}</a>` : ''}
-      ${cProj.secondaryReportPdf ? `<a href="${cProj.secondaryReportPdf}" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf"></i> ${escapeText(t.viewReportPdf2)}</a>` : ''}
-    `;
+    const labels = {
+      'pt-br': {
+        stepTitle: 'Passo a Passo do que foi executado',
+        statusBadge: 'Projeto em fase final de estruturação — Modelo de demonstração ativo',
+        switchToDetails: 'Ver Tecnologias Empregadas (Detalhes)',
+        switchToProject: 'Ver Apresentação do Projeto'
+      },
+      'en': {
+        stepTitle: 'Step-by-Step Execution Workflow',
+        statusBadge: 'Project in final structuring stage — Active demonstration template',
+        switchToDetails: 'View Technologies Used (Details)',
+        switchToProject: 'View Project Presentation'
+      },
+      'es': {
+        stepTitle: 'Paso a Paso de la Ejecución',
+        statusBadge: 'Proyecto en fase final de estructuración — Plantilla de demostración activa',
+        switchToDetails: 'Ver Tecnologías Empleadas (Detalles)',
+        switchToProject: 'Ver Presentación del Proyecto'
+      }
+    }[currentLang] || {
+      stepTitle: 'Passo a Passo do que foi executado',
+      statusBadge: 'Projeto em fase final de estruturação — Modelo de demonstração ativo',
+      switchToDetails: 'Ver Tecnologias Empregadas (Detalhes)',
+      switchToProject: 'Ver Apresentação do Projeto'
+    };
 
-    detailsModalBody.innerHTML = `
-      <div class="cyber-metrics-banner">
-        <i class="fas fa-award"></i>
-        <div>
-          <strong>${escapeText(t.detailsModalMetricsTitle)}:</strong>
-          <span>${escapeText(langData.metrics)}</span>
+    if (mode === 'details') {
+      // MODO 2 (Botão "Detalhes"): Exclusivamente a Ficha Técnica de Tecnologias & Arquitetura
+      if (detailsModalIcon) detailsModalIcon.innerHTML = '<i class="fas fa-layer-group"></i>';
+      if (detailsModalCategory) detailsModalCategory.textContent = `${t.detailsModalStackTitle} • ${cProj.badge}`;
+      if (detailsModalTitle) detailsModalTitle.textContent = langData.title;
+
+      detailsModalBody.innerHTML = `
+        <p class="details-lead-desc">${escapeText(langData.shortDesc)}</p>
+
+        <div class="details-section-block">
+          <h4><i class="fas fa-microchip"></i> ${escapeText(t.detailsModalStackTitle)}</h4>
+          <div class="details-stack-grid">${stackBadges}</div>
         </div>
-      </div>
 
-      <div class="details-section-block">
-        <h4><i class="fas fa-crosshairs"></i> ${escapeText(t.detailsModalScenarioTitle)}</h4>
-        <p class="details-arch-text">${escapeText(langData.scenario)}</p>
-      </div>
+        <div class="details-section-block">
+          <h4><i class="fas fa-network-wired"></i> ${escapeText(t.detailsModalArchTitle)}</h4>
+          <p class="details-arch-text">${escapeText(langData.architecture)}</p>
+        </div>
 
-      <div class="details-section-block">
-        <h4><i class="fas fa-microchip"></i> ${escapeText(t.detailsModalStackTitle)}</h4>
-        <div class="details-stack-grid">${stackBadges}</div>
-      </div>
+        <div class="details-modal-footer">
+          <button type="button" class="btn btn-primary btn-cyber-dossier" data-cyber-id="${cProj.id}">
+            <i class="fas fa-eye"></i> ${escapeText(labels.switchToProject)}
+          </button>
+        </div>
+      `;
+    } else {
+      // MODO 1 (Botão "Ver Projeto"): Apresentação Visual Passo a Passo do Projeto (Modelo Limpo)
+      if (detailsModalIcon) detailsModalIcon.innerHTML = '<i class="fas fa-shield-halved"></i>';
+      if (detailsModalCategory) detailsModalCategory.textContent = cProj.badge;
+      if (detailsModalTitle) detailsModalTitle.textContent = langData.title;
 
-      <div class="details-section-block">
-        <h4><i class="fas fa-network-wired"></i> ${escapeText(t.detailsModalArchTitle)}</h4>
-        <p class="details-arch-text">${escapeText(langData.architecture)}</p>
-      </div>
+      const stepsCards = (langData.highlights || []).map((item, idx) => `
+        <div class="cyber-step-card">
+          <span class="cyber-step-num">0${idx + 1}</span>
+          <p>${escapeText(item)}</p>
+        </div>
+      `).join('');
 
-      <div class="details-section-block">
-        <h4><i class="fas fa-list-check"></i> ${escapeText(t.detailsModalHighlightsTitle)}</h4>
-        <ul class="details-highlights-list">${highlightsList}</ul>
-      </div>
+      detailsModalBody.innerHTML = `
+        <div class="details-section-block">
+          <h4><i class="fas fa-bullseye"></i> ${escapeText(t.detailsModalScenarioTitle)}</h4>
+          <p class="details-arch-text">${escapeText(langData.scenario)}</p>
+        </div>
 
-      ${pdfButtonsHtml.trim() ? `<div class="details-modal-footer">${pdfButtonsHtml}</div>` : ''}
-    `;
+        <div class="details-section-block">
+          <h4><i class="fas fa-list-ol"></i> ${escapeText(labels.stepTitle)}</h4>
+          <div class="cyber-steps-grid">${stepsCards}</div>
+        </div>
+
+        <div class="cyber-metrics-banner">
+          <i class="fas fa-award"></i>
+          <div>
+            <strong>${escapeText(t.detailsModalMetricsTitle)}:</strong>
+            <span>${escapeText(langData.metrics)}</span>
+          </div>
+        </div>
+
+        <div class="cyber-template-notice">
+          <i class="fas fa-code-commit"></i>
+          <span>${escapeText(labels.statusBadge)}</span>
+        </div>
+
+        <div class="details-modal-footer">
+          <button type="button" class="btn btn-outline btn-cyber-details" data-cyber-id="${cProj.id}">
+            <i class="fas fa-layer-group"></i> ${escapeText(labels.switchToDetails)}
+          </button>
+        </div>
+      `;
+    }
 
     projectDetailsOverlay.classList.add('is-open');
     projectDetailsOverlay.setAttribute('aria-hidden', 'false');
