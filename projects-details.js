@@ -1,4 +1,4 @@
-// Dados técnicos detalhados de cada projeto do portfólio e dos 11 projetos de Cibersegurança (PT-BR, EN, ES)
+﻿// Dados técnicos detalhados de cada projeto do portfólio e dos 11 projetos de Cibersegurança (PT-BR, EN, ES)
 
 export const projectTechDetails = {
   35: {
@@ -1067,7 +1067,7 @@ export const cyberProjectsData = [
     track: "pai",
     badge: "DevSecOps & Supply Chain",
     image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&q=80&w=800",
-    reportPdf: "/cyber-reports/11-devsecops-supply-chain-security-pipeline.pdf",
+    reportPdf: null,
     stack: ["GitHub Actions", "Semgrep (SAST)", "Trivy (SCA & Container)", "OWASP ZAP (DAST)", "DefectDojo", "Docker & Kubernetes", "Python", "Quality Gates"],
     "pt-br": {
       title: "Insegus Pipeline — Engenharia DevSecOps & Cadeia de Suprimentos",
@@ -1115,7 +1115,7 @@ export const cyberProjectsData = [
     track: "pai",
     badge: "Zero Trust & Network Security",
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800",
-    reportPdf: "/cyber-reports/09-byodsec-zero-trust-mtls-vpn.pdf",
+    reportPdf: null,
     stack: ["TLS 1.3 Strict (RFC 8446)", "Mutual TLS (mTLS X.509 v3)", "PKI Root CA", "PBKDF2-HMAC-SHA256 (600k)", "Python Sockets/SSL", "Wireshark PCAP", "Hashcat", "SQLite"],
     "pt-br": {
       title: "BYODSEC — Arquitetura VPN Zero Trust TLS 1.3 com mTLS",
@@ -1163,7 +1163,7 @@ export const cyberProjectsData = [
     track: "pai",
     badge: "System Hardening & Web DAST",
     image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=800",
-    reportPdf: "/cyber-reports/10-vulnaweb-fullstack-hardening-dast-audit.pdf",
+    reportPdf: null,
     stack: ["Lynis 3.1.7 (Linux Hardening)", "OWASP ZAP 2.17 (DAST/Fuzzing)", "Kali / Ubuntu / Debian", "Firefox ESR Policies", "Android ADB / Knox Audit", "PHP Secure Coding (PDO)", "CIS Benchmarks / ENS"],
     "pt-br": {
       title: "VULNAWEB — Auditoria Full-Stack, Hardening Linux/Mobile & DAST",
@@ -1211,7 +1211,7 @@ export const cyberProjectsData = [
     track: "pai",
     badge: "Financial Integrity & Anti-Replay",
     image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800",
-    reportPdf: "/cyber-reports/08-integridos-financial-integrity-engine.pdf",
+    reportPdf: null,
     stack: ["Python", "HMAC-SHA256 / SHA3", "Cryptographic Nonces", "Wireshark (.pcapng)", "Burp Suite / MITM Simulation", "Timing Benchmark", "Socket Programming"],
     "pt-br": {
       title: "IntegriDos — Motor de Integridade e Anti-Replay para Transações Financeiras",
@@ -1259,7 +1259,7 @@ export const cyberProjectsData = [
     track: "cai",
     badge: "Red/Blue Team & OAuth 2.0 IAM",
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800",
-    reportPdf: "/cyber-reports/07-hospital-iam-oauth2-pkce-totp-audit.pdf",
+    reportPdf: null,
     stack: ["OAuth 2.0 + PKCE (RFC 7636)", "JWT (RS256 & JWKS)", "2FA TOTP (FreeOTP)", "BFF Pattern (HttpOnly)", "Python Flask", "SQLCipher / AES DB", "Wireshark", "Red & Blue Team"],
     "pt-br": {
       title: "MedAuth ZeroTrust — Red/Blue Team IAM, OAuth 2.0 PKCE, BFF & 2FA TOTP",
@@ -1307,7 +1307,7 @@ export const cyberProjectsData = [
     track: "cai",
     badge: "Digital Forensics & Medical Crypto",
     image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800",
-    reportPdf: "/cyber-reports/04-medical-imaging-crypto-veracrypt-forensics.pdf",
+    reportPdf: null,
     stack: ["AES-256-CBC vs ECB", "ChaCha20", "VeraCrypt Forensics", "Hashcat (-m 13721)", "OpenSSL", "Python Forensic Script", "Linux dd / Loop Mount", "RGPD / ENS"],
     "pt-br": {
       title: "MedCrypt Forensics — Cifragem de Imagens Médicas & Perícia VeraCrypt",
@@ -1355,7 +1355,7 @@ export const cyberProjectsData = [
     track: "cai",
     badge: "Steganography & ECB Forensics",
     image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=80&w=800",
-    reportPdf: "/cyber-reports/06-clinical-steganography-ecb-forensics.pdf",
+    reportPdf: null,
     stack: ["LSB Steganography", "zsteg & OpenStego (Steganalysis)", "DCT / DWT Watermarking", "BMP Header Reconstruction (dd)", "AES-256-ECB Cryptanalysis", "Python (Pillow/NumPy)", "Kali Linux"],
     "pt-br": {
       title: "StegoMed Audit — Esteganografia LSB, Estegoanálise & Vazamento Forense ECB",
@@ -1403,8 +1403,8 @@ export const cyberProjectsData = [
     track: "cai",
     badge: "Salted Hashes & HMAC Security",
     image: "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&q=80&w=800",
-    reportPdf: "/cyber-reports/03-salted-hash-cryptanalysis-audit.pdf",
-    secondaryReportPdf: "/cyber-reports/03b-financial-hmac-replay-defense.pdf",
+    reportPdf: null,
+    secondaryreportPdf: null,
     stack: ["SHA-256 Salted Hashes", "Hashcat (-m 1410 / -m 1420)", "Base64 / Hex Decoding", "HMAC 32-bit Brute-Force", "Replay Attack PoC", "TLS 1.3 + ECDHE Redesign", "Python"],
     "pt-br": {
       title: "SaltBreaker & HMAC-Shield — Criptoanálise SHA-256 e Defesa Anti-Replay",
@@ -1452,7 +1452,7 @@ export const cyberProjectsData = [
     track: "cai",
     badge: "Password Policy & CVSS v3.1",
     image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&q=80&w=800",
-    reportPdf: "/cyber-reports/01-banking-password-policy-audit.pdf",
+    reportPdf: null,
     stack: ["Hashcat & John the Ripper", "SHA-256 / SHA-1 / MD5", "CVSS v3.1 Risk Scoring", "Python Password Auditor", "Wordlists (RockYou / RAE)", "Rule-Based Cracking", "Kali Linux"],
     "pt-br": {
       title: "SentinelPass — Auditoria Criptográfica de Credenciais Bancárias",
@@ -1500,7 +1500,7 @@ export const cyberProjectsData = [
     track: "cai",
     badge: "Merkle Trees & Hash Collisions",
     image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=800",
-    reportPdf: "/cyber-reports/02-cryptographic-integrity-md5-merkle.pdf",
+    reportPdf: null,
     stack: ["Merkle Trees O(log N)", "SHA-256", "MD5 Chosen-Prefix Collisions", "Rogue CA Analysis", "fastcoll (Kali Linux)", "Python Implementation", "Blockchain / P2P Integrity"],
     "pt-br": {
       title: "MerkleGuard — Integridade Criptográfica, Árvores de Merkle & Colisões MD5",
@@ -1591,3 +1591,4 @@ export const cyberProjectsData = [
     }
   }
 ];
+
