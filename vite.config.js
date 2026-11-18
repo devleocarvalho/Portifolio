@@ -6,10 +6,11 @@ function securityHardeningPlugin() {
   const sensitiveRegex = /(\.env|\.git|\.aws|\.ssh|credentials|secrets|\.pem$|\.key$|\.p8$|serviceAccount)/i;
 
   const handler = (req, res, next) => {
-    // Força cabeçalhos de segurança globalmente
+    res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('X-Frame-Options', 'DENY');
     res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
     res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), interest-cohort=()');
     res.setHeader('Content-Security-Policy', CSP_POLICY);
 
@@ -45,17 +46,21 @@ export default defineConfig({
   server: {
     open: true,
     headers: {
+      'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
       'X-Content-Type-Options': 'nosniff',
       'X-Frame-Options': 'DENY',
       'Referrer-Policy': 'strict-origin-when-cross-origin',
+      'Cross-Origin-Opener-Policy': 'same-origin',
       'Content-Security-Policy': CSP_POLICY
     }
   },
   preview: {
     headers: {
+      'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
       'X-Content-Type-Options': 'nosniff',
       'X-Frame-Options': 'DENY',
       'Referrer-Policy': 'strict-origin-when-cross-origin',
+      'Cross-Origin-Opener-Policy': 'same-origin',
       'Content-Security-Policy': CSP_POLICY
     }
   }

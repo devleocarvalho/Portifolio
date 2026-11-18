@@ -2,6 +2,17 @@ import { inject } from '@vercel/analytics';
 inject();
 
 import { translations } from './translations.js';
+import { projectTechDetails, cyberProjectsData } from './projects-details.js';
+
+function escapeText(str) {
+  if (typeof str !== 'string') return '';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
 
 // Função de sanitização defensiva para prevenção de DOM XSS
 function sanitizeHtml(htmlString) {
@@ -386,6 +397,14 @@ function initPortfolio() {
     if (typeof updateCalculatorUI === 'function') {
       updateCalculatorUI(lang);
     }
+    if (typeof renderCyberShowcaseGrid === 'function') {
+      const activeCyberTrackBtn = document.querySelector('.cyber-tab-btn.active');
+      const track = activeCyberTrackBtn ? activeCyberTrackBtn.getAttribute('data-cyber-track') : 'all';
+      renderCyberShowcaseGrid(track);
+    }
+    if (typeof refreshOpenDetailsModal === 'function') {
+      refreshOpenDetailsModal(lang);
+    }
   };
 
   if (selectedLanguage && languageDropdown) {
@@ -454,6 +473,8 @@ function initPortfolio() {
   if (activeSkillTab) activeSkillTab.click();
 
   const projectsData = [
+    { key: 35, category: "institucional", featured: true, image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800", link: "https://dimcontrol.com.br/" },
+    { key: 32, category: "sistema", featured: true, image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800", link: "https://meuqueridogerente.web.app/" },
     { key: 1, category: "sistema", image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800", link: "https://cafeteria-nine-mu.vercel.app/" },
     { key: 2, category: "institucional", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800", link: "https://ampla-bvt7.vercel.app/" },
     { key: 3, category: "sistema", image: "https://plus.unsplash.com/premium_photo-1699387204388-120141c76d51?q=80&w=1978&auto=format&fit=crop", link: "https://steptodischarge.vercel.app/" },
@@ -485,49 +506,368 @@ function initPortfolio() {
     { key: 29, category: "sistema", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80", link: "https://quedadesinal.web.app/" },
     { key: 30, category: "sistema", image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&w=800&q=80", link: "https://qualquerbet.netlify.app/" },
     { key: 31, category: "institucional", image: "https://images.unsplash.com/photo-1589578527966-fdac0f44566c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", link: "https://neriemantuano.web.app/" },
-    { key: 32, category: "sistema", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800", link: "https://web-sand-nu-18.vercel.app/" },
     { key: 33, category: "sistema", image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800", link: "https://rentalmanager8-ca6thi4re-devleocarvalhoprojects.vercel.app/" },
     { key: 34, category: "sistema", image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800", link: "https://care-azure.vercel.app/" }
   ];
 
   const projectsContainer = document.getElementById('projects-container');
+  const cyberShowcaseOverlay = document.getElementById('cyberShowcaseOverlay');
+  const cyberShowcaseCloseBtn = document.getElementById('cyberShowcaseCloseBtn');
+  const cyberProjectsGrid = document.getElementById('cyber-projects-grid');
+  const projectDetailsOverlay = document.getElementById('projectDetailsOverlay');
+  const detailsModalCloseBtn = document.getElementById('detailsModalCloseBtn');
+  const detailsModalTitle = document.getElementById('detailsModalTitle');
+  const detailsModalCategory = document.getElementById('detailsModalCategory');
+  const detailsModalIcon = document.getElementById('detailsModalIcon');
+  const detailsModalBody = document.getElementById('detailsModalBody');
+
+  let activeDetailsContext = null;
+
+  function createCyberProjectCard(cProj, currentLang) {
+    const langData = cProj[currentLang] || cProj['pt-br'];
+    const card = document.createElement('div');
+    card.className = 'project-card cyber-project-card';
+    const previewTags = (cProj.stack || []).slice(0, 4).map(t => `<span class="tech-tag-mini">${escapeText(t)}</span>`).join('');
+    const extraCount = (cProj.stack || []).length > 4 ? `<span class="tech-tag-mini">+${cProj.stack.length - 4}</span>` : '';
+
+    card.innerHTML = `
+      <div class="project-image cyber-project-image">
+        <img src="${cProj.image}" alt="${escapeText(langData.title)}" loading="lazy">
+        <span class="cyber-card-badge"><i class="fas fa-shield-halved"></i> ${escapeText(cProj.badge)}</span>
+        <span class="cyber-card-code">${escapeText(cProj.code)}</span>
+      </div>
+      <div class="project-body">
+        <h3>${escapeText(langData.title)}</h3>
+        <p>${escapeText(langData.shortDesc)}</p>
+        <div class="project-mini-tags">${previewTags}${extraCount}</div>
+        <div class="project-footer">
+          <button type="button" class="btn btn-primary btn-cyber-dossier" data-cyber-id="${cProj.id}">
+            <i class="fas fa-file-shield"></i> <span data-key="viewDossier">Dossiê Técnico</span>
+          </button>
+          <button type="button" class="btn btn-outline btn-cyber-details" data-cyber-id="${cProj.id}">
+            <i class="fas fa-layer-group"></i> <span data-key="viewDetails">Detalhes</span>
+          </button>
+        </div>
+      </div>
+    `;
+    return card;
+  }
+
+  function renderCyberShowcaseGrid(track = 'all') {
+    if (!cyberProjectsGrid) return;
+    cyberProjectsGrid.innerHTML = '';
+    const currentLang = localStorage.getItem('language') || 'pt-br';
+    const currentTranslations = translations[currentLang] || translations['pt-br'];
+
+    cyberProjectsData.forEach((cProj) => {
+      if (track === 'all' || cProj.track === track) {
+        const card = createCyberProjectCard(cProj, currentLang);
+        card.querySelectorAll('[data-key]').forEach(el => {
+          const k = el.getAttribute('data-key');
+          if (currentTranslations[k]) el.textContent = currentTranslations[k];
+        });
+        cyberProjectsGrid.appendChild(card);
+      }
+    });
+  }
+
+  function openCyberShowcaseModal() {
+    if (!cyberShowcaseOverlay) return;
+    renderCyberShowcaseGrid('all');
+    document.querySelectorAll('.cyber-tab-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-cyber-track') === 'all');
+    });
+    cyberShowcaseOverlay.classList.add('is-open');
+    cyberShowcaseOverlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('calc-no-scroll');
+  }
+
+  function closeCyberShowcaseModal() {
+    if (!cyberShowcaseOverlay) return;
+    cyberShowcaseOverlay.classList.remove('is-open');
+    cyberShowcaseOverlay.setAttribute('aria-hidden', 'true');
+    if (!projectDetailsOverlay?.classList.contains('is-open') && !calcOverlay?.classList.contains('is-open')) {
+      document.body.classList.remove('calc-no-scroll');
+    }
+  }
+
+  document.querySelectorAll('.cyber-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.cyber-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCyberShowcaseGrid(btn.getAttribute('data-cyber-track'));
+    });
+  });
+
+  if (cyberShowcaseCloseBtn) {
+    cyberShowcaseCloseBtn.addEventListener('click', closeCyberShowcaseModal);
+  }
+  if (cyberShowcaseOverlay) {
+    cyberShowcaseOverlay.addEventListener('click', (e) => {
+      if (e.target === cyberShowcaseOverlay) closeCyberShowcaseModal();
+    });
+  }
+
+  function openProjectDetailsModal(projectKey) {
+    if (!projectDetailsOverlay) return;
+    const currentLang = localStorage.getItem('language') || 'pt-br';
+    const t = translations[currentLang] || translations['pt-br'];
+    const proj = projectsData.find(p => p.key === Number(projectKey));
+    const details = projectTechDetails[Number(projectKey)];
+    if (!proj || !details) return;
+
+    activeDetailsContext = { type: 'project', key: Number(projectKey) };
+    const langDetails = details[currentLang] || details['pt-br'];
+    const title = t[`proj${proj.key}Title`] || `Projeto ${proj.key}`;
+    const desc = t[`proj${proj.key}Desc`] || '';
+
+    if (detailsModalIcon) detailsModalIcon.innerHTML = '<i class="fas fa-laptop-code"></i>';
+    if (detailsModalCategory) detailsModalCategory.textContent = langDetails.category;
+    if (detailsModalTitle) detailsModalTitle.textContent = title;
+
+    const stackBadges = (details.stack || []).map(tech => `<span class="details-stack-pill"><i class="fas fa-check-circle"></i> ${escapeText(tech)}</span>`).join('');
+    const highlightsList = (langDetails.highlights || []).map(item => `<li><i class="fas fa-angle-right"></i> <span>${escapeText(item)}</span></li>`).join('');
+
+    detailsModalBody.innerHTML = `
+      <p class="details-lead-desc">${escapeText(desc)}</p>
+
+      <div class="details-section-block">
+        <h4><i class="fas fa-microchip"></i> ${escapeText(t.detailsModalStackTitle)}</h4>
+        <div class="details-stack-grid">${stackBadges}</div>
+      </div>
+
+      <div class="details-section-block">
+        <h4><i class="fas fa-sitemap"></i> ${escapeText(t.detailsModalArchTitle)}</h4>
+        <p class="details-arch-text">${escapeText(langDetails.architecture)}</p>
+      </div>
+
+      <div class="details-section-block">
+        <h4><i class="fas fa-bolt"></i> ${escapeText(t.detailsModalHighlightsTitle)}</h4>
+        <ul class="details-highlights-list">${highlightsList}</ul>
+      </div>
+
+      <div class="details-modal-footer">
+        <a href="${proj.link}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-external-link-alt"></i> ${escapeText(t.viewProject)}
+        </a>
+      </div>
+    `;
+
+    projectDetailsOverlay.classList.add('is-open');
+    projectDetailsOverlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('calc-no-scroll');
+  }
+
+  function openCyberDetailsModal(cyberId, mode = 'dossier') {
+    if (!projectDetailsOverlay) return;
+    const currentLang = localStorage.getItem('language') || 'pt-br';
+    const t = translations[currentLang] || translations['pt-br'];
+    const cProj = cyberProjectsData.find(c => c.id === cyberId);
+    if (!cProj) return;
+
+    activeDetailsContext = { type: 'cyber', id: cyberId, mode };
+    const langData = cProj[currentLang] || cProj['pt-br'];
+
+    if (detailsModalIcon) detailsModalIcon.innerHTML = '<i class="fas fa-shield-halved"></i>';
+    if (detailsModalCategory) detailsModalCategory.textContent = `${cProj.code} • ${cProj.badge}`;
+    if (detailsModalTitle) detailsModalTitle.textContent = langData.title;
+
+    const stackBadges = (cProj.stack || []).map(tech => `<span class="details-stack-pill cyber-stack-pill"><i class="fas fa-terminal"></i> ${escapeText(tech)}</span>`).join('');
+    const highlightsList = (langData.highlights || []).map(item => `<li><i class="fas fa-shield-check"></i> <span>${escapeText(item)}</span></li>`).join('');
+
+    const pdfButtonsHtml = `
+      ${cProj.reportPdf ? `<a href="${cProj.reportPdf}" class="btn btn-primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf"></i> ${escapeText(t.viewReportPdf)}</a>` : ''}
+      ${cProj.secondaryReportPdf ? `<a href="${cProj.secondaryReportPdf}" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf"></i> ${escapeText(t.viewReportPdf2)}</a>` : ''}
+    `;
+
+    detailsModalBody.innerHTML = `
+      <div class="cyber-metrics-banner">
+        <i class="fas fa-award"></i>
+        <div>
+          <strong>${escapeText(t.detailsModalMetricsTitle)}:</strong>
+          <span>${escapeText(langData.metrics)}</span>
+        </div>
+      </div>
+
+      <div class="details-section-block">
+        <h4><i class="fas fa-crosshairs"></i> ${escapeText(t.detailsModalScenarioTitle)}</h4>
+        <p class="details-arch-text">${escapeText(langData.scenario)}</p>
+      </div>
+
+      <div class="details-section-block">
+        <h4><i class="fas fa-microchip"></i> ${escapeText(t.detailsModalStackTitle)}</h4>
+        <div class="details-stack-grid">${stackBadges}</div>
+      </div>
+
+      <div class="details-section-block">
+        <h4><i class="fas fa-network-wired"></i> ${escapeText(t.detailsModalArchTitle)}</h4>
+        <p class="details-arch-text">${escapeText(langData.architecture)}</p>
+      </div>
+
+      <div class="details-section-block">
+        <h4><i class="fas fa-list-check"></i> ${escapeText(t.detailsModalHighlightsTitle)}</h4>
+        <ul class="details-highlights-list">${highlightsList}</ul>
+      </div>
+
+      ${pdfButtonsHtml.trim() ? `<div class="details-modal-footer">${pdfButtonsHtml}</div>` : ''}
+    `;
+
+    projectDetailsOverlay.classList.add('is-open');
+    projectDetailsOverlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('calc-no-scroll');
+  }
+
+  function closeProjectDetailsModal() {
+    if (!projectDetailsOverlay) return;
+    projectDetailsOverlay.classList.remove('is-open');
+    projectDetailsOverlay.setAttribute('aria-hidden', 'true');
+    activeDetailsContext = null;
+    if (!cyberShowcaseOverlay?.classList.contains('is-open') && !calcOverlay?.classList.contains('is-open')) {
+      document.body.classList.remove('calc-no-scroll');
+    }
+  }
+
+  function refreshOpenDetailsModal() {
+    if (!activeDetailsContext || !projectDetailsOverlay?.classList.contains('is-open')) return;
+    if (activeDetailsContext.type === 'project') {
+      openProjectDetailsModal(activeDetailsContext.key);
+    } else if (activeDetailsContext.type === 'cyber') {
+      openCyberDetailsModal(activeDetailsContext.id, activeDetailsContext.mode);
+    }
+  }
+
+  if (detailsModalCloseBtn) {
+    detailsModalCloseBtn.addEventListener('click', closeProjectDetailsModal);
+  }
+  if (projectDetailsOverlay) {
+    projectDetailsOverlay.addEventListener('click', (e) => {
+      if (e.target === projectDetailsOverlay) closeProjectDetailsModal();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (projectDetailsOverlay?.classList.contains('is-open')) {
+        closeProjectDetailsModal();
+      } else if (cyberShowcaseOverlay?.classList.contains('is-open')) {
+        closeCyberShowcaseModal();
+      }
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    const detailsBtn = e.target.closest('.btn-project-details');
+    if (detailsBtn) {
+      e.preventDefault();
+      openProjectDetailsModal(detailsBtn.getAttribute('data-project-key'));
+      return;
+    }
+
+    const cyberDossierBtn = e.target.closest('.btn-cyber-dossier');
+    if (cyberDossierBtn) {
+      e.preventDefault();
+      openCyberDetailsModal(cyberDossierBtn.getAttribute('data-cyber-id'), 'dossier');
+      return;
+    }
+
+    const cyberDetailsBtn = e.target.closest('.btn-cyber-details');
+    if (cyberDetailsBtn) {
+      e.preventDefault();
+      openCyberDetailsModal(cyberDetailsBtn.getAttribute('data-cyber-id'), 'details');
+      return;
+    }
+
+    const cyberHubTrigger = e.target.closest('.cyber-hub-open-trigger');
+    if (cyberHubTrigger) {
+      e.preventDefault();
+      openCyberShowcaseModal();
+    }
+  });
+
   const renderProjects = (filter) => {
     if (!projectsContainer) return;
     projectsContainer.innerHTML = '';
+    const currentLang = localStorage.getItem('language') || 'pt-br';
 
     let delay = 0;
-    projectsData.forEach((proj) => {
-      if (filter === 'all' || proj.category === filter) {
-        const div = document.createElement('div');
-        div.className = 'project-card';
-        div.setAttribute('data-aos', 'fade-up');
-        if (delay > 0) div.setAttribute('data-aos-delay', delay.toString());
-        delay += 100;
-        if (delay > 200) delay = 0;
 
-        div.innerHTML = `
-          <div class="project-image">
-            <img src="${proj.image}" alt="Projeto ${proj.key}" loading="lazy">
+    // Card Hub Especial de Cibersegurança & DevSecOps (exibido em 'all' e 'cyber')
+    if (filter === 'all' || filter === 'cyber') {
+      const hubCard = document.createElement('div');
+      hubCard.className = 'project-card cyber-hub-card';
+      hubCard.setAttribute('data-aos', 'fade-up');
+      hubCard.innerHTML = `
+        <div class="project-image cyber-hub-image cyber-hub-open-trigger" role="button" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=900" alt="Cybersecurity & DevSecOps Hub" loading="lazy">
+          <span class="cyber-hub-badge"><i class="fas fa-shield-halved"></i> <span data-key="cyberHubBadge">11 Projetos & Laboratórios</span></span>
+        </div>
+        <div class="project-body">
+          <h3 data-key="cyberHubTitle">Hub de Cibersegurança, Forense & DevSecOps</h3>
+          <p data-key="cyberHubDesc"></p>
+          <div class="project-mini-tags">
+            <span class="tech-tag-mini">DevSecOps CI/CD</span>
+            <span class="tech-tag-mini">TLS 1.3 & mTLS</span>
+            <span class="tech-tag-mini">Red & Blue Team</span>
+            <span class="tech-tag-mini">VeraCrypt Forensics</span>
+            <span class="tech-tag-mini">OWASP ZAP / Lynis</span>
           </div>
-          <div class="project-body">
-            <h3 data-key="proj${proj.key}Title"></h3>
-            <p data-key="proj${proj.key}Desc"></p>
-            <div class="project-footer">
-              <a href="${proj.link}" class="btn btn-primary" data-key="viewProject" target="_blank" rel="noopener noreferrer"></a>
+          <div class="project-footer">
+            <button type="button" class="btn btn-primary cyber-hub-open-trigger" style="width: 100%; justify-content: center;">
+              <i class="fas fa-shield-halved"></i> <span data-key="cyberHubBtn">Acessar Projetos de Cibersegurança (11)</span>
+            </button>
+          </div>
+        </div>
+      `;
+      projectsContainer.appendChild(hubCard);
+    }
+
+    // Quando o filtro 'cyber' está ativo, renderiza também os 11 projetos de Cibersegurança diretamente na grade
+    if (filter === 'cyber') {
+      cyberProjectsData.forEach((cProj) => {
+        const card = createCyberProjectCard(cProj, currentLang);
+        card.setAttribute('data-aos', 'fade-up');
+        projectsContainer.appendChild(card);
+      });
+    } else {
+      projectsData.forEach((proj) => {
+        if (filter === 'all' || proj.category === filter) {
+          const div = document.createElement('div');
+          div.className = `project-card${proj.featured ? ' project-card-featured' : ''}`;
+          div.setAttribute('data-aos', 'fade-up');
+          if (delay > 0) div.setAttribute('data-aos-delay', delay.toString());
+          delay += 100;
+          if (delay > 200) delay = 0;
+
+          const details = projectTechDetails[proj.key];
+          const previewTags = details && details.stack
+            ? `<div class="project-mini-tags">${details.stack.slice(0, 3).map(t => `<span class="tech-tag-mini">${escapeText(t)}</span>`).join('')}${details.stack.length > 3 ? `<span class="tech-tag-mini">+${details.stack.length - 3}</span>` : ''}</div>`
+            : '';
+
+          div.innerHTML = `
+            <div class="project-image">
+              <img src="${proj.image}" alt="Projeto ${proj.key}" loading="lazy">
             </div>
-          </div>
-        `;
-        if (typeof gsap !== 'undefined') {
-          gsap.fromTo(div,
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 0.6, delay: (delay / 100) * 0.1, ease: "power2.out" }
-          );
+            <div class="project-body">
+              <h3 data-key="proj${proj.key}Title"></h3>
+              <p data-key="proj${proj.key}Desc"></p>
+              ${previewTags}
+              <div class="project-footer">
+                <a href="${proj.link}" class="btn btn-primary" data-key="viewProject" target="_blank" rel="noopener noreferrer"></a>
+                <button type="button" class="btn btn-outline btn-project-details" data-project-key="${proj.key}" data-key="viewDetails"></button>
+              </div>
+            </div>
+          `;
+          if (typeof gsap !== 'undefined') {
+            gsap.fromTo(div,
+              { opacity: 0, y: 30 },
+              { opacity: 1, y: 0, duration: 0.6, delay: (delay / 100) * 0.1, ease: "power2.out" }
+            );
+          }
+          projectsContainer.appendChild(div);
         }
-        projectsContainer.appendChild(div);
-      }
-    });
+      });
+    }
 
-    const currentLang = localStorage.getItem('language') || 'pt-br';
     setLanguage(currentLang);
   };
 

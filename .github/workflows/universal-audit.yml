@@ -1,0 +1,165 @@
+name: DevSecOps Universal Security Audit (Portfolio)
+
+# 1. GATILHOS: Roda a cada push, Pull Request ou manualmente com 1 clique (workflow_dispatch)
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # ============================================================================
+  # ETAPA 1: VARREDURA DE SEGREDOS E CHAVES VAZADAS (SECRET SCANNING)
+  # ============================================================================
+  secret-scanning:
+    name: 🔑 1. Secret Scanning (Gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar Histórico Completo do Git
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rodar Gitleaks (Procura chaves Resend, AWS, JWT, Tokens, etc.)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+  # ============================================================================
+  # ETAPA 2: ANÁLISE ESTÁTICA DA APLICAÇÃO & API SERVERLESS (SAST)
+  # ============================================================================
+  sast-scanning:
+    name: 🛡️ 2. SAST (Semgrep JS/HTML/Serverless)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o Código
+        uses: actions/checkout@v4
+
+      - name: Executar Semgrep nos Módulos do Portfólio e API
+        run: |
+          docker run --rm -v $(pwd):/src -w /src semgrep/semgrep \
+            semgrep scan --config auto \
+            --exclude "dist" --exclude "node_modules" --exclude "public/cyber-reports" --exclude "public/cv" \
+            --json --output semgrep.json || true
+
+      - name: Salvar Relatório SAST como Artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-sast-semgrep
+          path: semgrep.json
+
+  # ============================================================================
+  # ETAPA 3: CADEIA DE SUPRIMENTOS (SCA) & GERAÇÃO DE SBOM (TRIVY)
+  # ============================================================================
+  sca-and-sbom:
+    name: 📦 3. SCA (Dependências npm) & Geração de SBOM
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o Código
+        uses: actions/checkout@v4
+
+      - name: Cache do Banco de Vulnerabilidades Trivy
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/trivy
+          key: trivy-db-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: trivy-db-${{ runner.os }}-
+
+      - name: 3.1. Gerar SBOM (Software Bill of Materials - CycloneDX)
+        run: |
+          docker run --rm -v $(pwd):/src -v ~/.cache/trivy:/root/.cache/trivy aquasec/trivy \
+            fs --skip-dirs /src/dist,/src/public/cyber-reports \
+            --format cyclonedx --output /src/sbom.cdx.json /src
+
+      - name: 3.2. Escanear Vulnerabilidades em Dependências (Node.js & npm)
+        run: |
+          docker run --rm -v $(pwd):/src -v ~/.cache/trivy:/root/.cache/trivy aquasec/trivy \
+            fs --skip-dirs /src/dist,/src/public/cyber-reports \
+            --format json --output /src/trivy_sca.json /src
+
+      - name: Salvar SBOM e Relatório de Dependências
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorios-sca-e-sbom
+          path: |
+            sbom.cdx.json
+            trivy_sca.json
+
+  # ============================================================================
+  # ETAPA 4: SEGURANÇA DE INFRAESTRUTURA COMO CÓDIGO (IaC & VERCEL HEADERS)
+  # ============================================================================
+  iac-scanning:
+    name: ☁️ 4. IaC (Vercel Config & Security Headers)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o Código
+        uses: actions/checkout@v4
+
+      - name: Auditar Arquivos de Configuração de Infraestrutura
+        run: |
+          docker run --rm -v $(pwd):/src aquasec/trivy \
+            config --skip-dirs /src/dist,/src/node_modules \
+            --format json --output /src/trivy_iac.json /src || true
+
+      - name: Salvar Relatório IaC
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-iac-trivy
+          path: trivy_iac.json
+
+  # ============================================================================
+  # ETAPA 5: TESTES AUTOMATIZADOS DE SEGURANÇA & BUILD DE PRODUÇÃO (VITE)
+  # ============================================================================
+  security-tests:
+    name: 🧪 5. Testes AppSec (Zero Trust, XSS, API & Build Vite)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o Código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Instalar Dependências
+        run: npm ci || npm install --legacy-peer-deps
+
+      - name: Executar Bateria de Testes de Segurança (Headers, Secrets, API, XSS & Idiomas)
+        run: npm test
+
+      - name: Validar Build de Produção (Vite Build)
+        run: npm run build
+
+  # ============================================================================
+  # ETAPA 6: QUALITY GATE CORPORATIVO (MOTOR DE DECISÃO)
+  # ============================================================================
+  quality-gate-decision:
+    name: 🚦 6. Quality Gate (Aprovação ou Bloqueio)
+    needs: [secret-scanning, sast-scanning, sca-and-sbom, iac-scanning, security-tests]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o Código
+        uses: actions/checkout@v4
+
+      - name: Configurar Ambiente Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Baixar Todos os Relatórios Gerados
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+
+      - name: Avaliar Limites de Segurança (Exit Code 1 se falhar)
+        run: |
+          python3 scripts/quality_gate.py --mode blocking --critical 0 --high 0 \
+            --semgrep relatorio-sast-semgrep/semgrep.json \
+            --trivy-sca relatorios-sca-e-sbom/trivy_sca.json \
+            --trivy-iac relatorio-iac-trivy/trivy_iac.json

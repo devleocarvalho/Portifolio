@@ -122,13 +122,13 @@
         <div class="about-info" data-aos="fade-left">
           <p class="about-p" data-key="aboutP1"></p>
           <div class="about-actions">
-            <a href="assets/CV- Leonardo Guedes de Carvalho.pdf" download class="btn btn-outline">
+            <a href="/cv/CV-PT-Leonardo-Carvalho.pdf" download class="btn btn-outline">
               <i class="fas fa-download"></i> PT
             </a>
-            <a href="assets/CV- ENG Leonardo Guedes de Carvalho.pdf" download class="btn btn-outline">
+            <a href="/cv/CV-EN-Leonardo-Carvalho.pdf" download class="btn btn-outline">
               <i class="fas fa-download"></i> EN
             </a>
-            <a href="assets/CV- SPN Leonardo Guedes de Carvalho.pdf" download class="btn btn-outline">
+            <a href="/cv/CV-ES-Leonardo-Carvalho.pdf" download class="btn btn-outline">
               <i class="fas fa-download"></i> ES
             </a>
             <a href="#contact" class="btn btn-primary" data-key="contactBtn">Fale Comigo</a>
@@ -144,10 +144,10 @@
       </div>
 
       <div class="skills-tabs" data-aos="fade-up">
-        <button class="skill-tab active" data-tab="all">Todos</button>
-        <button class="skill-tab" data-tab="frontend">Frontend & Linguagens</button>
-        <button class="skill-tab" data-tab="backend">Databases & Cloud</button>
-        <button class="skill-tab" data-tab="tools">Ferramentas</button>
+        <button class="skill-tab active" data-tab="all" data-key="skillTabAll">Todos</button>
+        <button class="skill-tab" data-tab="frontend" data-key="skillTabFrontend">Frontend & Linguagens</button>
+        <button class="skill-tab" data-tab="backend" data-key="skillTabBackend">Databases & Cloud</button>
+        <button class="skill-tab" data-tab="tools" data-key="skillTabTools">Ferramentas & DevSecOps</button>
       </div>
 
       <div class="skills-grid" id="skills-grid">
@@ -275,7 +275,7 @@
           <img src="./assets/devmedia.png" alt="DevMedia" class="cert-logo">
         </div>
         <div class="skill-card" data-aos="fade-up" data-aos-delay="400">
-          <img src="./assets/image copy.png" alt="Unijorge" class="cert-logo">
+          <img src="./assets/unijorge.png" alt="Unijorge" class="cert-logo">
         </div>
         <div class="skill-card" data-aos="fade-up" data-aos-delay="500">
           <img src="./assets/image.png" alt="hackersdobem" class="cert-logo">
@@ -289,10 +289,11 @@
         <div class="divider"></div>
       </div>
       <div class="projects-filter" data-aos="fade-up">
-        <button class="filter-btn active" data-filter="all">Todos</button>
-        <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
-        <button class="filter-btn" data-filter="sistema">Sistemas</button>
-        <button class="filter-btn" data-filter="institucional">Institucional</button>
+        <button class="filter-btn active" data-filter="all" data-key="filterAll">Todos</button>
+        <button class="filter-btn filter-btn-cyber" data-filter="cyber" data-key="filterCyber">🛡️ Cibersegurança &amp; DevSecOps</button>
+        <button class="filter-btn" data-filter="sistema" data-key="filterSistema">Sistemas</button>
+        <button class="filter-btn" data-filter="ecommerce" data-key="filterEcommerce">E-commerce</button>
+        <button class="filter-btn" data-filter="institucional" data-key="filterInstitucional">Institucional</button>
       </div>
       <div class="projects-grid" id="projects-container">
       </div>
@@ -542,6 +543,43 @@
             <p class="calc-notice" data-key="calcNotice">*Valores de referência para escopo base. A proposta final é refinada após alinhamento técnico detalhado.</p>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Modal Vitrine de Cibersegurança, Criptografia & DevSecOps (11 Projetos) -->
+    <div class="calc-overlay cyber-showcase-overlay" id="cyberShowcaseOverlay" role="dialog" aria-modal="true" aria-labelledby="cyberModalTitleEl" aria-hidden="true">
+      <div class="calc-modal cyber-showcase-modal">
+        <button type="button" class="calc-close-btn" id="cyberShowcaseCloseBtn" aria-label="Fechar">&times;</button>
+        <div class="calc-modal-header cyber-showcase-header">
+          <div class="calc-modal-icon cyber-modal-icon"><i class="fas fa-shield-halved"></i></div>
+          <div>
+            <h2 id="cyberModalTitleEl" data-key="cyberModalTitle">Portfólio de Cibersegurança, Criptografia &amp; DevSecOps</h2>
+            <p class="calc-modal-sub" data-key="cyberModalSubtitle">11 projetos de engenharia de segurança, auditorias ofensivas/defensivas (Red &amp; Blue Team), perícia forense digital e automação de cadeia de suprimentos.</p>
+          </div>
+        </div>
+        <div class="cyber-showcase-tabs">
+          <button type="button" class="cyber-tab-btn active" data-cyber-track="all" data-key="cyberTabAll">Todos os Projetos (11)</button>
+          <button type="button" class="cyber-tab-btn" data-cyber-track="pai" data-key="cyberTabPai">Engenharia &amp; DevSecOps (4)</button>
+          <button type="button" class="cyber-tab-btn" data-cyber-track="cai" data-key="cyberTabCai">Criptografia, Forense &amp; Red/Blue Team (7)</button>
+        </div>
+        <div class="calc-modal-body cyber-showcase-body">
+          <div class="cyber-projects-grid" id="cyber-projects-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Detalhes Técnicos & Dossiê de Projeto -->
+    <div class="calc-overlay project-details-overlay" id="projectDetailsOverlay" role="dialog" aria-modal="true" aria-labelledby="detailsModalTitle" aria-hidden="true">
+      <div class="calc-modal project-details-modal">
+        <button type="button" class="calc-close-btn" id="detailsModalCloseBtn" aria-label="Fechar">&times;</button>
+        <div class="calc-modal-header project-details-header">
+          <div class="calc-modal-icon" id="detailsModalIcon"><i class="fas fa-code-branch"></i></div>
+          <div>
+            <span class="details-category-badge" id="detailsModalCategory">Full Stack Architecture</span>
+            <h2 id="detailsModalTitle">Detalhes do Projeto</h2>
+          </div>
+        </div>
+        <div class="calc-modal-body project-details-body" id="detailsModalBody"></div>
       </div>
     </div>
 
