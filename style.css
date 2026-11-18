@@ -1750,11 +1750,27 @@ body.light-mode .skill-card span {
   color: #1e293b;
 }
 
+.skill-card img.icon-nextjs {
+  background: #ffffff;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.skill-card img.icon-adaptive-mono {
+  filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(99, 102, 241, 0.2));
+}
+
+.skill-card:hover img.icon-adaptive-mono {
+  filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(99, 102, 241, 0.5));
+}
+
+body.light-mode .skill-card img.icon-adaptive-mono,
 body.light-mode .skill-card img[style*="filter"],
 body.light-mode .skill-card img[style*="invert"] {
   filter: none !important;
 }
 
+body.light-mode .skill-card:hover img.icon-adaptive-mono,
 body.light-mode .skill-card:hover img[style*="filter"],
 body.light-mode .skill-card:hover img[style*="invert"] {
   filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.35)) !important;

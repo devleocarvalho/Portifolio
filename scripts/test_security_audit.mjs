@@ -150,6 +150,13 @@ try {
     "Client script enforces sanitizeHtml() and escapeText() against DOM XSS"
   );
 
+  const cyberGridDeclIndex = scriptCode.indexOf("const cyberProjectsGrid =");
+  const firstSetLangCallIndex = scriptCode.indexOf("setLanguage(savedLang)");
+  assert(
+    cyberGridDeclIndex > 0 && firstSetLangCallIndex > cyberGridDeclIndex,
+    "Zero Temporal Dead Zone (TDZ): DOM containers initialized before setLanguage() execution"
+  );
+
   const loadEsmFile = async (relFile) => {
     const raw = fs.readFileSync(path.join(rootDir, relFile), "utf8");
     const b64 = Buffer.from(raw, "utf8").toString("base64");

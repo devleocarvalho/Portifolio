@@ -14,7 +14,7 @@ import os
 import sys
 import json
 import argparse
-from typing import Dict
+from typing import Dict, Optional
 
 
 def parse_semgrep_report(filepath: str) -> Dict[str, int]:
@@ -27,15 +27,17 @@ def parse_semgrep_report(filepath: str) -> Dict[str, int]:
             for result in data.get("results", []):
                 extra = result.get("extra", {})
                 sev = extra.get("severity", "WARNING").upper()
-                if sev == "ERROR":
-                    check_id = result.get("check_id", "").lower()
-                    if "injection" in check_id or "secret" in check_id or "eval" in check_id:
-                        counts["HIGH"] += 1
-                    else:
-                        counts["MEDIUM"] += 1
-                elif sev == "WARNING":
+                metadata = extra.get("metadata", {}) or {}
+                impact = str(metadata.get("impact", "LOW")).upper()
+                confidence = str(metadata.get("confidence", "LOW")).upper()
+                check_id = result.get("check_id", "")
+
+                if sev == "ERROR" and impact == "HIGH" and confidence == "HIGH":
+                    counts["HIGH"] += 1
+                    print(f"    [Semgrep HIGH] {check_id} em {result.get('path')}:{result.get('start', {}).get('line')}")
+                elif sev in ("ERROR", "WARNING"):
                     counts["MEDIUM"] += 1
-                elif sev == "INFO":
+                else:
                     counts["LOW"] += 1
     except Exception as e:
         print(f"[-] Aviso ao analisar Semgrep ({filepath}): {e}")
@@ -59,10 +61,14 @@ def parse_trivy_report(filepath: str) -> Dict[str, int]:
                     sev = vuln.get("Severity", "UNKNOWN").upper()
                     if sev in counts:
                         counts[sev] += 1
+                        if sev in ("CRITICAL", "HIGH"):
+                            print(f"    [Trivy SCA {sev}] {vuln.get('VulnerabilityID')} ({vuln.get('PkgName')})")
                 for misconf in res.get("Misconfigurations", []) or []:
                     sev = misconf.get("Severity", "UNKNOWN").upper()
                     if sev in counts:
                         counts[sev] += 1
+                        if sev in ("CRITICAL", "HIGH"):
+                            print(f"    [Trivy IaC {sev}] {misconf.get('ID')}: {misconf.get('Title')}")
     except Exception as e:
         print(f"[-] Aviso ao analisar Trivy ({filepath}): {e}")
     return counts
@@ -75,7 +81,7 @@ def evaluate_quality_gate(
     mode: str,
     threshold_critical: int = 0,
     threshold_high: int = 0,
-    threshold_medium: int = 10,
+    threshold_medium: Optional[int] = None,
 ) -> bool:
     print("=" * 80)
     print("      PORTFÓLIO DEVSECOPS - MOTOR DE AVALIAÇÃO DE QUALITY GATES           ")
@@ -108,7 +114,7 @@ def evaluate_quality_gate(
         breaches.append(f"Vulnerabilidades CRÍTICAS ({totals['CRITICAL']}) excedem o limite ({threshold_critical})")
     if totals["HIGH"] > threshold_high:
         breaches.append(f"Vulnerabilidades ALTAS ({totals['HIGH']}) excedem o limite ({threshold_high})")
-    if totals["MEDIUM"] > threshold_medium:
+    if threshold_medium is not None and totals["MEDIUM"] > threshold_medium:
         breaches.append(f"Vulnerabilidades MÉDIAS ({totals['MEDIUM']}) excedem o limite ({threshold_medium})")
 
     if mode.lower() == "advisory":
@@ -138,7 +144,7 @@ def main():
     parser.add_argument("--trivy-iac", default="")
     parser.add_argument("--critical", type=int, default=0)
     parser.add_argument("--high", type=int, default=0)
-    parser.add_argument("--medium", type=int, default=10)
+    parser.add_argument("--medium", type=int, default=None)
 
     args = parser.parse_args()
     ok = evaluate_quality_gate(

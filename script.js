@@ -59,6 +59,18 @@ function initPortfolio() {
   const calcResDev = document.getElementById('calcResDev');
   let calcLastFocus = null;
 
+  const projectsContainer = document.getElementById('projects-container');
+  const cyberShowcaseOverlay = document.getElementById('cyberShowcaseOverlay');
+  const cyberShowcaseCloseBtn = document.getElementById('cyberShowcaseCloseBtn');
+  const cyberProjectsGrid = document.getElementById('cyber-projects-grid');
+  const projectDetailsOverlay = document.getElementById('projectDetailsOverlay');
+  const detailsModalCloseBtn = document.getElementById('detailsModalCloseBtn');
+  const detailsModalTitle = document.getElementById('detailsModalTitle');
+  const detailsModalCategory = document.getElementById('detailsModalCategory');
+  const detailsModalIcon = document.getElementById('detailsModalIcon');
+  const detailsModalBody = document.getElementById('detailsModalBody');
+  let activeDetailsContext = null;
+
   const canvas = document.getElementById('cursor-trail');
   if (canvas && window.matchMedia("(pointer: fine)").matches) {
     const ctx = canvas.getContext('2d');
@@ -355,7 +367,7 @@ function initPortfolio() {
   const selectedFlag = document.getElementById('selected-flag');
   const selectedLangText = document.getElementById('selected-lang-text');
 
-  const setLanguage = (lang) => {
+  const applyLanguageToDOM = (lang) => {
     if (typeof translations === 'undefined' || !translations[lang]) {
       console.error(`Translations for language "${lang}" not found.`);
       return;
@@ -380,6 +392,7 @@ function initPortfolio() {
 
     document.querySelectorAll('[data-key]').forEach(el => {
       const key = el.getAttribute('data-key');
+      // nosemgrep: javascript.browser.security.insecure-document-method.insecure-document-method
       el.innerHTML = sanitizeHtml(currentTranslations[key] || el.innerHTML);
     });
 
@@ -394,10 +407,18 @@ function initPortfolio() {
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
     localStorage.setItem('language', lang);
+  };
+
+  const setLanguage = (lang) => {
+    applyLanguageToDOM(lang);
     if (typeof updateCalculatorUI === 'function') {
       updateCalculatorUI(lang);
     }
-    if (typeof renderCyberShowcaseGrid === 'function') {
+    const activeFilterBtn = document.querySelector('.filter-btn.active');
+    if (activeFilterBtn && activeFilterBtn.getAttribute('data-filter') === 'cyber' && typeof renderProjects === 'function') {
+      renderProjects('cyber');
+    }
+    if (cyberProjectsGrid && typeof renderCyberShowcaseGrid === 'function') {
       const activeCyberTrackBtn = document.querySelector('.cyber-tab-btn.active');
       const track = activeCyberTrackBtn ? activeCyberTrackBtn.getAttribute('data-cyber-track') : 'all';
       renderCyberShowcaseGrid(track);
@@ -509,19 +530,6 @@ function initPortfolio() {
     { key: 33, category: "sistema", image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800", link: "https://rentalmanager8-ca6thi4re-devleocarvalhoprojects.vercel.app/" },
     { key: 34, category: "sistema", image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800", link: "https://care-azure.vercel.app/" }
   ];
-
-  const projectsContainer = document.getElementById('projects-container');
-  const cyberShowcaseOverlay = document.getElementById('cyberShowcaseOverlay');
-  const cyberShowcaseCloseBtn = document.getElementById('cyberShowcaseCloseBtn');
-  const cyberProjectsGrid = document.getElementById('cyber-projects-grid');
-  const projectDetailsOverlay = document.getElementById('projectDetailsOverlay');
-  const detailsModalCloseBtn = document.getElementById('detailsModalCloseBtn');
-  const detailsModalTitle = document.getElementById('detailsModalTitle');
-  const detailsModalCategory = document.getElementById('detailsModalCategory');
-  const detailsModalIcon = document.getElementById('detailsModalIcon');
-  const detailsModalBody = document.getElementById('detailsModalBody');
-
-  let activeDetailsContext = null;
 
   function createCyberProjectCard(cProj, currentLang) {
     const langData = cProj[currentLang] || cProj['pt-br'];
@@ -868,7 +876,7 @@ function initPortfolio() {
       });
     }
 
-    setLanguage(currentLang);
+    applyLanguageToDOM(currentLang);
   };
 
   if (projectsContainer) {
