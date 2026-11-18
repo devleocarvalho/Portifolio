@@ -14,7 +14,7 @@
 - 🎓 Background in **Systems Analysis and Development (Unijorge)** with advanced engineering coursework in **Computer &amp; Network Security (Universidad de Sevilla)**.
 - 🛡️ **Security by Design &amp; DevSecOps:** I integrate automated SAST, SCA/SBOM, DAST, Zero Trust networking (TLS 1.3 / mTLS), and system hardening directly into the software development lifecycle.
 - 🚀 **Full Stack Architecture:** Focused on React, Next.js, TypeScript, Node.js, Python, and Cloud ecosystems (Firebase, Supabase, Neon, Vercel).
-- 🌍 Based between **Spain (Valencia/Seville)** and **Brazil (Salvador)** — fluent work across Portuguese, English, and Spanish.
+- 🌍 Based between **Spain (Andalusia)** and **Brazil (Bahia)** — fluent work across Portuguese, English, and Spanish.
 
 ---
 
