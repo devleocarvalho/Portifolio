@@ -679,27 +679,27 @@ function initPortfolio() {
 
     const labels = {
       'pt-br': {
-        stepTitle: 'Passo a Passo do que foi executado',
-        statusBadge: 'Projeto em fase final de estruturação — Modelo de demonstração ativo',
-        switchToDetails: 'Ver Tecnologias Empregadas (Detalhes)',
+        stepTitle: 'Solução Técnica & O que foi executado',
+        statusBadge: 'Projeto de Engenharia de Segurança Concluído & Validado',
+        switchToDetails: 'Ver Arquitetura Técnica Detalhada',
         switchToProject: 'Ver Apresentação do Projeto'
       },
       'en': {
-        stepTitle: 'Step-by-Step Execution Workflow',
-        statusBadge: 'Project in final structuring stage — Active demonstration template',
-        switchToDetails: 'View Technologies Used (Details)',
+        stepTitle: 'Technical Solution & Execution Steps',
+        statusBadge: 'Security Engineering Project Completed & Validated',
+        switchToDetails: 'View Detailed Technical Architecture',
         switchToProject: 'View Project Presentation'
       },
       'es': {
-        stepTitle: 'Paso a Paso de la Ejecución',
-        statusBadge: 'Proyecto en fase final de estructuración — Plantilla de demostración activa',
-        switchToDetails: 'Ver Tecnologías Empleadas (Detalles)',
+        stepTitle: 'Solución Técnica y Pasos de Ejecución',
+        statusBadge: 'Proyecto de Ingeniería de Seguridad Completado y Validado',
+        switchToDetails: 'Ver Arquitectura Técnica Detallada',
         switchToProject: 'Ver Presentación del Proyecto'
       }
     }[currentLang] || {
-      stepTitle: 'Passo a Passo do que foi executado',
-      statusBadge: 'Projeto em fase final de estruturação — Modelo de demonstração ativo',
-      switchToDetails: 'Ver Tecnologias Empregadas (Detalhes)',
+      stepTitle: 'Solução Técnica & O que foi executado',
+      statusBadge: 'Projeto de Engenharia de Segurança Concluído & Validado',
+      switchToDetails: 'Ver Arquitetura Técnica Detalhada',
       switchToProject: 'Ver Apresentação do Projeto'
     };
 
@@ -710,7 +710,7 @@ function initPortfolio() {
       if (detailsModalTitle) detailsModalTitle.textContent = langData.title;
 
       detailsModalBody.innerHTML = `
-        <p class="details-lead-desc">${escapeText(langData.shortDesc)}</p>
+        <p class="details-lead-desc cyber-lead-desc">${escapeText(langData.shortDesc)}</p>
 
         <div class="details-section-block">
           <h4><i class="fas fa-microchip"></i> ${escapeText(t.detailsModalStackTitle)}</h4>
@@ -729,7 +729,7 @@ function initPortfolio() {
         </div>
       `;
     } else {
-      // MODO 1 (Botão "Ver Projeto"): Apresentação Visual Passo a Passo do Projeto (Modelo Limpo)
+      // MODO 1 (Botão "Ver Projeto"): Apresentação Visual Clara, Contextualizada e Profissional
       if (detailsModalIcon) detailsModalIcon.innerHTML = '<i class="fas fa-shield-halved"></i>';
       if (detailsModalCategory) detailsModalCategory.textContent = cProj.badge;
       if (detailsModalTitle) detailsModalTitle.textContent = langData.title;
@@ -742,14 +742,21 @@ function initPortfolio() {
       `).join('');
 
       detailsModalBody.innerHTML = `
+        <p class="details-lead-desc cyber-lead-desc">${escapeText(langData.shortDesc)}</p>
+
         <div class="details-section-block">
           <h4><i class="fas fa-bullseye"></i> ${escapeText(t.detailsModalScenarioTitle)}</h4>
           <p class="details-arch-text">${escapeText(langData.scenario)}</p>
         </div>
 
         <div class="details-section-block">
-          <h4><i class="fas fa-list-ol"></i> ${escapeText(labels.stepTitle)}</h4>
+          <h4><i class="fas fa-list-check"></i> ${escapeText(labels.stepTitle)}</h4>
           <div class="cyber-steps-grid">${stepsCards}</div>
+        </div>
+
+        <div class="details-section-block">
+          <h4><i class="fas fa-microchip"></i> ${escapeText(t.detailsModalStackTitle)}</h4>
+          <div class="details-stack-grid">${stackBadges}</div>
         </div>
 
         <div class="cyber-metrics-banner">
@@ -760,8 +767,8 @@ function initPortfolio() {
           </div>
         </div>
 
-        <div class="cyber-template-notice">
-          <i class="fas fa-code-commit"></i>
+        <div class="cyber-status-badge">
+          <i class="fas fa-shield-halved"></i>
           <span>${escapeText(labels.statusBadge)}</span>
         </div>
 

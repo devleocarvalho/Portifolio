@@ -2474,4 +2474,32 @@ body.light-mode .cyber-template-notice {
   color: #0369a1;
 }
 
-
+
+.cyber-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #10b981;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.cyber-status-badge i {
+  font-size: 0.95rem;
+  color: #10b981;
+}
+
+body.light-mode .cyber-status-badge {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #059669;
+}
+
+body.light-mode .cyber-status-badge i {
+  color: #059669;
+}
