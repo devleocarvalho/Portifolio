@@ -2692,3 +2692,752 @@ body.light-mode .cyber-lab-screen {
   border-color: rgba(2, 132, 199, 0.25);
   color: #e2e8f0;
 }
+
+/* ==========================================================================
+   Cybersecurity Interactive & Animated Explanatory Flowchart Engine
+   ========================================================================== */
+.cyber-flow-widget {
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(3, 7, 18, 0.98));
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  border-radius: 16px;
+  padding: 22px 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(34, 211, 238, 0.05);
+}
+
+.cyber-flow-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 14px;
+}
+
+.cyber-flow-title-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cyber-flow-title-box > i {
+  font-size: 1.5rem;
+  color: var(--accent);
+  filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.5));
+}
+
+.cyber-flow-heading {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.cyber-flow-subcode {
+  display: inline-block;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: var(--accent);
+  background: rgba(34, 211, 238, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  margin-top: 2px;
+}
+
+.cyber-flow-scenarios {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cyber-scenario-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  transition: all 0.25s ease;
+}
+
+.cyber-scenario-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.cyber-scenario-btn.active[data-scenario="safe"] {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.6);
+  color: #34d399;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.3);
+}
+
+.cyber-scenario-btn.active[data-scenario="threat"] {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.6);
+  color: #f87171;
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.3);
+}
+
+.cyber-flow-scenario-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  margin-bottom: 14px;
+  transition: all 0.3s ease;
+}
+
+.cyber-flow-scenario-banner.safe {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #a7f3d0;
+}
+
+.cyber-flow-scenario-banner.safe i {
+  color: #10b981;
+}
+
+.cyber-flow-scenario-banner.threat {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #fecaca;
+}
+
+.cyber-flow-scenario-banner.threat i {
+  color: #ef4444;
+}
+
+.cyber-flow-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.cyber-flow-btn-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cyber-flow-btn {
+  font-size: 0.82rem;
+  padding: 7px 13px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cyber-flow-btn.btn-warn {
+  background: #f59e0b;
+  color: #0f172a;
+  border-color: #f59e0b;
+}
+
+.cyber-flow-btn.btn-warn:hover {
+  background: #d97706;
+  border-color: #d97706;
+}
+
+.cyber-flow-step-counter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.84rem;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cyber-flow-step-counter strong {
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.cyber-flow-hint {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Pista do Fluxograma */
+.cyber-flow-track-wrapper {
+  overflow-x: auto;
+  padding: 14px 6px 18px 6px;
+  margin-bottom: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(34, 211, 238, 0.4) rgba(15, 23, 42, 0.5);
+}
+
+.cyber-flow-track-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.cyber-flow-track-wrapper::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 4px;
+}
+
+.cyber-flow-track-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.4);
+  border-radius: 4px;
+}
+
+.cyber-flow-track {
+  display: flex;
+  align-items: center;
+  min-width: max-content;
+  padding: 4px 6px;
+  gap: 0;
+}
+
+/* Nós do Fluxograma */
+.cyber-flow-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 145px;
+  min-width: 135px;
+  padding: 12px 10px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+.cyber-flow-node:hover {
+  transform: translateY(-4px);
+  border-color: rgba(34, 211, 238, 0.6);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.cyber-flow-node.idle {
+  opacity: 0.72;
+}
+
+.cyber-flow-node.active {
+  opacity: 1;
+  transform: translateY(-4px) scale(1.02);
+  border-color: #22d3ee;
+  box-shadow: 0 0 25px rgba(34, 211, 238, 0.45);
+  background: rgba(8, 47, 73, 0.6);
+}
+
+.cyber-flow-node.passed {
+  opacity: 1;
+  border-color: #10b981;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.25);
+  background: rgba(6, 78, 59, 0.25);
+}
+
+.cyber-flow-node.blocked {
+  opacity: 1;
+  border-color: #ef4444;
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.55);
+  background: rgba(127, 29, 29, 0.35);
+  animation: cyberAlertPulse 1.6s infinite ease-in-out;
+}
+
+.cyber-flow-node-badge {
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  background: #020617;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #94a3b8;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 6px;
+}
+
+.cyber-flow-node.active .cyber-flow-node-badge {
+  border-color: #22d3ee;
+  color: #22d3ee;
+  background: #082f49;
+}
+
+.cyber-flow-node.passed .cyber-flow-node-badge {
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.cyber-flow-node.blocked .cyber-flow-node-badge {
+  border-color: #ef4444;
+  color: #ef4444;
+  background: #450a0a;
+}
+
+.cyber-flow-node-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 6px 0 8px 0;
+  font-size: 1.05rem;
+  color: #e2e8f0;
+  transition: all 0.25s ease;
+}
+
+.cyber-flow-node.active .cyber-flow-node-icon {
+  background: rgba(34, 211, 238, 0.2);
+  color: #22d3ee;
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.4);
+}
+
+.cyber-flow-node.passed .cyber-flow-node-icon {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.cyber-flow-node.blocked .cyber-flow-node-icon {
+  background: rgba(239, 68, 68, 0.25);
+  color: #ef4444;
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.5);
+}
+
+.cyber-flow-node-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #f8fafc;
+  line-height: 1.25;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 32px;
+}
+
+.cyber-flow-node-tech {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.68rem;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cyber-flow-node-status {
+  font-size: 0.7rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #94a3b8;
+}
+
+.cyber-flow-node.active .cyber-flow-node-status {
+  color: #38bdf8;
+}
+
+.cyber-flow-node.passed .cyber-flow-node-status {
+  color: #34d399;
+}
+
+.cyber-flow-node.blocked .cyber-flow-node-status {
+  color: #f87171;
+}
+
+/* Conectores do Fluxo */
+.cyber-flow-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  min-width: 44px;
+  position: relative;
+}
+
+.cyber-flow-connector-track {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+}
+
+.cyber-flow-connector-fill {
+  position: absolute;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #10b981, #22d3ee);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.cyber-flow-packet {
+  position: absolute;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 10px #22d3ee, 0 0 18px #06b6d4;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+.cyber-flow-packet.traveling {
+  opacity: 1;
+  animation: packetTravel 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes packetTravel {
+  0% {
+    left: 0%;
+    opacity: 1;
+    transform: translateY(-50%) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.3);
+  }
+  100% {
+    left: 100%;
+    opacity: 0.2;
+    transform: translateY(-50%) scale(0.9);
+  }
+}
+
+@keyframes cyberAlertPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+    border-color: #ef4444;
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(239, 68, 68, 0.75);
+    border-color: #f87171;
+  }
+}
+
+/* Card Explicativo (Inspector) */
+.cyber-flow-inspector {
+  background: rgba(8, 14, 29, 0.95);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  border-radius: 14px;
+  padding: 20px 22px;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.cyber-flow-inspector-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cyber-insp-step-tag {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #22d3ee;
+  background: rgba(34, 211, 238, 0.12);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.cyber-insp-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.cyber-insp-tech {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.cyber-insp-alert-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(239, 68, 68, 0.16);
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  animation: cyberAlertPulse 2s infinite ease-in-out;
+}
+
+.cyber-insp-alert-banner .cyber-alert-icon {
+  font-size: 1.4rem;
+  color: #ef4444;
+  margin-top: 2px;
+}
+
+.cyber-insp-alert-banner strong {
+  color: #f87171;
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.cyber-insp-alert-banner p {
+  color: #fecaca;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.cyber-flow-inspector-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.cyber-insp-col {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cyber-insp-col.highlight {
+  background: rgba(34, 211, 238, 0.05);
+  border-color: rgba(34, 211, 238, 0.25);
+}
+
+.cyber-insp-col-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.cyber-insp-col-header i {
+  font-size: 0.95rem;
+}
+
+.cyber-insp-col-text {
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Terminal de Telemetria */
+.cyber-flow-terminal {
+  background: #020617;
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-family: 'Fira Code', monospace;
+}
+
+.cyber-flow-terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 10px;
+}
+
+.cyber-terminal-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.cyber-terminal-dots .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.cyber-terminal-dots .dot.red { background: #ef4444; }
+.cyber-terminal-dots .dot.yellow { background: #f59e0b; }
+.cyber-terminal-dots .dot.green { background: #10b981; }
+
+.cyber-terminal-title {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cyber-terminal-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.cyber-flow-terminal-logs {
+  max-height: 110px;
+  overflow-y: auto;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cyber-log-line {
+  display: flex;
+  gap: 8px;
+  word-break: break-word;
+}
+
+.cyber-log-line.info .cyber-log-msg { color: #38bdf8; }
+.cyber-log-line.success .cyber-log-msg { color: #4ade80; font-weight: 600; }
+.cyber-log-line.danger .cyber-log-msg { color: #f87171; font-weight: 600; }
+.cyber-log-time { color: #64748b; font-size: 0.76rem; }
+
+/* Responsividade do Fluxograma */
+@media (max-width: 900px) {
+  .cyber-flow-inspector-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cyber-flow-widget {
+    padding: 16px 14px;
+  }
+  .cyber-flow-node {
+    width: 130px;
+    min-width: 120px;
+    padding: 10px 8px;
+  }
+  .cyber-flow-connector {
+    width: 36px;
+    min-width: 32px;
+  }
+}
+
+/* Suporte ao Modo Claro */
+body.light-mode .cyber-flow-widget {
+  background: #ffffff;
+  border-color: rgba(2, 132, 199, 0.35);
+  box-shadow: 0 10px 30px rgba(2, 132, 199, 0.08);
+}
+
+body.light-mode .cyber-flow-heading {
+  color: #0f172a;
+}
+
+body.light-mode .cyber-scenario-btn {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #475569;
+}
+
+body.light-mode .cyber-scenario-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+body.light-mode .cyber-flow-node {
+  background: #f8fafc;
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+body.light-mode .cyber-flow-node-title {
+  color: #0f172a;
+}
+
+body.light-mode .cyber-flow-node-icon {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+body.light-mode .cyber-flow-node.active {
+  background: #f0f9ff;
+  border-color: #0284c7;
+  box-shadow: 0 0 20px rgba(2, 132, 199, 0.25);
+}
+
+body.light-mode .cyber-flow-node.passed {
+  background: #f0fdf4;
+  border-color: #16a34a;
+}
+
+body.light-mode .cyber-flow-node.blocked {
+  background: #fef2f2;
+  border-color: #dc2626;
+}
+
+body.light-mode .cyber-flow-inspector {
+  background: #f8fafc;
+  border-color: rgba(2, 132, 199, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+body.light-mode .cyber-insp-title {
+  color: #0f172a;
+}
+
+body.light-mode .cyber-insp-col {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+body.light-mode .cyber-insp-col-text {
+  color: #334155;
+}
+
+body.light-mode .cyber-flow-terminal {
+  background: #0f172a;
+  border-color: rgba(2, 132, 199, 0.25);
+}

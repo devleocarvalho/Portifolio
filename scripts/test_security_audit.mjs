@@ -216,6 +216,28 @@ try {
   }
   assert(cyberDossiersValid, "All 11 Cybersecurity Projects have complete trilingual technical dossiers (PT/EN/ES)");
   assert(missingPdfs.length === 0, "All linked Cybersecurity PDF Technical Reports exist in public/cyber-reports/", missingPdfs.join(", "));
+
+  // Verify all 11 Cybersecurity Interactive Animated Flowcharts
+  const { cyberFlowchartData, getCyberInteractiveLabHtml } = await loadEsmFile("cyber-labs.js");
+  const cyberFlowchartKeys = Object.keys(cyberFlowchartData);
+  assert(cyberFlowchartKeys.length === 11, `All 11 Cybersecurity Flowcharts registered in cyber-labs.js (found ${cyberFlowchartKeys.length})`);
+
+  let allFlowchartsValid = true;
+  for (const cProj of cyberProjectsData) {
+    const fData = cyberFlowchartData[cProj.id];
+    if (!fData || !Array.isArray(fData.nodes) || fData.nodes.length < 4) {
+      allFlowchartsValid = false;
+      break;
+    }
+    for (const lang of langs) {
+      const html = getCyberInteractiveLabHtml(cProj.id, lang);
+      if (!html || !html.includes("cyber-flow-widget") || !html.includes("cyber-flow-node") || !html.includes("cyber-flow-inspector")) {
+        allFlowchartsValid = false;
+        break;
+      }
+    }
+  }
+  assert(allFlowchartsValid, "All 11 Cybersecurity Projects have complete Animated Explanatory Flowcharts in PT-BR, EN, and ES");
 } catch (err) {
   assert(false, "Verifying trilingual data and cybersecurity assets", err.message);
 }

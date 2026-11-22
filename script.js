@@ -553,7 +553,7 @@ function initPortfolio() {
             <i class="fas fa-eye"></i> <span data-key="viewProject">Ver Projeto</span>
           </button>
           <button type="button" class="btn btn-outline btn-cyber-details" data-cyber-id="${cProj.id}">
-            <i class="fas fa-flask"></i> <span data-key="cyberDemoBtn">Demo Interativa</span>
+            <i class="fas fa-project-diagram"></i> <span data-key="cyberDemoBtn">${escapeText(translations[currentLang]?.cyberDemoBtn || 'Fluxograma & Demo Interativa')}</span>
           </button>
         </div>
       </div>
@@ -682,39 +682,39 @@ function initPortfolio() {
       'pt-br': {
         stepTitle: 'Solução Técnica & O que foi executado',
         statusBadge: 'Projeto de Engenharia de Segurança Concluído & Validado',
-        switchToDetails: 'Testar Demonstração Interativa & Arquitetura',
+        switchToDetails: 'Ver Fluxograma Animado & Arquitetura',
         switchToProject: 'Voltar à Apresentação do Projeto',
-        labTitle: 'Demonstração Interativa & Laboratório Técnico',
-        labBadge: 'Simulação Interativa Ativa'
+        labTitle: 'Fluxograma Explicativo Animado & Arquitetura',
+        labBadge: 'Simulação Interativa em Tempo Real'
       },
       'en': {
         stepTitle: 'Technical Solution & Execution Steps',
         statusBadge: 'Security Engineering Project Completed & Validated',
-        switchToDetails: 'Launch Interactive Demo & Architecture',
+        switchToDetails: 'View Animated Flowchart & Architecture',
         switchToProject: 'Back to Project Presentation',
-        labTitle: 'Interactive Demo & Technical Lab',
-        labBadge: 'Live Interactive Simulation'
+        labTitle: 'Animated Explanatory Flowchart & Architecture',
+        labBadge: 'Real-Time Interactive Simulation'
       },
       'es': {
         stepTitle: 'Solución Técnica y Pasos de Ejecución',
         statusBadge: 'Proyecto de Ingeniería de Seguridad Completado y Validado',
-        switchToDetails: 'Probar Demostración Interactiva y Arquitectura',
+        switchToDetails: 'Ver Diagrama Animado y Arquitectura',
         switchToProject: 'Volver a la Presentación del Proyecto',
-        labTitle: 'Demostración Interactiva y Laboratorio Técnico',
-        labBadge: 'Simulación Interactiva Activa'
+        labTitle: 'Diagrama Explicativo Animado y Arquitectura',
+        labBadge: 'Simulación Interactiva en Tiempo Real'
       }
     }[currentLang] || {
       stepTitle: 'Solução Técnica & O que foi executado',
       statusBadge: 'Projeto de Engenharia de Segurança Concluído & Validado',
-      switchToDetails: 'Testar Demonstração Interativa & Arquitetura',
+      switchToDetails: 'Ver Fluxograma Animado & Arquitetura',
       switchToProject: 'Voltar à Apresentação do Projeto',
-      labTitle: 'Demonstração Interativa & Laboratório Técnico',
-      labBadge: 'Simulação Interativa Ativa'
+      labTitle: 'Fluxograma Explicativo Animado & Arquitetura',
+      labBadge: 'Simulação Interativa em Tempo Real'
     };
 
     if (mode === 'details') {
-      // MODO 2: Demonstração Breve, Lúdica e Interativa + Arquitetura Técnica
-      if (detailsModalIcon) detailsModalIcon.innerHTML = '<i class="fas fa-flask"></i>';
+      // MODO 2: Fluxograma Explicativo Animado + Arquitetura Técnica
+      if (detailsModalIcon) detailsModalIcon.innerHTML = '<i class="fas fa-project-diagram"></i>';
       if (detailsModalCategory) detailsModalCategory.textContent = `${labels.labTitle} • ${cProj.badge}`;
       if (detailsModalTitle) detailsModalTitle.textContent = langData.title;
 
@@ -723,18 +723,7 @@ function initPortfolio() {
       detailsModalBody.innerHTML = `
         <p class="details-lead-desc cyber-lead-desc">${escapeText(langData.shortDesc)}</p>
 
-        <div class="cyber-lab-widget">
-          <div class="cyber-lab-header">
-            <div class="cyber-lab-header-title">
-              <i class="fas fa-flask"></i>
-              <span>${escapeText(labels.labTitle)}</span>
-            </div>
-            <span class="cyber-lab-badge"><i class="fas fa-circle-play"></i> ${escapeText(labels.labBadge)}</span>
-          </div>
-          <div class="cyber-lab-content">
-            ${labHtml}
-          </div>
-        </div>
+        ${labHtml}
 
         <div class="details-section-block">
           <h4><i class="fas fa-microchip"></i> ${escapeText(t.detailsModalStackTitle)}</h4>
@@ -800,7 +789,7 @@ function initPortfolio() {
 
         <div class="details-modal-footer">
           <button type="button" class="btn btn-outline btn-cyber-details" data-cyber-id="${cProj.id}">
-            <i class="fas fa-flask"></i> ${escapeText(labels.switchToDetails)}
+            <i class="fas fa-project-diagram"></i> ${escapeText(labels.switchToDetails)}
           </button>
         </div>
       `;
