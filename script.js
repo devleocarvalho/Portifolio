@@ -3,6 +3,7 @@ inject();
 
 import { translations } from './translations.js';
 import { projectTechDetails, cyberProjectsData } from './projects-details.js';
+import { getCyberInteractiveLabHtml, attachCyberLabEvents } from './cyber-labs.js';
 
 function escapeText(str) {
   if (typeof str !== 'string') return '';
@@ -552,7 +553,7 @@ function initPortfolio() {
             <i class="fas fa-eye"></i> <span data-key="viewProject">Ver Projeto</span>
           </button>
           <button type="button" class="btn btn-outline btn-cyber-details" data-cyber-id="${cProj.id}">
-            <i class="fas fa-layer-group"></i> <span data-key="viewDetails">Detalhes</span>
+            <i class="fas fa-flask"></i> <span data-key="cyberDemoBtn">Demo Interativa</span>
           </button>
         </div>
       </div>
@@ -681,36 +682,59 @@ function initPortfolio() {
       'pt-br': {
         stepTitle: 'Solução Técnica & O que foi executado',
         statusBadge: 'Projeto de Engenharia de Segurança Concluído & Validado',
-        switchToDetails: 'Ver Arquitetura Técnica Detalhada',
-        switchToProject: 'Ver Apresentação do Projeto'
+        switchToDetails: 'Testar Demonstração Interativa & Arquitetura',
+        switchToProject: 'Voltar à Apresentação do Projeto',
+        labTitle: 'Demonstração Interativa & Laboratório Técnico',
+        labBadge: 'Simulação Interativa Ativa'
       },
       'en': {
         stepTitle: 'Technical Solution & Execution Steps',
         statusBadge: 'Security Engineering Project Completed & Validated',
-        switchToDetails: 'View Detailed Technical Architecture',
-        switchToProject: 'View Project Presentation'
+        switchToDetails: 'Launch Interactive Demo & Architecture',
+        switchToProject: 'Back to Project Presentation',
+        labTitle: 'Interactive Demo & Technical Lab',
+        labBadge: 'Live Interactive Simulation'
       },
       'es': {
         stepTitle: 'Solución Técnica y Pasos de Ejecución',
         statusBadge: 'Proyecto de Ingeniería de Seguridad Completado y Validado',
-        switchToDetails: 'Ver Arquitectura Técnica Detallada',
-        switchToProject: 'Ver Presentación del Proyecto'
+        switchToDetails: 'Probar Demostración Interactiva y Arquitectura',
+        switchToProject: 'Volver a la Presentación del Proyecto',
+        labTitle: 'Demostración Interactiva y Laboratorio Técnico',
+        labBadge: 'Simulación Interactiva Activa'
       }
     }[currentLang] || {
       stepTitle: 'Solução Técnica & O que foi executado',
       statusBadge: 'Projeto de Engenharia de Segurança Concluído & Validado',
-      switchToDetails: 'Ver Arquitetura Técnica Detalhada',
-      switchToProject: 'Ver Apresentação do Projeto'
+      switchToDetails: 'Testar Demonstração Interativa & Arquitetura',
+      switchToProject: 'Voltar à Apresentação do Projeto',
+      labTitle: 'Demonstração Interativa & Laboratório Técnico',
+      labBadge: 'Simulação Interativa Ativa'
     };
 
     if (mode === 'details') {
-      // MODO 2 (Botão "Detalhes"): Exclusivamente a Ficha Técnica de Tecnologias & Arquitetura
-      if (detailsModalIcon) detailsModalIcon.innerHTML = '<i class="fas fa-layer-group"></i>';
-      if (detailsModalCategory) detailsModalCategory.textContent = `${t.detailsModalStackTitle} • ${cProj.badge}`;
+      // MODO 2: Demonstração Breve, Lúdica e Interativa + Arquitetura Técnica
+      if (detailsModalIcon) detailsModalIcon.innerHTML = '<i class="fas fa-flask"></i>';
+      if (detailsModalCategory) detailsModalCategory.textContent = `${labels.labTitle} • ${cProj.badge}`;
       if (detailsModalTitle) detailsModalTitle.textContent = langData.title;
+
+      const labHtml = getCyberInteractiveLabHtml(cProj.id, currentLang);
 
       detailsModalBody.innerHTML = `
         <p class="details-lead-desc cyber-lead-desc">${escapeText(langData.shortDesc)}</p>
+
+        <div class="cyber-lab-widget">
+          <div class="cyber-lab-header">
+            <div class="cyber-lab-header-title">
+              <i class="fas fa-flask"></i>
+              <span>${escapeText(labels.labTitle)}</span>
+            </div>
+            <span class="cyber-lab-badge"><i class="fas fa-circle-play"></i> ${escapeText(labels.labBadge)}</span>
+          </div>
+          <div class="cyber-lab-content">
+            ${labHtml}
+          </div>
+        </div>
 
         <div class="details-section-block">
           <h4><i class="fas fa-microchip"></i> ${escapeText(t.detailsModalStackTitle)}</h4>
@@ -724,10 +748,12 @@ function initPortfolio() {
 
         <div class="details-modal-footer">
           <button type="button" class="btn btn-primary btn-cyber-dossier" data-cyber-id="${cProj.id}">
-            <i class="fas fa-eye"></i> ${escapeText(labels.switchToProject)}
+            <i class="fas fa-arrow-left"></i> ${escapeText(labels.switchToProject)}
           </button>
         </div>
       `;
+
+      attachCyberLabEvents(cProj.id, currentLang);
     } else {
       // MODO 1 (Botão "Ver Projeto"): Apresentação Visual Clara, Contextualizada e Profissional
       if (detailsModalIcon) detailsModalIcon.innerHTML = '<i class="fas fa-shield-halved"></i>';
@@ -774,7 +800,7 @@ function initPortfolio() {
 
         <div class="details-modal-footer">
           <button type="button" class="btn btn-outline btn-cyber-details" data-cyber-id="${cProj.id}">
-            <i class="fas fa-layer-group"></i> ${escapeText(labels.switchToDetails)}
+            <i class="fas fa-flask"></i> ${escapeText(labels.switchToDetails)}
           </button>
         </div>
       `;
