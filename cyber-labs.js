@@ -1,6 +1,7 @@
 // ============================================================================
 // Laboratórios, Demonstrações & Fluxogramas Explicativos Animados
 // Portfólio de Cibersegurança, Criptografia & DevSecOps (11 Projetos)
+// Inclui Conclusões Arquiteturais, Vereditos Técnicos e Métricas Validadas
 // ============================================================================
 
 function escapeHtml(str) {
@@ -9,7 +10,7 @@ function escapeHtml(str) {
 }
 
 // ----------------------------------------------------------------------------
-// Banco de Dados Estruturado dos Fluxogramas dos 11 Projetos
+// Banco de Dados Estruturado dos Fluxogramas dos 11 Projetos com Conclusões
 // ----------------------------------------------------------------------------
 export const cyberFlowchartData = {
   // 1. Insegus Pipeline — DevSecOps & Software Supply Chain Security
@@ -34,6 +35,46 @@ export const cyberFlowchartData = {
           es: 'Escenario Ofensivo: Pull Request con API Key hardcoded e imagen Docker vulnerable interceptado por el Quality Gate.'
         },
         badge: { 'pt-br': 'Quality Gate Abortou o Deploy', en: 'Quality Gate Aborted Deployment', es: 'Quality Gate Abortó el Despliegue' }
+      }
+    },
+    conclusions: {
+      safe: {
+        verdict: {
+          'pt-br': 'ESTEIRA SHIFT-LEFT APROVADA: 100% DOS QUALITY GATES VALIDADOS',
+          en: 'SHIFT-LEFT PIPELINE APPROVED: 100% QUALITY GATES VALIDATED',
+          es: 'TUBERÍA SHIFT-LEFT APROBADA: 100% DE QUALITY GATES VALIDADOS'
+        },
+        summary: {
+          'pt-br': 'A integração orquestrada entre SAST (Semgrep), SCA/Contêiner (Trivy), DAST (OWASP ZAP) e triagem centralizada no DefectDojo garantiu que nenhum código contendo credenciais ou vulnerabilidades críticas chegue ao cluster de produção, eliminando retrabalho e blindando a cadeia de suprimentos de software.',
+          en: 'The orchestrated integration of SAST (Semgrep), SCA/Container (Trivy), DAST (OWASP ZAP), and centralized DefectDojo triage ensured zero critical CVEs or leaked secrets reach production, eliminating remediation rework and shielding the software supply chain.',
+          es: 'La integración orquestada de SAST (Semgrep), SCA/Contenedor (Trivy), DAST (OWASP ZAP) y triaje en DefectDojo garantizó que ningún código con credenciales o CVEs críticas llegue a producción, protegiendo la cadena de suministro de software.'
+        },
+        metrics: [
+          { icon: 'fas fa-shield-halved', val: '0 CVEs Críticas', label: { 'pt-br': 'Em Produção', en: 'In Production', es: 'En Producción' } },
+          { icon: 'fas fa-clipboard-check', val: '123 Achados', label: { 'pt-br': 'Triados e Mapeados', en: 'Triaged in DefectDojo', es: 'Triados en DefectDojo' } },
+          { icon: 'fas fa-code-commit', val: '100% Automação', label: { 'pt-br': 'Quality Gate Policy', en: 'Quality Gate Policy', es: 'Quality Gate Policy' } },
+          { icon: 'fas fa-award', val: 'Grau A', label: { 'pt-br': 'Nota Máxima no SLA', en: 'Top SLA Score', es: 'Nota Máxima en SLA' } }
+        ],
+        compliance: ['OWASP Top 10 (2021)', 'NIST SSDF (SP 800-218)', 'SLSA Level 3', 'CIS Docker Benchmark']
+      },
+      threat: {
+        verdict: {
+          'pt-br': 'DEPLOY ABORTADO COM SUCESSO: ZERO VULNERABILIDADES VAZADAS',
+          en: 'DEPLOYMENT ABORTED SUCCESSFULLY: ZERO LEAKED VULNERABILITIES',
+          es: 'DESPLIEGUE ABORTADO CON ÉXITO: CERO VULNERABILIDADES FILTRADAS'
+        },
+        summary: {
+          'pt-br': 'O script de Quality Gate declarativo interceptou as violações críticas reportadas pelo Semgrep e Trivy, abortando a esteira com exit code 1 antes de qualquer empacotamento ou deploy no cluster Kubernetes. A política de segurança impediu falhas ativas de chegarem aos usuários finais.',
+          en: 'The declarative Quality Gate intercepted critical violations reported by Semgrep and Trivy, aborting execution with exit code 1 prior to Kubernetes packaging or deploy. Security policy effectively barred active flaws from reaching end users.',
+          es: 'El Quality Gate declarativo interceptó violaciones críticas reportadas por Semgrep y Trivy, abortando la ejecución con exit code 1 antes del despliegue en Kubernetes. La política impidió fallos activos en producción.'
+        },
+        metrics: [
+          { icon: 'fas fa-ban', val: 'Exit Code 1', label: { 'pt-br': 'Deploy Bloqueado', en: 'Deploy Halted', es: 'Despliegue Bloqueado' } },
+          { icon: 'fas fa-key', val: 'API Key Salva', label: { 'pt-br': 'Segredo Não Exposto', en: 'Secret Unexposed', es: 'Secreto No Expuesto' } },
+          { icon: 'fas fa-bell', val: 'Alerta Disparado', label: { 'pt-br': 'Notificação DevSecOps', en: 'DevSecOps Alerted', es: 'Alerta DevSecOps' } },
+          { icon: 'fas fa-clock', val: '< 1.5s', label: { 'pt-br': 'Tempo de Interceptação', en: 'Interception Time', es: 'Tiempo de Interceptación' } }
+        ],
+        compliance: ['Shift-Left Security Gate', 'Automated Fail-Closed Principle', 'DefectDojo SLA Threshold']
       }
     },
     nodes: [
@@ -114,7 +155,7 @@ export const cyberFlowchartData = {
         threatResult: {
           'pt-br': 'Alerta SCA: CVE-2024-XXXX Crítica detectada em dependência transitiva legada',
           en: 'SCA Alert: Critical CVE-2024-XXXX detected in legacy transitive dependency',
-          es: 'Alerta SCA: Alerta SCA: CVE-2024-XXXX Crítica detectada en dependencia transitiva'
+          es: 'Alerta SCA: CVE-2024-XXXX Crítica detectada en dependencia transitiva'
         },
         threatBlocked: false
       },
@@ -229,6 +270,45 @@ export const cyberFlowchartData = {
           es: 'Escenario Ofensivo: Dispositivo invasor sin certificado de la CA Raíz intenta acceder a la VPN.'
         },
         badge: { 'pt-br': 'Handshake Rejeitado na Camada TLS', en: 'Handshake Aborted at TLS Layer', es: 'Handshake Rechazado en Capa TLS' }
+      }
+    },
+    conclusions: {
+      safe: {
+        verdict: {
+          'pt-br': 'TÚNEL ZERO TRUST HOMOLOGADO: COMUNICAÇÃO 100% BLINDADA COM mTLS',
+          en: 'ZERO TRUST TUNNEL CERTIFIED: 100% SHIELDED COMMUNICATION WITH mTLS',
+          es: 'TÚNEL ZERO TRUST HOMOLOGADO: COMUNICACIÓN 100% BLINDADA CON mTLS'
+        },
+        summary: {
+          'pt-br': 'A exigência de autenticação mútua (mTLS) com autoridade certificadora própria, combinada com TLS 1.3 estrito e PBKDF2 em 600.000 iterações, erradica totalmente o risco de invasões no perímetro e garante isolamento estrito para 300 sessões simultâneas.',
+          en: 'Enforcing bidirectional mutual TLS (mTLS) with custom Root CA, strict TLS 1.3, and 600,000 PBKDF2 iterations eradicates perimeter breach risks and provides strict isolation for up to 300 concurrent sessions.',
+          es: 'La exigencia de mTLS con CA Raíz propia, TLS 1.3 estricto y PBKDF2 en 600.000 iteraciones erradica invasiones de perímetro y garantiza aislamiento estricto para 300 sesiones simultáneas.'
+        },
+        metrics: [
+          { icon: 'fas fa-shield-halved', val: 'mTLS Bidirecional', label: { 'pt-br': 'X.509 v3 CA Raiz', en: 'X.509 v3 Root CA', es: 'X.509 v3 CA Raíz' } },
+          { icon: 'fas fa-lock', val: 'TLS 1.3 Strict', label: { 'pt-br': 'RFC 8446 (PFS)', en: 'RFC 8446 (PFS)', es: 'RFC 8446 (PFS)' } },
+          { icon: 'fas fa-key', val: '600k Iterações', label: { 'pt-br': 'PBKDF2 Anti-GPU', en: 'PBKDF2 Anti-GPU', es: 'PBKDF2 Anti-GPU' } },
+          { icon: 'fas fa-users', val: '300 Sessões', label: { 'pt-br': 'Isolamento Simultâneo', en: 'Concurrent Isolation', es: 'Aislamiento Concurrente' } }
+        ],
+        compliance: ['RFC 8446 (TLS 1.3)', 'NIST SP 800-207 (Zero Trust)', 'X.509 v3 PKI', 'CIS Network Controls']
+      },
+      threat: {
+        verdict: {
+          'pt-br': 'INVASÃO BLOQUEADA: CONEXÃO DESCARTADA ANTES DA NEGOCIAÇÃO DE REDE',
+          en: 'INTRUSION BLOCKED: CONNECTION DROPPED BEFORE NETWORK NEGOTIATION',
+          es: 'INVASIÓN BLOQUEADA: CONEXIÓN DESCARTADA ANTES DE LA NEGOCIACIÓN'
+        },
+        summary: {
+          'pt-br': 'O gateway Zero Trust recusou a conexão imediatamente na camada de apresentação (TLS Handshake) porque o cliente não apresentou certificado assinado pela CA Raiz institucional. Nenhum IP interno ou pacote sensível foi exposto.',
+          en: 'The Zero Trust gateway rejected connection instantly at presentation layer (TLS Handshake) as client lacked institutional Root CA signed cert. Zero internal IP or sensitive data was exposed.',
+          es: 'El gateway Zero Trust rechazó la conexión de inmediato en la capa TLS al no presentar certificado firmado por la CA Raíz. Ningún dato interno fue expuesto.'
+        },
+        metrics: [
+          { icon: 'fas fa-user-xmark', val: 'Handshake Abortado', label: { 'pt-br': 'Falta de Certificado', en: 'Missing Certificate', es: 'Falta de Certificado' } },
+          { icon: 'fas fa-network-wired', val: '0 IPs Expostos', label: { 'pt-br': 'Rede Interna Oculta', en: 'Intranet Shielded', es: 'Intranet Oculta' } },
+          { icon: 'fas fa-bolt', val: '< 0.8ms', label: { 'pt-br': 'Tempo de Bloqueio', en: 'Drop Latency', es: 'Tiempo de Bloqueo' } }
+        ],
+        compliance: ['Zero Trust Principle: Never Trust, Always Verify', 'Fail-Closed Cryptographic Gate']
       }
     },
     nodes: [
@@ -399,6 +479,45 @@ export const cyberFlowchartData = {
         badge: { 'pt-br': 'Remediação Automatizada Acionada', en: 'Automated Remediation Triggered', es: 'Remediación Automatizada Activada' }
       }
     },
+    conclusions: {
+      safe: {
+        verdict: {
+          'pt-br': 'SISTEMAS FORTIFICADOS: ÍNDICE LYNIS ELEVADO DE 48 PARA > 70',
+          en: 'HARDENED SYSTEMS: LYNIS INDEX RAISED FROM 48 TO > 70',
+          es: 'SISTEMAS FORTIFICADOS: ÍNDICE LYNIS ELEVADO DE 48 A > 70'
+        },
+        summary: {
+          'pt-br': 'A estratégia multi-camadas de hardening reduziu em mais de 90% a superfície de ataque em servidores Linux e dispositivos BYOD. As políticas corporativas do Firefox ESR eliminaram exfiltração de dados e a auditoria DAST confirmou imunidade contra OWASP Top 10.',
+          en: 'Multi-layered hardening reduced target attack surface by over 90% across Linux hosts and BYOD endpoints. Firefox ESR enterprise policies halted data exfiltration and DAST audit confirmed OWASP Top 10 immunity.',
+          es: 'La estrategia multicapa de hardening redujo en más del 90% la superficie de ataque en servidores Linux y dispositivos BYOD. Las políticas de Firefox ESR y DAST confirmaron inmunidad contra OWASP Top 10.'
+        },
+        metrics: [
+          { icon: 'fas fa-arrow-trend-up', val: 'Índice > 70', label: { 'pt-br': 'Lynis Hardening Score', en: 'Lynis Hardening Score', es: 'Lynis Hardening Score' } },
+          { icon: 'fas fa-shield-virus', val: '-90% Exposição', label: { 'pt-br': 'Superfície de Ataque', en: 'Attack Surface', es: 'Superficie de Ataque' } },
+          { icon: 'fas fa-spider', val: '0 Injeções', label: { 'pt-br': 'OWASP ZAP Fuzzer', en: 'OWASP ZAP Fuzzer', es: 'OWASP ZAP Fuzzer' } },
+          { icon: 'fas fa-server', val: '3 Distros', label: { 'pt-br': 'Kali / Ubuntu / Debian', en: 'Kali / Ubuntu / Debian', es: 'Kali / Ubuntu / Debian' } }
+        ],
+        compliance: ['Lynis Security Audit Standard', 'CIS Linux Hardening Benchmarks', 'OWASP ASVS v4.0', 'Enterprise Browser GPO']
+      },
+      threat: {
+        verdict: {
+          'pt-br': 'DIAGNÓSTICO CONCLUÍDO: 14 VULNERABILIDADES IDENTIFICADAS E REMEDIADAS',
+          en: 'DIAGNOSTIC COMPLETE: 14 VULNERABILITIES IDENTIFIED AND REMEDIATED',
+          es: 'DIAGNÓSTICO COMPLETADO: 14 VULNERABILIDADES IDENTIFICADAS Y REMEDIADAS'
+        },
+        summary: {
+          'pt-br': 'A auditoria prévia identificou brechas críticas em parâmetros sysctl de rede e permissões SUID frouxas. O script automatizado aplicou contramedidas imediatas, blindando o kernel antes de qualquer tentativa de exploração.',
+          en: 'Pre-audit detected critical weaknesses in sysctl network configs and loose SUID permissions. Automated remediation patched kernel parameters before external exploit attempts.',
+          es: 'La auditoría previa identificó brechas en parámetros sysctl y permisos SUID. El script automatizado aplicó contramedidas imediatas blindando el kernel.'
+        },
+        metrics: [
+          { icon: 'fas fa-wrench', val: '14 Patches', label: { 'pt-br': 'Remediações Aplicadas', en: 'Remediations Applied', es: 'Remediaciones Aplicadas' } },
+          { icon: 'fas fa-network-wired', val: 'SYN Defense', label: { 'pt-br': 'Proteção Anti-Flood', en: 'Anti-Flood Enforced', es: 'Protección Anti-Flood' } },
+          { icon: 'fas fa-clock', val: 'Instantâneo', label: { 'pt-br': 'Script de Hardening', en: 'Hardening Script', es: 'Script de Hardening' } }
+        ],
+        compliance: ['Automated Vulnerability Management', 'Defense in Depth']
+      }
+    },
     nodes: [
       {
         id: 'target_scan',
@@ -565,6 +684,45 @@ export const cyberFlowchartData = {
           es: 'Escenario Ofensivo: Invasor intercepta paquete válido y lo reenvía para duplicar el débito en la cuenta.'
         },
         badge: { 'pt-br': 'Replay Attack Bloqueado pelo Filtro de Nonces', en: 'Replay Attack Blocked by Nonce Filter', es: 'Replay Attack Bloqueado por Filtro de Nonces' }
+      }
+    },
+    conclusions: {
+      safe: {
+        verdict: {
+          'pt-br': 'TRANSAÇÃO LIQUIDADA: INTEGRIDADE & AUTENTICIDADE MATEMATICAMENTE COMPROVADAS',
+          en: 'TRANSACTION CLEARED: INTEGRITY & AUTHENTICITY MATHEMATICALLY PROVEN',
+          es: 'TRANSACCIÓN LIQUIDADA: INTEGRIDAD Y AUTENTICIDAD MATEMÁTICAMENTE COMPROBADAS'
+        },
+        summary: {
+          'pt-br': 'A assinatura HMAC-SHA256 em tempo constante e o controle de estado com Nonces criptográficos de 64 bytes impedem fraudes de alteração de valores e replay attacks, garantindo liquidação 100% segura no livro-razão bancário.',
+          en: 'Constant-time HMAC-SHA256 signature validation and 64-byte cryptographic Nonce state tracking prevent payload tampering and replay attacks, guaranteeing 100% safe settlement in core banking ledger.',
+          es: 'La validación HMAC-SHA256 en tiempo constante y el control de Nonces de 64 bytes impiden adulteración y ataques de repetición, asegurando liquidación 100% segura en el libro mayor bancario.'
+        },
+        metrics: [
+          { icon: 'fas fa-fingerprint', val: 'HMAC-SHA256', label: { 'pt-br': 'Assinatura Inviolável', en: 'Tamper-Proof Signature', es: 'Firma Inviolable' } },
+          { icon: 'fas fa-dice', val: '64-byte Nonce', label: { 'pt-br': 'Entropia CSPRNG', en: 'CSPRNG Entropy', es: 'Entropía CSPRNG' } },
+          { icon: 'fas fa-stopwatch', val: '0.14ms', label: { 'pt-br': 'Verificação Constante', en: 'Constant-Time Compare', es: 'Comparación Constante' } },
+          { icon: 'fas fa-circle-check', val: 'R$ 5.000,00', label: { 'pt-br': 'Liquidado com Segurança', en: 'Cleared Safely', es: 'Liquidado con Seguridad' } }
+        ],
+        compliance: ['RFC 2104 (HMAC Algorithm)', 'PCI-DSS v4.0 Requirement 6', 'ISO 20022 Financial Standards', 'OWASP Transaction Security']
+      },
+      threat: {
+        verdict: {
+          'pt-br': 'REPLAY ATTACK NEUTRALIZADO: ZERO DÉBITO DUPLICADO NA CONTA',
+          en: 'REPLAY ATTACK FOILED: ZERO DUPLICATE CHARGES TO CLIENT',
+          es: 'REPLAY ATTACK NEUTRALIZADO: CERO DÉBITO DUPLICADO EN CUENTA'
+        },
+        summary: {
+          'pt-br': 'Mesmo com a assinatura HMAC matematicamente correta capturada da transação anterior, o filtro de unicidade identificou que o Nonce já havia sido consumido. O pacote fraudulento foi descartado em menos de 2 milissegundos.',
+          en: 'Even with mathematically valid HMAC captured from prior transaction, the anti-replay filter detected the spent Nonce. The fraudulent packet was dropped in under 2 milliseconds.',
+          es: 'Aún con firma HMAC válida capturada previamente, el filtro anti-replay detectó el Nonce consumido. El paquete fraudulento fue descartado en menos de 2 milisegundos.'
+        },
+        metrics: [
+          { icon: 'fas fa-shield-virus', val: 'R$ 0,00', label: { 'pt-br': 'Prejuízo Evitado', en: 'Financial Loss Prevented', es: 'Pérdida Evitada' } },
+          { icon: 'fas fa-bolt', val: '< 2ms', label: { 'pt-br': 'Tempo de Detecção', en: 'Detection Latency', es: 'Tiempo de Detección' } },
+          { icon: 'fas fa-ban', val: 'Nonce Rejeitado', label: { 'pt-br': 'Cache de Estados', en: 'State Cache Drop', es: 'Rechazo por Caché' } }
+        ],
+        compliance: ['Sliding Window State Defense', 'Idempotent Financial Gateways']
       }
     },
     nodes: [
@@ -757,6 +915,45 @@ export const cyberFlowchartData = {
         badge: { 'pt-br': 'Ataque PKCE Bloqueado no IdP', en: 'PKCE Attack Blocked at IdP', es: 'Ataque PKCE Bloqueado en el IdP' }
       }
     },
+    conclusions: {
+      safe: {
+        verdict: {
+          'pt-br': 'IAM HOSPITALAR CERTIFICADO: SESSÃO MÉDICA BLINDADA CONTRA XSS & SEQUESTRO',
+          en: 'HEALTHCARE IAM CERTIFIED: CLINICAL SESSION SHIELDED FROM XSS & HIJACKING',
+          es: 'IAM HOSPITALARIO CERTIFICADO: SESIÓN MÉDICA BLINDADA CONTRA XSS Y SECUESTRO'
+        },
+        summary: {
+          'pt-br': 'O padrão Backend For Frontend (BFF) com cookies HttpOnly criptografados isolou completamente os tokens JWT do JavaScript do navegador, enquanto a substituição do HS256 por RS256 com endpoint JWKS garantiu integridade criptográfica irrefutável para os prontuários médicos.',
+          en: 'BFF architectural pattern with encrypted HttpOnly cookies completely isolated JWT tokens from browser JavaScript, while migrating from HS256 to RS256 with JWKS provided irrefutable cryptographic integrity for patient medical records.',
+          es: 'El patrón BFF con cookies HttpOnly cifradas aisló por completo los tokens JWT de JavaScript en el navegador, mientras la migración a RS256 con JWKS garantizó integridad estricta para las historias clínicas.'
+        },
+        metrics: [
+          { icon: 'fas fa-id-card-clip', val: 'OAuth 2.0 PKCE', label: { 'pt-br': 'RFC 7636 SHA-256', en: 'RFC 7636 SHA-256', es: 'RFC 7636 SHA-256' } },
+          { icon: 'fas fa-mobile-screen', val: '2FA TOTP', label: { 'pt-br': 'Tokens de 30 segundos', en: '30s Dynamic Tokens', es: 'Tokens de 30 segundos' } },
+          { icon: 'fas fa-certificate', val: 'RS256 & JWKS', label: { 'pt-br': 'Chaves RSA-4096', en: 'RSA-4096 Keypair', es: 'Claves RSA-4096' } },
+          { icon: 'fas fa-cookie-bite', val: 'Zero XSS Leak', label: { 'pt-br': 'BFF HttpOnly Strict', en: 'BFF HttpOnly Strict', es: 'BFF HttpOnly Strict' } }
+        ],
+        compliance: ['HIPAA Security Rule', 'LGPD Dados Médicos Sensíveis', 'OAuth 2.0 Security BCP', 'OWASP API Security Top 10']
+      },
+      threat: {
+        verdict: {
+          'pt-br': 'SEQUESTRO DE CÓDIGO NEUTRALIZADO: ZERO PRONTUÁRIOS MÉDICOS VAZADOS',
+          en: 'CODE HIJACKING FOILED: ZERO PATIENT RECORDS EXPOSED',
+          es: 'SECUESTRO DE CÓDIGO NEUTRALIZADO: CERO EXPEDIENTES FILTRADOS'
+        },
+        summary: {
+          'pt-br': 'A interceptação do Authorization Code temporário pelo Red Team foi inútil. Sem o segredo efêmero `code_verifier` que permaneceu seguro na memória do cliente, o IdP recusou o token exchange e revogou a sessão.',
+          en: 'Red Team interception of ephemeral Authorization Code was useless. Lacking the ephemeral `code_verifier` securely kept in client memory, IdP rejected token exchange and revoked the session.',
+          es: 'La interceptación del Authorization Code fue inútil. Sin el secreto efímero `code_verifier` que permaneció en la memoria del cliente, el IdP rechazó el canje de tokens.'
+        },
+        metrics: [
+          { icon: 'fas fa-lock', val: 'PKCE Venceu', label: { 'pt-br': 'Verifier Inexistente', en: 'Missing Verifier', es: 'Verifier Inexistente' } },
+          { icon: 'fas fa-shield-halved', val: '100% Protegido', label: { 'pt-br': 'Prontuários Médicos', en: 'Clinical Records', es: 'Expedientes Médicos' } },
+          { icon: 'fas fa-user-slash', val: 'Sessão Revogada', label: { 'pt-br': 'Bloqueio Preventivo', en: 'Preventive Lockout', es: 'Bloqueo Preventivo' } }
+        ],
+        compliance: ['RFC 7636 Defense Enforcement', 'Zero Trust IAM Least Privilege']
+      }
+    },
     nodes: [
       {
         id: 'pkce_init',
@@ -920,6 +1117,45 @@ export const cyberFlowchartData = {
         badge: { 'pt-br': 'Vazamento Estrutural Identificado', en: 'Structural Information Leak Found', es: 'Fuga Estructural Identificada' }
       }
     },
+    conclusions: {
+      safe: {
+        verdict: {
+          'pt-br': 'IMAGEM MÉDICA PROTEGIDA: ENTROPIA MÁXIMA DE 7.998 BITS E ZERO VAZAMENTO',
+          en: 'MEDICAL IMAGE SHIELDED: MAXIMUM ENTROPY OF 7.998 BITS AND ZERO LEAKAGE',
+          es: 'IMAGEN MÉDICA PROTEGIDA: ENTROPÍA MÁXIMA DE 7.998 BITS Y CERO FUGAS'
+        },
+        summary: {
+          'pt-br': 'O benchmark criptográfico demonstrou que o AES-256-CBC com IV randômico e o ChaCha20-Poly1305 eliminam totalmente o padrão de blocos idênticos, atingindo difusão estocástica perfeita e protegendo a privacidade dos exames radiológicos do paciente.',
+          en: 'Cryptographic benchmarking proved AES-256-CBC with fresh IV and ChaCha20-Poly1305 completely erase identical block patterns, reaching near-ideal stochastic diffusion and shielding radiological patient data.',
+          es: 'El benchmark demostró que AES-256-CBC con IV aleatorio y ChaCha20-Poly1305 eliminan patrones de bloques idénticos, logrando difusión estocástica ideal y protegiendo radiografías confidenciales.'
+        },
+        metrics: [
+          { icon: 'fas fa-chart-line', val: '7.998 bits/byte', label: { 'pt-br': 'Entropia de Shannon', en: 'Shannon Entropy', es: 'Entropía de Shannon' } },
+          { icon: 'fas fa-x-ray', val: '0% Silhueta', label: { 'pt-br': 'Vazamento Visual', en: 'Visual Leakage', es: 'Fuga Visual' } },
+          { icon: 'fas fa-vault', val: 'VeraCrypt', label: { 'pt-br': 'Perícia Concluída', en: 'Forensics Cleared', es: 'Peritaje Concluido' } },
+          { icon: 'fas fa-certificate', val: 'DICOM Part 15', label: { 'pt-br': 'Conformidade Médica', en: 'Medical Compliance', es: 'Conformidad Médica' } }
+        ],
+        compliance: ['DICOM Part 15 Secure Profiles', 'NIST SP 800-38A Block Cipher Modes', 'ISO/IEC 27037 Digital Forensics']
+      },
+      threat: {
+        verdict: {
+          'pt-br': 'VULNERABILIDADE COMPROVADA: MODO ECB REVELA ESTRUTURA ANATÔMICA',
+          en: 'VULNERABILITY DEMONSTRATED: ECB MODE EXPOSES ANATOMICAL STRUCTURE',
+          es: 'VULNERABILIDAD COMPROBADA: MODO ECB REVELA ESTRUCTURA ANATÓMICA'
+        },
+        summary: {
+          'pt-br': 'A perícia forense provou visual e matematicamente que o modo ECB é inaceitável para imagens médicas. Como blocos com a mesma densidade óssea geram exatamente os mesmos bytes cifrados, o diagnóstico pode ser inferido sem a chave criptográfica.',
+          en: 'Forensic inspection proved visually and mathematically that ECB mode is unacceptable for medical imaging. As identical bone density blocks produce identical ciphertext bytes, diagnosis can be inferred without key.',
+          es: 'El peritaje demostró que el modo ECB es inaceptable para imágenes médicas. Como bloques homogéneos producen cifras idénticas, el diagnóstico puede inferirse sin la clave.'
+        },
+        metrics: [
+          { icon: 'fas fa-eye', val: 'Contorno Visível', label: { 'pt-br': 'Falha Estrutural', en: 'Structural Flaw', es: 'Falla Estructural' } },
+          { icon: 'fas fa-file-waveform', val: 'Laudo Pericial', label: { 'pt-br': 'Descarte do ECB', en: 'ECB Ban Mandated', es: 'Descarte de ECB' } },
+          { icon: 'fas fa-triangle-exclamation', val: 'Risco Crítico', label: { 'pt-br': 'Quebra de Sigilo', en: 'Privacy Breach', es: 'Quiebre de Sigilo' } }
+        ],
+        compliance: ['Cryptographic Mode Deprecation Advisory', 'HIPAA Privacy Safeguards']
+      }
+    },
     nodes: [
       {
         id: 'dicom_raw',
@@ -1076,6 +1312,44 @@ export const cyberFlowchartData = {
           es: 'Escenario Pericial: Investigador forense ejecuta `zsteg` y Chi-Cuadrado, revelando la carga oculta.'
         },
         badge: { 'pt-br': 'Esteganografia Revelada por Análise de Bits', en: 'Steganography Exposed by Bit Analysis', es: 'Esteganografía Revelada por Análisis de Bits' }
+      }
+    },
+    conclusions: {
+      safe: {
+        verdict: {
+          'pt-br': 'CANAL OCULTO EFETIVO: DELTA-E 0.07 INDETECTÁVEL AO OLHO HUMANO',
+          en: 'COVERT CHANNEL OPERATIONAL: DELTA-E 0.07 IMPERCEPTIBLE TO HUMAN EYE',
+          es: 'CANAL ENCUBIERTO OPERATIVO: DELTA-E 0.07 IMPERCEPTIBLE AL OJO HUMANO'
+        },
+        summary: {
+          'pt-br': 'A injeção de 288 bits no Bit Menos Significante (LSB) dos canais RGB substituiu apenas o ruído residual do sensor de imagem médica. Com variação cromática inferior a 0.39%, a radiografia transitou sem levantar suspeitas em firewalls de conteúdo.',
+          en: 'Embedding 288 bits into the Least Significant Bit (LSB) of RGB channels modified solely image sensor noise. With color shift below 0.39%, the X-ray traveled without triggering content firewalls.',
+          es: 'Incrustar 288 bits en el LSB de canales RGB modificó únicamente el ruido residual del sensor. Con variación inferior a 0.39%, la imagen transitó sin activar firewalls de contenido.'
+        },
+        metrics: [
+          { icon: 'fas fa-eye-slash', val: 'Delta-E 0.07', label: { 'pt-br': 'Limiar Humano: 2.30', en: 'Human Limit: 2.30', es: 'Límite Humano: 2.30' } },
+          { icon: 'fas fa-microchip', val: '288 Bits', label: { 'pt-br': 'Payload Oculto', en: 'Covert Payload', es: 'Carga Oculta' } },
+          { icon: 'fas fa-image', val: '100% Qualidade', label: { 'pt-br': 'Diagnóstico Preservado', en: 'Diagnostics Kept', es: 'Diagnóstico Intacto' } }
+        ],
+        compliance: ['Spatial Domain LSB Standards', 'Digital Watermarking Principles']
+      },
+      threat: {
+        verdict: {
+          'pt-br': 'ESTEGANOGRAFIA DESMASCARADA: zSTEG EXTRAI O PRONTUÁRIO CONFIDENCIAL',
+          en: 'STEGANOGRAPHY UNCOVERED: zSTEG RECOVERS CONFIDENTIAL PATIENT RECORD',
+          es: 'ESTEGANOGRAFÍA EXPUESTA: zSTEG RECUPERA EL EXPEDIENTE CONFIDENCIAL'
+        },
+        summary: {
+          'pt-br': 'A perícia demonstrou que a esteganografia puramente espacial falha contra esteganálise estatística (teste Chi-Quadrado). O laudo concluiu que canais médicos confidenciais exigem obrigatoriamente pré-criptografia com AES-GCM antes da ocultação.',
+          en: 'Forensic inspection proved spatial-only steganography fails against statistical steganalysis (Chi-Square test). Report concluded covert channels mandate pre-encryption with AES-GCM before embedding.',
+          es: 'El peritaje demostró que la esteganografía espacial pura falla contra esteganálisis estadístico. El dictamen concluyó que se exige cifrado previo con AES-GCM antes de ocultar datos.'
+        },
+        metrics: [
+          { icon: 'fas fa-magnifying-glass', val: 'zsteg b1,bgr', label: { 'pt-br': 'Plano Descoberto', en: 'Discovered Bitplane', es: 'Plano Descubierto' } },
+          { icon: 'fas fa-file-medical', val: 'Extraído 100%', label: { 'pt-br': 'Texto Recuperado', en: 'Payload Recovered', es: 'Texto Recuperado' } },
+          { icon: 'fas fa-shield-halved', val: 'Necessita AES', label: { 'pt-br': 'Recomendação Técnica', en: 'Technical Advisory', es: 'Consejo Técnico' } }
+        ],
+        compliance: ['Forensic Steganalysis Standards', 'ISO/IEC 27037 Digital Evidence']
       }
     },
     nodes: [
@@ -1241,6 +1515,44 @@ export const cyberFlowchartData = {
         badge: { 'pt-br': 'Chave Curta Exaurida por Força Bruta', en: 'Short Key Exhausted by Brute Force', es: 'Clave Corta Quebrada por Fuerza Bruta' }
       }
     },
+    conclusions: {
+      safe: {
+        verdict: {
+          'pt-br': 'CHAVE BLINDADA: RESISTÊNCIA COMPUTACIONAL COMPROVADA COM 256 BITS',
+          en: 'SHIELDED KEY: 256-BIT COMPUTATIONAL RESISTANCE PROVEN',
+          es: 'CLAVE BLINDADA: RESISTENCIA COMPUTACIONAL COMPROBADA CON 256 BITS'
+        },
+        summary: {
+          'pt-br': 'A substituição de chaves fracas por chaves criptográficas completas de 256 bits (`2^256` combinações) elevou a barreira computacional para além da capacidade de todos os supercomputadores da Terra, garantindo não-falsificabilidade absoluta sob TLS 1.3.',
+          en: 'Replacing truncated keys with full 256-bit cryptographic keys (`2^256` keyspace) raised defense beyond global supercomputing capacity, ensuring absolute non-forgery under strict TLS 1.3.',
+          es: 'Reemplazar claves truncadas por claves de 256 bits (`2^256`) elevó la barrera computacional más allá de cualquier supercomputador, garantizando no-falsificación bajo TLS 1.3.'
+        },
+        metrics: [
+          { icon: 'fas fa-shield-halved', val: '2^256 Espaço', label: { 'pt-br': 'Combinações Imunes', en: 'Immune Keyspace', es: 'Espacio Inmune' } },
+          { icon: 'fas fa-infinity', val: '> 10^50 Anos', label: { 'pt-br': 'Tempo de Exaustão', en: 'Exhaustion Time', es: 'Tiempo de Quiebre' } },
+          { icon: 'fas fa-lock', val: 'TLS 1.3', label: { 'pt-br': 'Canal Criptografado', en: 'Encrypted Pipe', es: 'Canal Cifrado' } }
+        ],
+        compliance: ['NIST SP 800-131A Transitions', 'RFC 8446 Strict TLS 1.3', 'FIPS 140-3 Cryptographic Security']
+      },
+      threat: {
+        verdict: {
+          'pt-br': 'QUEBRA EM 4.2 SEGUNDOS: PROVA IRREFUTÁVEL DE FALHA EM CHAVES CURTAS',
+          en: 'CRACKED IN 4.2 SECONDS: IRREFUTABLE PROOF OF TRUNCATED KEY FAILURE',
+          es: 'QUIEBRE EN 4.2 SEGUNDOS: PRUEBA IRREFUTABLE DE FALLA EN CLAVES CORTAS'
+        },
+        summary: {
+          'pt-br': 'A simulação matemática comprovou que 32 bits de chave (`2^32 = 4.294.967.296` combinações) são insuficientes contra clusters de GPU modernos rodando a 1.025 MH/s. O atacante forjaria transferências financeiras arbitrárias sem esforço.',
+          en: 'Mathematical simulation proved 32-bit keyspace (`2^32 = 4,294,967,296` combinations) is trivial against modern GPUs at 1,025 MH/s. An attacker could forge arbitrary financial wire transfers effortlessly.',
+          es: 'La simulación probó que 32 bits de clave (`2^32`) son insuficientes contra GPUs modernas a 1.025 MH/s. El atacante falsificaría transferencias bancarias sin esfuerzo.'
+        },
+        metrics: [
+          { icon: 'fas fa-bolt', val: '4.19s', label: { 'pt-br': 'Tempo de Força Bruta', en: 'Brute Force Time', es: 'Tiempo de Quiebre' } },
+          { icon: 'fas fa-gauge-high', val: '1.025 MH/s', label: { 'pt-br': 'Taxa de Hash GPU', en: 'GPU Hashrate', es: 'Tasa de Hash GPU' } },
+          { icon: 'fas fa-skull', val: 'Chave Quebrada', label: { 'pt-br': 'Falsificação Viabilizada', en: 'Forgery Feasible', es: 'Falsificación Posible' } }
+        ],
+        compliance: ['Cryptographic Keyspace Deprecation Notice']
+      }
+    },
     nodes: [
       {
         id: 'hash_capture',
@@ -1397,6 +1709,45 @@ export const cyberFlowchartData = {
           es: 'Escenario Ofensivo: Auditoría revela que el 68% de colaboradores usa variaciones predecibles de contraseñas.'
         },
         badge: { 'pt-br': '68% das Senhas Quebradas em 10 Minutos', en: '68% of Passwords Cracked in 10 Min', es: '68% de Contraseñas Quebradas en 10 Min' }
+      }
+    },
+    conclusions: {
+      safe: {
+        verdict: {
+          'pt-br': 'POLÍTICA CORPORATIVA BLINDADA: ENTROPIA > 75 BITS E RESISTÊNCIA COM ARGON2ID',
+          en: 'CORPORATE POLICY SHIELDED: ENTROPY > 75 BITS AND RESILIENCE WITH ARGON2ID',
+          es: 'POLÍTICA CORPORATIVA BLINDADA: ENTROPÍA > 75 BITS Y RESISTENCIA CON ARGON2ID'
+        },
+        summary: {
+          'pt-br': 'A transição de regras de complexidade antigas para passphrases de alta entropia (> 16 caracteres), combinada com KDF de memória rígida (Argon2id) e autenticação de dois fatores, anulou 100% dos ataques por dicionário e regras mutatórias do Hashcat.',
+          en: 'Transitioning from legacy complexity rules to high-entropy passphrases (> 16 chars), combined with memory-hard KDF (Argon2id) and multi-factor authentication, neutralized 100% of Hashcat dictionary and mutation attacks.',
+          es: 'La transición a passphrases de alta entropía (> 16 chars), KDF Argon2id y autenticación de dos factores anuló el 100% de los ataques por diccionario y reglas de Hashcat.'
+        },
+        metrics: [
+          { icon: 'fas fa-gauge-high', val: '> 75 bits', label: { 'pt-br': 'Entropia Real', en: 'Real Entropy', es: 'Entropía Real' } },
+          { icon: 'fas fa-memory', val: 'Argon2id', label: { 'pt-br': 'KDF Resistente a GPU', en: 'GPU-Hard KDF', es: 'KDF Anti-GPU' } },
+          { icon: 'fas fa-key', val: '0 Quebradas', label: { 'pt-br': 'Ataque de Mutação', en: 'Mutation Attacks', es: 'Ataques de Mutación' } },
+          { icon: 'fas fa-shield-halved', val: 'FIDO2 / MFA', label: { 'pt-br': 'Duplo Fator Mandatório', en: 'Mandatory 2FA', es: 'Doble Factor Mandatorio' } }
+        ],
+        compliance: ['NIST SP 800-63B Guidelines', 'CIS Password Policy Benchmark', 'FIDO2 / WebAuthn']
+      },
+      threat: {
+        verdict: {
+          'pt-br': 'RISCO CRÍTICO CVSS 8.8: 68% DAS CREDENCIAIS VULNERÁVEIS A REGRAS BEST64',
+          en: 'CRITICAL RISK CVSS 8.8: 68% OF CREDENTIALS VULNERABLE TO BEST64 RULES',
+          es: 'RIESGO CRÍTICO CVSS 8.8: 68% DE CREDENCIALES VULNERABLES A BEST64'
+        },
+        summary: {
+          'pt-br': 'A auditoria ofensiva provou quantitativamente que a política legada de 8 caracteres gerava falsa sensação de segurança. O laudo com pontuação CVSS 8.8 (Alta Severidade) fundamentou a aprovação imediata do novo baseline institucional.',
+          en: 'Offensive audit quantitatively proved legacy 8-character policies offered false security. The CVSS 8.8 (High) technical report justified immediate executive sign-off for enterprise policy overhaul.',
+          es: 'La auditoría probó que la política de 8 caracteres creaba una falsa sensación de seguridad. El informe con CVSS 8.8 fundamentó la aprobación inmediata del nuevo estándar corporativo.'
+        },
+        metrics: [
+          { icon: 'fas fa-skull', val: '68% Quebradas', label: { 'pt-br': 'Em Menos de 10 Min', en: 'Under 10 Minutes', es: 'En Menos de 10 Min' } },
+          { icon: 'fas fa-triangle-exclamation', val: 'CVSS 8.8', label: { 'pt-br': 'Alta Severidade', en: 'High Severity', es: 'Alta Severidad' } },
+          { icon: 'fas fa-file-signature', val: 'Aprovação TI', label: { 'pt-br': 'Reforma Institucional', en: 'Overhaul Approved', es: 'Reforma Aprobada' } }
+        ],
+        compliance: ['Vulnerability Scoring Standard CVSS v3.1']
       }
     },
     nodes: [
@@ -1562,6 +1913,44 @@ export const cyberFlowchartData = {
         badge: { 'pt-br': 'Adulteração Detectada Instantaneamente', en: 'Tampering Detected Instantly', es: 'Adulteración Detectada al Instante' }
       }
     },
+    conclusions: {
+      safe: {
+        verdict: {
+          'pt-br': 'ÁRVORE DE MERKLE VALIDADA: AUDITORIA CRIPTOGRÁFICA EM TEMPO LOGARÍTMICO O(log N)',
+          en: 'MERKLE TREE VALIDATED: LOGARITHMIC TIME CRYPTOGRAPHIC AUDITING O(log N)',
+          es: 'ÁRBOL DE MERKLE VALIDADO: AUDITORÍA CRIPTOGRÁFICA EN TIEMPO LOGARÍTMICO O(log N)'
+        },
+        summary: {
+          'pt-br': 'A estrutura binária com hashes SHA-256 permite certificar a integridade de milhares de transações financeiras distribuídas através de uma única âncora imutável de 32 bytes (Root Hash), permitindo que clientes leves auditem registros sem processar todo o banco de dados.',
+          en: 'The binary SHA-256 Merkle tree enables cryptographic certification of thousands of ledger records via a single immutable 32-byte master Root Hash, empowering lightweight clients to verify records without parsing the entire database.',
+          es: 'El árbol de Merkle SHA-256 permite certificar miles de transacciones mediante un único hash raíz de 32 bytes, permitiendo a clientes ligeros auditar registros sin procesar toda la base de datos.'
+        },
+        metrics: [
+          { icon: 'fas fa-tree', val: 'O(log N)', label: { 'pt-br': 'Complexidade de Prova', en: 'Proof Complexity', es: 'Complejidad de Prueba' } },
+          { icon: 'fas fa-anchor', val: '32 Bytes', label: { 'pt-br': 'Raiz de Merkle SHA-256', en: 'Merkle Root SHA-256', es: 'Raíz Merkle SHA-256' } },
+          { icon: 'fas fa-check-double', val: '100% Imutável', label: { 'pt-br': 'Auditoria à Prova de Fraude', en: 'Tamper-Proof Audit', es: 'A Prueba de Fraude' } }
+        ],
+        compliance: ['NIST FIPS 180-4 (SHA-256)', 'RFC 6962 (Certificate Transparency)', 'Bitcoin/Git Merkle Tree Standard']
+      },
+      threat: {
+        verdict: {
+          'pt-br': 'ADULTERAÇÃO FLAGRADA EM MILISSEGUNDOS: COLISÃO MD5 COMPROVADAMENTE INSEGURA',
+          en: 'TAMPERING FLAGGED IN MILLISECONDS: MD5 COLLISION PROVEN INSECURE',
+          es: 'ADULTERACIÓN DETECTADA EN MILISEGUNDOS: COLISIÓN MD5 PROBADA INSEGURA'
+        },
+        summary: {
+          'pt-br': 'A modificação de 1 bit na transação contábil L2 alterou a Raiz de Merkle final imediatamente, provando a eficácia do SHA-256. A análise técnica do ataque Rogue CA de colisão de prefixo escolhido confirmou que o MD5 deve ser permanentemente descontinuado.',
+          en: 'Modifying a single bit in transaction L2 altered the final Merkle Root instantly, proving SHA-256 resilience. Technical review of Rogue CA chosen-prefix collision confirmed MD5 must be permanently deprecated.',
+          es: 'Modificar 1 bit en L2 alteró la Raíz de Merkle de inmediato, probando la resistencia de SHA-256. El estudio de colisión en MD5 confirmó que debe ser descontinuado definitivamente.'
+        },
+        metrics: [
+          { icon: 'fas fa-bolt', val: '< 1ms', label: { 'pt-br': 'Detecção da Fraude', en: 'Fraud Detection Latency', es: 'Detección del Fraude' } },
+          { icon: 'fas fa-ban', val: 'MD5 Obsoleto', label: { 'pt-br': 'Risco de Colisão Real', en: 'Real Collision Risk', es: 'Riesgo de Colisión' } },
+          { icon: 'fas fa-shield-halved', val: 'SHA-256 Ativo', label: { 'pt-br': 'Integridade Preservada', en: 'Integrity Preserved', es: 'Integridad Intacta' } }
+        ],
+        compliance: ['Chosen-Prefix Collision Deprecation Advisory']
+      }
+    },
     nodes: [
       {
         id: 'data_blocks_node',
@@ -1673,7 +2062,7 @@ export const cyberFlowchartData = {
         threatExplanation: {
           'pt-br': 'Tentativa de Fraude Detectada pela Árvore de Merkle! A alteração do valor na transação L2 propagou-se pela árvore e alterou a Raiz de Merkle final. A auditoria O(log N) identificou exatamente o bloco fraudado em milissegundos!',
           en: 'Fraud Attempt Caught by Merkle Tree! Tampering with transaction L2 propagated up the tree and invalidated the Merkle Root. The O(log N) audit precisely pinpointed the tampered block in milliseconds!',
-          es: '¡Fraude Detectado por el Árbol de Merkle! La alteración del monto en L2 se propagó por el árbol e invalidó la Raíz. ¡La auditoría O(log N) identificó el bloque fraudulento al instante!'
+          es: '¡Fraude Detectado por el Árbol de Merkle! La alteración del monto en L2 se propagó por el árbol e invalidó la Raíz. ¡La auditoría O(log N) identificó el bloco fraudulento al instante!'
         }
       },
       {
@@ -1723,6 +2112,45 @@ export const cyberFlowchartData = {
           es: 'Escenario Ofensivo: Invasor altera 1 byte en el texto cifrado; la firma digital falla de inmediato.'
         },
         badge: { 'pt-br': 'Assinatura Inválida! Fraude Detectada', en: 'Invalid Signature! Tampering Caught', es: '¡Firma Inválida! Fraude Detectado' }
+      }
+    },
+    conclusions: {
+      safe: {
+        verdict: {
+          'pt-br': 'CANAL HÍBRIDO CONCLUÍDO: CONFIDENCIALIDADE, INTEGRIDADE E NÃO-REPÚDIO ASSEGURADOS',
+          en: 'HYBRID CHANNEL COMPLETED: CONFIDENTIALITY, INTEGRITY AND NON-REPUDIATION SECURED',
+          es: 'CANAL HÍBRIDO COMPLETADO: CONFIDENCIALIDAD, INTEGRIDAD Y NO-REPUDIO ASEGURADOS'
+        },
+        summary: {
+          'pt-br': 'O modelo híbrido OpenPGP combina o alto rendimento do AES-256 simétrico para cifragem do corpo da mensagem com a segurança assimétrica do RSA-4096 para encapsulamento da chave de sessão e assinatura SHA-512 com chave privada, conferindo validade jurídica e autoria irrefutável.',
+          en: 'The OpenPGP hybrid scheme combines AES-256 throughput for payload encryption with RSA-4096 asymmetric security for session key encapsulation and SHA-512 private-key signing, granting legal non-repudiation and authentic authorship.',
+          es: 'El modelo híbrido OpenPGP combina la velocidad de AES-256 para el cuerpo del mensaje con la seguridad de RSA-4096 para la clave de sesión y firma SHA-512, otorgando no-repudio y autoría irrefutable.'
+        },
+        metrics: [
+          { icon: 'fas fa-bolt', val: 'AES-256-GCM', label: { 'pt-br': 'Cifragem de Alta Velocidade', en: 'High-Throughput Cipher', es: 'Cifrado de Alta Velocidad' } },
+          { icon: 'fas fa-key', val: 'RSA-4096', label: { 'pt-br': 'Envoltório de Chave', en: 'Asymmetric Key Wrap', es: 'Envoltorio de Clave' } },
+          { icon: 'fas fa-signature', val: 'SHA-512 Sign', label: { 'pt-br': 'Não-Repúdio Jurídico', en: 'Legal Non-Repudiation', es: 'No-Repudio Jurídico' } },
+          { icon: 'fas fa-certificate', val: 'RFC 4880', label: { 'pt-br': 'Padrão OpenPGP', en: 'OpenPGP Standard', es: 'Estándar OpenPGP' } }
+        ],
+        compliance: ['OpenPGP Standard (RFC 4880)', 'NIST SP 800-57 Key Management', 'eIDAS / ICP-Brasil Legal Signature']
+      },
+      threat: {
+        verdict: {
+          'pt-br': 'FRAUDE MITM REJEITADA: FALHA DE HASH NA ASSINATURA DIGITAL DO EMISSOR',
+          en: 'MITM FORGERY REJECTED: HASH MISMATCH IN SENDER DIGITAL SIGNATURE',
+          es: 'FRAUDE MITM RECHAZADO: DISCREPANCIA EN LA FIRMA DIGITAL DEL EMISOR'
+        },
+        summary: {
+          'pt-br': 'A alteração de bytes em trânsito por um invasor MITM quebrou a integridade matemática da assinatura digital. Ao decifrar o corpo, o hash SHA-512 divergiu da assinatura feita com a chave privada do remetente e o documento foi rejeitado com alerta de violação.',
+          en: 'Modifying bytes in transit by MITM attacker broke the mathematical integrity of digital signature. Upon decryption, SHA-512 hash mismatched the signature and recipient dropped document with alert.',
+          es: 'La alteración de bytes en tránsito por un atacante MITM rompió la integridad de la firma. Al descifrar, el hash SHA-512 difirió de la firma y el documento fue rechazado con alerta.'
+        },
+        metrics: [
+          { icon: 'fas fa-file-excel', val: 'Hash Divergiu', label: { 'pt-br': 'Assinatura Inválida', en: 'Invalid Signature', es: 'Firma Inválida' } },
+          { icon: 'fas fa-user-shield', val: 'Alerta Disparado', label: { 'pt-br': 'Destinatário Avisado', en: 'Recipient Alerted', es: 'Destinatario Avisado' } },
+          { icon: 'fas fa-ban', val: 'Pacote Descartado', label: { 'pt-br': 'Zero Execução Maliciosa', en: 'Malicious Payload Dropped', es: 'Paquete Descartado' } }
+        ],
+        compliance: ['Cryptographic Non-Repudiation Defense', 'Tamper-Evident Transport Layer']
       }
     },
     nodes: [
@@ -1862,7 +2290,7 @@ export const cyberFlowchartData = {
         threatBlocked: true,
         threatExplanation: {
           'pt-br': 'Adulteração Neutralizada pela Assinatura Digital! O atacante alterou bytes na mensagem cifrada em trânsito. Ao decifrar, o hash SHA-512 recalculado divergiu completamente da assinatura feita com a chave privada do autor. O destinatário rejeitou o pacote como falso!',
-          en: 'Tampering Foil by Digital Signature! The attacker modified bytes in transit. Upon decryption, the recomputed SHA-512 hash failed verification against the author digital signature. The recipient dropped the packet as forged!',
+          en: 'Tampering Foiled by Digital Signature! The attacker modified bytes in transit. Upon decryption, the recomputed SHA-512 hash failed verification against the author digital signature. The recipient dropped the packet as forged!',
           es: '¡Adulteración Neutralizada por la Firma Digital! El atacante alteró bytes en tránsito. Al descifrar, el hash SHA-512 recalculado divergió de la firma del autor. ¡El paquete fue rechazado como falso!'
         }
       },
@@ -1893,14 +2321,11 @@ export const cyberFlowchartData = {
 };
 
 // ----------------------------------------------------------------------------
-// Renderizador HTML do Fluxograma Explicativo Animado
+// Renderizador HTML do Fluxograma Explicativo Animado com Card de Conclusão
 // ----------------------------------------------------------------------------
 export function getCyberInteractiveLabHtml(cyberId, lang = 'pt-br') {
   const data = cyberFlowchartData[cyberId];
   if (!data) return '';
-
-  const isEn = lang === 'en';
-  const isEs = lang === 'es';
 
   const tLabels = {
     'pt-br': {
@@ -1910,6 +2335,7 @@ export function getCyberInteractiveLabHtml(cyberId, lang = 'pt-br') {
       pauseBtn: 'Pausar',
       nextBtn: 'Próximo Passo',
       resetBtn: 'Reiniciar',
+      verdictBtn: 'Ver Conclusão & Veredito',
       stepPrefix: 'Etapa',
       stepOf: 'de',
       whatTitle: 'O que acontece nesta etapa',
@@ -1917,7 +2343,13 @@ export function getCyberInteractiveLabHtml(cyberId, lang = 'pt-br') {
       resTitle: 'Resultado & Validação em Tempo Real',
       alertTitle: 'Ameaça Bloqueada pela Arquitetura',
       terminalTitle: 'Telemetria & Eventos em Tempo Real',
-      interactiveHint: 'Dica: Clique em qualquer etapa do fluxograma para inspecionar seus detalhes técnicos ou troque de cenário abaixo.'
+      interactiveHint: 'Dica: Clique em qualquer etapa para inspecionar, troque de cenário ou clique em "Ver Conclusão" para o veredito final.',
+      conclHeading: 'Conclusão Arquitetural & Veredito Técnico',
+      conclMetricsHeading: 'Ganhos de Engenharia & Métricas Validadas',
+      conclStandardsHeading: 'Normas, RFCs & Conformidade Aplicada',
+      replayFlow: 'Executar Novamente',
+      testOtherScenarioSafe: 'Testar Simulação de Ataque',
+      testOtherScenarioThreat: 'Ver Cenário Seguro Aprovado'
     },
     'en': {
       title: 'Interactive Explanatory Architecture Flowchart',
@@ -1926,6 +2358,7 @@ export function getCyberInteractiveLabHtml(cyberId, lang = 'pt-br') {
       pauseBtn: 'Pause',
       nextBtn: 'Next Step',
       resetBtn: 'Reset',
+      verdictBtn: 'View Verdict & Conclusion',
       stepPrefix: 'Step',
       stepOf: 'of',
       whatTitle: 'What happens at this step',
@@ -1933,7 +2366,13 @@ export function getCyberInteractiveLabHtml(cyberId, lang = 'pt-br') {
       resTitle: 'Validation Result & Real-Time Telemetry',
       alertTitle: 'Threat Blocked by Security Architecture',
       terminalTitle: 'Real-Time Telemetry & Event Stream',
-      interactiveHint: 'Tip: Click any node in the flowchart to inspect technical details or switch simulation scenarios below.'
+      interactiveHint: 'Tip: Click any step to inspect, switch scenarios, or click "View Verdict" for the executive summary.',
+      conclHeading: 'Architectural Conclusion & Technical Verdict',
+      conclMetricsHeading: 'Engineering Outcomes & Validated Metrics',
+      conclStandardsHeading: 'Applied Standards, RFCs & Compliance',
+      replayFlow: 'Replay Flow',
+      testOtherScenarioSafe: 'Test Threat Simulation',
+      testOtherScenarioThreat: 'View Safe Approved Flow'
     },
     'es': {
       title: 'Diagrama Explicativo de Ejecución y Arquitectura',
@@ -1942,6 +2381,7 @@ export function getCyberInteractiveLabHtml(cyberId, lang = 'pt-br') {
       pauseBtn: 'Pausar',
       nextBtn: 'Paso Siguiente',
       resetBtn: 'Reiniciar',
+      verdictBtn: 'Ver Conclusión y Veredicto',
       stepPrefix: 'Etapa',
       stepOf: 'de',
       whatTitle: 'Qué sucede en esta etapa',
@@ -1949,7 +2389,13 @@ export function getCyberInteractiveLabHtml(cyberId, lang = 'pt-br') {
       resTitle: 'Resultado y Validación en Tiempo Real',
       alertTitle: 'Amenaza Bloqueada por la Arquitectura',
       terminalTitle: 'Telemetría y Registro de Eventos',
-      interactiveHint: 'Consejo: Haga clic en cualquier nodo del diagrama para inspeccionar detalles técnicos o cambie de escenario abajo.'
+      interactiveHint: 'Consejo: Haga clic en cualquier etapa, cambie de escenario o pulse "Ver Conclusión" para el veredicto final.',
+      conclHeading: 'Conclusión Arquitectónica y Veredicto Técnico',
+      conclMetricsHeading: 'Logros de Ingeniería y Métricas Validadas',
+      conclStandardsHeading: 'Normas, RFCs y Conformidad Aplicada',
+      replayFlow: 'Ejecutar Nuevamente',
+      testOtherScenarioSafe: 'Probar Simulación de Ataque',
+      testOtherScenarioThreat: 'Ver Flujo Seguro Aprobado'
     }
   }[lang] || {
     title: 'Fluxograma Explicativo de Execução & Arquitetura',
@@ -1958,6 +2404,7 @@ export function getCyberInteractiveLabHtml(cyberId, lang = 'pt-br') {
     pauseBtn: 'Pausar',
     nextBtn: 'Próximo Passo',
     resetBtn: 'Reiniciar',
+    verdictBtn: 'Ver Conclusão & Veredito',
     stepPrefix: 'Etapa',
     stepOf: 'de',
     whatTitle: 'O que acontece nesta etapa',
@@ -1965,12 +2412,17 @@ export function getCyberInteractiveLabHtml(cyberId, lang = 'pt-br') {
     resTitle: 'Resultado & Validação em Tempo Real',
     alertTitle: 'Ameaça Bloqueada pela Arquitetura',
     terminalTitle: 'Telemetria & Eventos em Tempo Real',
-    interactiveHint: 'Dica: Clique em qualquer etapa do fluxograma para inspecionar seus detalhes técnicos ou troque de cenário abaixo.'
+    interactiveHint: 'Dica: Clique em qualquer etapa para inspecionar, troque de cenário ou clique em "Ver Conclusão" para o veredito final.',
+    conclHeading: 'Conclusão Arquitetural & Veredito Técnico',
+    conclMetricsHeading: 'Ganhos de Engenharia & Métricas Validadas',
+    conclStandardsHeading: 'Normas, RFCs & Conformidade Aplicada',
+    replayFlow: 'Executar Novamente',
+    testOtherScenarioSafe: 'Testar Simulação de Ataque',
+    testOtherScenarioThreat: 'Ver Cenário Seguro Aprovado'
   };
 
   const safeScen = data.scenarios.safe;
   const threatScen = data.scenarios.threat;
-
   const totalSteps = data.nodes.length;
 
   // Montagem visual dos nós e conectores
@@ -2031,7 +2483,7 @@ export function getCyberInteractiveLabHtml(cyberId, lang = 'pt-br') {
         <span id="flow-scenario-text-${cyberId}">${escapeHtml(safeScen.banner[lang] || safeScen.banner['pt-br'])}</span>
       </div>
 
-      <!-- Barra de Controle: Play/Pause, Próximo, Reset e Indicador de Etapa -->
+      <!-- Barra de Controle: Play/Pause, Próximo, Reset, Botão Conclusão e Indicador de Etapa -->
       <div class="cyber-flow-controls">
         <div class="cyber-flow-btn-group">
           <button type="button" class="btn btn-primary cyber-flow-btn" id="btn-flow-play-${cyberId}">
@@ -2042,6 +2494,9 @@ export function getCyberInteractiveLabHtml(cyberId, lang = 'pt-br') {
           </button>
           <button type="button" class="btn btn-outline cyber-flow-btn" id="btn-flow-reset-${cyberId}">
             <i class="fas fa-rotate-right"></i> <span>${escapeHtml(tLabels.resetBtn)}</span>
+          </button>
+          <button type="button" class="btn btn-outline cyber-flow-btn btn-flow-verdict" id="btn-flow-verdict-${cyberId}">
+            <i class="fas fa-flag-checkered"></i> <span>${escapeHtml(tLabels.verdictBtn)}</span>
           </button>
         </div>
         <div class="cyber-flow-step-counter">
@@ -2116,6 +2571,38 @@ export function getCyberInteractiveLabHtml(cyberId, lang = 'pt-br') {
         </div>
       </div>
 
+      <!-- Card Especial de Conclusão Arquitetural & Veredito Técnico -->
+      <div class="cyber-flow-conclusion" id="flow-conclusion-${cyberId}" style="display: none;">
+        <div class="cyber-concl-header">
+          <div class="cyber-concl-icon"><i class="fas fa-award"></i></div>
+          <div>
+            <h3 class="cyber-concl-heading">${escapeHtml(tLabels.conclHeading)}</h3>
+            <div class="cyber-concl-verdict" id="flow-concl-verdict-${cyberId}"></div>
+          </div>
+        </div>
+
+        <p class="cyber-concl-summary" id="flow-concl-summary-${cyberId}"></p>
+
+        <div class="cyber-concl-section-title">
+          <i class="fas fa-chart-line"></i> ${escapeHtml(tLabels.conclMetricsHeading)}
+        </div>
+        <div class="cyber-concl-metrics-grid" id="flow-concl-metrics-${cyberId}"></div>
+
+        <div class="cyber-concl-section-title" style="margin-top: 14px;">
+          <i class="fas fa-certificate"></i> ${escapeHtml(tLabels.conclStandardsHeading)}
+        </div>
+        <div class="cyber-concl-compliance-wrap" id="flow-concl-compliance-${cyberId}"></div>
+
+        <div class="cyber-concl-actions">
+          <button type="button" class="btn btn-outline cyber-concl-btn" id="btn-concl-replay-${cyberId}">
+            <i class="fas fa-rotate-right"></i> ${escapeHtml(tLabels.replayFlow)}
+          </button>
+          <button type="button" class="btn btn-primary cyber-concl-btn" id="btn-concl-switch-${cyberId}">
+            <i class="fas fa-sliders"></i> <span id="label-concl-switch-${cyberId}">${escapeHtml(tLabels.testOtherScenarioSafe)}</span>
+          </button>
+        </div>
+      </div>
+
       <!-- Terminal de Telemetria e Eventos em Tempo Real -->
       <div class="cyber-flow-terminal">
         <div class="cyber-flow-terminal-header">
@@ -2139,7 +2626,7 @@ export function getCyberInteractiveLabHtml(cyberId, lang = 'pt-br') {
 }
 
 // ----------------------------------------------------------------------------
-// Anexador de Eventos e Máquina de Estado do Fluxograma Animado
+// Anexador de Eventos e Máquina de Estado do Fluxograma com Conclusão
 // ----------------------------------------------------------------------------
 export function attachCyberLabEvents(cyberId, lang = 'pt-br') {
   const data = cyberFlowchartData[cyberId];
@@ -2154,7 +2641,10 @@ export function attachCyberLabEvents(cyberId, lang = 'pt-br') {
       statusWaiting: 'Aguardando',
       statusActive: 'Processando...',
       statusPassed: 'Aprovado ✓',
-      statusBlocked: 'Bloqueado ✗'
+      statusBlocked: 'Bloqueado ✗',
+      conclLog: 'Veredito e Conclusão Arquitetural exibidos.',
+      testThreat: 'Simular Cenário de Ataque',
+      testSafe: 'Ver Cenário Seguro Aprovado'
     },
     'en': {
       playBtn: 'Play Animated Flow',
@@ -2164,7 +2654,10 @@ export function attachCyberLabEvents(cyberId, lang = 'pt-br') {
       statusWaiting: 'Waiting',
       statusActive: 'Processing...',
       statusPassed: 'Passed ✓',
-      statusBlocked: 'Blocked ✗'
+      statusBlocked: 'Blocked ✗',
+      conclLog: 'Architectural verdict and conclusion displayed.',
+      testThreat: 'Simulate Threat Attack',
+      testSafe: 'View Safe Approved Flow'
     },
     'es': {
       playBtn: 'Ejecutar Flujo Animado',
@@ -2174,7 +2667,10 @@ export function attachCyberLabEvents(cyberId, lang = 'pt-br') {
       statusWaiting: 'Esperando',
       statusActive: 'Procesando...',
       statusPassed: 'Aprobado ✓',
-      statusBlocked: 'Bloqueado ✗'
+      statusBlocked: 'Bloqueado ✗',
+      conclLog: 'Veredicto y conclusión arquitectónica mostrados.',
+      testThreat: 'Simular Escenario de Ataque',
+      testSafe: 'Ver Flujo Seguro Aprobado'
     }
   }[lang] || {
     playBtn: 'Executar Fluxo Animado',
@@ -2184,7 +2680,10 @@ export function attachCyberLabEvents(cyberId, lang = 'pt-br') {
     statusWaiting: 'Aguardando',
     statusActive: 'Processando...',
     statusPassed: 'Aprovado ✓',
-    statusBlocked: 'Bloqueado ✗'
+    statusBlocked: 'Bloqueado ✗',
+    conclLog: 'Veredito e Conclusão Arquitetural exibidos.',
+    testThreat: 'Simular Cenário de Ataque',
+    testSafe: 'Ver Cenário Seguro Aprovado'
   };
 
   let currentStep = 0;
@@ -2202,6 +2701,7 @@ export function attachCyberLabEvents(cyberId, lang = 'pt-br') {
   const btnPlayLabel = document.getElementById(`btn-flow-play-label-${cyberId}`);
   const btnNext = document.getElementById(`btn-flow-next-${cyberId}`);
   const btnReset = document.getElementById(`btn-flow-reset-${cyberId}`);
+  const btnVerdict = document.getElementById(`btn-flow-verdict-${cyberId}`);
   const stepCounterEl = document.getElementById(`flow-step-num-${cyberId}`);
 
   const inspTag = document.getElementById(`flow-insp-tag-${cyberId}`);
@@ -2212,6 +2712,16 @@ export function attachCyberLabEvents(cyberId, lang = 'pt-br') {
   const inspRes = document.getElementById(`flow-insp-res-${cyberId}`);
   const inspAlert = document.getElementById(`flow-insp-alert-${cyberId}`);
   const inspAlertText = document.getElementById(`flow-insp-alert-text-${cyberId}`);
+
+  // Elementos do Card de Conclusão
+  const conclEl = document.getElementById(`flow-conclusion-${cyberId}`);
+  const conclVerdictEl = document.getElementById(`flow-concl-verdict-${cyberId}`);
+  const conclSummaryEl = document.getElementById(`flow-concl-summary-${cyberId}`);
+  const conclMetricsEl = document.getElementById(`flow-concl-metrics-${cyberId}`);
+  const conclComplianceEl = document.getElementById(`flow-concl-compliance-${cyberId}`);
+  const btnConclReplay = document.getElementById(`btn-concl-replay-${cyberId}`);
+  const btnConclSwitch = document.getElementById(`btn-concl-switch-${cyberId}`);
+  const labelConclSwitch = document.getElementById(`label-concl-switch-${cyberId}`);
 
   const terminalLogs = document.getElementById(`flow-terminal-logs-${cyberId}`);
   const terminalBadge = document.getElementById(`flow-terminal-badge-${cyberId}`);
@@ -2228,6 +2738,51 @@ export function attachCyberLabEvents(cyberId, lang = 'pt-br') {
     line.innerHTML = `<span class="cyber-log-time">${getTimestamp()}</span> <span class="cyber-log-msg">${escapeHtml(text)}</span>`;
     terminalLogs.appendChild(line);
     terminalLogs.scrollTop = terminalLogs.scrollHeight;
+  }
+
+  function showConclusion() {
+    if (!conclEl) return;
+    const conclData = data.conclusions?.[activeScenario];
+    if (!conclData) return;
+
+    conclEl.className = `cyber-flow-conclusion ${activeScenario}`;
+
+    if (conclVerdictEl) {
+      conclVerdictEl.textContent = conclData.verdict[lang] || conclData.verdict['pt-br'];
+    }
+
+    if (conclSummaryEl) {
+      conclSummaryEl.textContent = conclData.summary[lang] || conclData.summary['pt-br'];
+    }
+
+    if (conclMetricsEl) {
+      conclMetricsEl.innerHTML = (conclData.metrics || []).map(m => `
+        <div class="cyber-concl-metric-card">
+          <i class="${m.icon}"></i>
+          <div class="cyber-concl-metric-val">${escapeHtml(m.val)}</div>
+          <div class="cyber-concl-metric-label">${escapeHtml(m.label[lang] || m.label['pt-br'])}</div>
+        </div>
+      `).join('');
+    }
+
+    if (conclComplianceEl) {
+      conclComplianceEl.innerHTML = (conclData.compliance || []).map(c => `
+        <span class="cyber-concl-tag"><i class="fas fa-check"></i> ${escapeHtml(c)}</span>
+      `).join('');
+    }
+
+    if (labelConclSwitch) {
+      labelConclSwitch.textContent = activeScenario === 'safe'
+        ? tLabels.testThreat
+        : tLabels.testSafe;
+    }
+
+    conclEl.style.display = 'block';
+    conclEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function hideConclusion() {
+    if (conclEl) conclEl.style.display = 'none';
   }
 
   function updateInspector(idx) {
@@ -2328,6 +2883,16 @@ export function attachCyberLabEvents(cyberId, lang = 'pt-br') {
 
     updateInspector(idx);
 
+    // Se chegou ao fim ou bloqueou a ameaça, apresenta a Conclusão Arquitetural!
+    const isFinalNode = idx === totalNodes - 1;
+    const isBlocked = isThreat && data.nodes[idx].threatBlocked;
+
+    if (isFinalNode || isBlocked) {
+      showConclusion();
+    } else {
+      hideConclusion();
+    }
+
     // Adiciona log ao terminal
     const currentNode = data.nodes[idx];
     const logText = isThreat
@@ -2397,6 +2962,7 @@ export function attachCyberLabEvents(cyberId, lang = 'pt-br') {
 
     if (isThreat && currentNode.threatBlocked) {
       addTerminalLog('danger', `[BLOQUEIO] O fluxo foi interceptado nesta etapa de segurança e não pode prosseguir.`);
+      showConclusion();
       return;
     }
 
@@ -2404,11 +2970,13 @@ export function attachCyberLabEvents(cyberId, lang = 'pt-br') {
       renderStep(currentStep + 1, true);
     } else {
       addTerminalLog('success', `[FIM] Você já alcançou a última etapa do fluxograma.`);
+      showConclusion();
     }
   }
 
   function resetFlow() {
     pauseFlow();
+    hideConclusion();
     renderStep(0);
     if (terminalLogs) {
       terminalLogs.innerHTML = `
@@ -2424,6 +2992,7 @@ export function attachCyberLabEvents(cyberId, lang = 'pt-br') {
     if (activeScenario === scen) return;
     activeScenario = scen;
     pauseFlow();
+    hideConclusion();
 
     if (btnSafe && btnThreat) {
       if (scen === 'safe') {
@@ -2470,6 +3039,15 @@ export function attachCyberLabEvents(cyberId, lang = 'pt-br') {
     });
   }
 
+  if (btnVerdict) {
+    btnVerdict.addEventListener('click', (e) => {
+      e.preventDefault();
+      pauseFlow();
+      showConclusion();
+      addTerminalLog('success', `[VEREDITO] ${tLabels.conclLog}`);
+    });
+  }
+
   if (btnSafe) {
     btnSafe.addEventListener('click', (e) => {
       e.preventDefault();
@@ -2481,6 +3059,23 @@ export function attachCyberLabEvents(cyberId, lang = 'pt-br') {
     btnThreat.addEventListener('click', (e) => {
       e.preventDefault();
       setScenario('threat');
+    });
+  }
+
+  if (btnConclReplay) {
+    btnConclReplay.addEventListener('click', (e) => {
+      e.preventDefault();
+      resetFlow();
+      playFlow();
+    });
+  }
+
+  if (btnConclSwitch) {
+    btnConclSwitch.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetScenario = activeScenario === 'safe' ? 'threat' : 'safe';
+      setScenario(targetScenario);
+      playFlow();
     });
   }
 

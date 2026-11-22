@@ -3441,3 +3441,253 @@ body.light-mode .cyber-flow-terminal {
   background: #0f172a;
   border-color: rgba(2, 132, 199, 0.25);
 }
+
+/* ==========================================================================
+   Cybersecurity Architectural Conclusion & Technical Verdict Card
+   ========================================================================== */
+.btn-flow-verdict {
+  background: rgba(34, 211, 238, 0.1);
+  border-color: rgba(34, 211, 238, 0.4);
+  color: #22d3ee;
+}
+
+.btn-flow-verdict:hover {
+  background: rgba(34, 211, 238, 0.2);
+  border-color: #22d3ee;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.3);
+}
+
+.cyber-flow-conclusion {
+  border-radius: 16px;
+  padding: 22px 24px;
+  margin: 18px 0;
+  animation: cyberFadeInUp 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transition: all 0.35s ease;
+}
+
+.cyber-flow-conclusion.safe {
+  background: linear-gradient(135deg, rgba(6, 78, 59, 0.35), rgba(15, 23, 42, 0.95));
+  border: 1.5px solid rgba(16, 185, 129, 0.5);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45), inset 0 0 25px rgba(16, 185, 129, 0.08);
+}
+
+.cyber-flow-conclusion.threat {
+  background: linear-gradient(135deg, rgba(127, 29, 29, 0.4), rgba(15, 23, 42, 0.95));
+  border: 1.5px solid rgba(239, 68, 68, 0.55);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45), inset 0 0 25px rgba(239, 68, 68, 0.08);
+}
+
+@keyframes cyberFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cyber-concl-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cyber-concl-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.cyber-flow-conclusion.safe .cyber-concl-icon {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.35);
+}
+
+.cyber-flow-conclusion.threat .cyber-concl-icon {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.35);
+}
+
+.cyber-concl-heading {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #94a3b8;
+  margin: 0 0 6px 0;
+  font-weight: 700;
+}
+
+.cyber-concl-verdict {
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: 0.2px;
+}
+
+.cyber-flow-conclusion.safe .cyber-concl-verdict {
+  color: #34d399;
+  text-shadow: 0 0 12px rgba(52, 211, 153, 0.3);
+}
+
+.cyber-flow-conclusion.threat .cyber-concl-verdict {
+  color: #f87171;
+  text-shadow: 0 0 12px rgba(248, 113, 113, 0.3);
+}
+
+.cyber-concl-summary {
+  font-size: 0.94rem;
+  line-height: 1.65;
+  color: #e2e8f0;
+  margin: 0 0 16px 0;
+}
+
+.cyber-concl-section-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+.cyber-concl-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.cyber-concl-metric-card {
+  background: rgba(3, 7, 18, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.cyber-concl-metric-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.4);
+}
+
+.cyber-concl-metric-card > i {
+  font-size: 1.15rem;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.cyber-concl-metric-val {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.cyber-concl-metric-label {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  line-height: 1.3;
+}
+
+.cyber-concl-compliance-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.cyber-concl-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.76rem;
+  padding: 4px 9px;
+  border-radius: 6px;
+}
+
+.cyber-concl-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cyber-concl-btn {
+  font-size: 0.84rem;
+  padding: 8px 15px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Light mode support for Conclusion Card */
+body.light-mode .cyber-flow-conclusion.safe {
+  background: #f0fdf4;
+  border-color: #16a34a;
+  box-shadow: 0 8px 25px rgba(22, 163, 74, 0.12);
+}
+
+body.light-mode .cyber-flow-conclusion.threat {
+  background: #fef2f2;
+  border-color: #dc2626;
+  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.12);
+}
+
+body.light-mode .cyber-concl-heading {
+  color: #64748b;
+}
+
+body.light-mode .cyber-flow-conclusion.safe .cyber-concl-verdict {
+  color: #15803d;
+}
+
+body.light-mode .cyber-flow-conclusion.threat .cyber-concl-verdict {
+  color: #b91c1c;
+}
+
+body.light-mode .cyber-concl-summary {
+  color: #1e293b;
+}
+
+body.light-mode .cyber-concl-metric-card {
+  background: #ffffff;
+  border-color: #cbd5e1;
+}
+
+body.light-mode .cyber-concl-metric-val {
+  color: #0f172a;
+}
+
+body.light-mode .cyber-concl-tag {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #334155;
+}

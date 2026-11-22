@@ -223,21 +223,29 @@ try {
   assert(cyberFlowchartKeys.length === 11, `All 11 Cybersecurity Flowcharts registered in cyber-labs.js (found ${cyberFlowchartKeys.length})`);
 
   let allFlowchartsValid = true;
+  let allConclusionsValid = true;
   for (const cProj of cyberProjectsData) {
     const fData = cyberFlowchartData[cProj.id];
     if (!fData || !Array.isArray(fData.nodes) || fData.nodes.length < 4) {
       allFlowchartsValid = false;
       break;
     }
+    if (!fData.conclusions?.safe?.verdict || !fData.conclusions?.threat?.verdict) {
+      allConclusionsValid = false;
+    }
     for (const lang of langs) {
       const html = getCyberInteractiveLabHtml(cProj.id, lang);
-      if (!html || !html.includes("cyber-flow-widget") || !html.includes("cyber-flow-node") || !html.includes("cyber-flow-inspector")) {
+      if (!html || !html.includes("cyber-flow-widget") || !html.includes("cyber-flow-node") || !html.includes("cyber-flow-inspector") || !html.includes("cyber-flow-conclusion")) {
         allFlowchartsValid = false;
         break;
+      }
+      if (!fData.conclusions.safe.verdict[lang] || !fData.conclusions.threat.verdict[lang]) {
+        allConclusionsValid = false;
       }
     }
   }
   assert(allFlowchartsValid, "All 11 Cybersecurity Projects have complete Animated Explanatory Flowcharts in PT-BR, EN, and ES");
+  assert(allConclusionsValid, "All 11 Cybersecurity Projects have complete Architectural Conclusions & Verdicts (Safe/Threat) in PT, EN, ES");
 } catch (err) {
   assert(false, "Verifying trilingual data and cybersecurity assets", err.message);
 }
