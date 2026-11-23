@@ -495,8 +495,8 @@ function initPortfolio() {
   if (activeSkillTab) activeSkillTab.click();
 
   const projectsData = [
-    { key: 35, category: "institucional", featured: true, image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800", link: "https://dimcontrol.com.br/" },
-    { key: 32, category: "sistema", featured: true, image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800", link: "https://meuqueridogerente.web.app/" },
+    { key: 35, category: ["institucional", "sistema"], featured: true, badgeKey: "proj35Badge", badgeIcon: "fas fa-award", badgeDefault: "Destaque • Engenharia Global", image: "/dimcontrol-preview.jpg", link: "https://dimcontrol.com.br/" },
+    { key: 32, category: "sistema", featured: true, badgeKey: "proj32Badge", badgeIcon: "fas fa-star", badgeDefault: "Destaque • Gestão de Frotas", image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800", link: "https://meuqueridogerente.web.app/" },
     { key: 1, category: "sistema", image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800", link: "https://cafeteria-nine-mu.vercel.app/" },
     { key: 2, category: "institucional", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800", link: "https://ampla-bvt7.vercel.app/" },
     { key: 3, category: "sistema", image: "https://plus.unsplash.com/premium_photo-1699387204388-120141c76d51?q=80&w=1978&auto=format&fit=crop", link: "https://steptodischarge.vercel.app/" },
@@ -913,7 +913,8 @@ function initPortfolio() {
       });
     } else {
       projectsData.forEach((proj) => {
-        if (filter === 'all' || proj.category === filter) {
+        const matchesFilter = filter === 'all' || (Array.isArray(proj.category) ? proj.category.includes(filter) : proj.category === filter);
+        if (matchesFilter) {
           const div = document.createElement('div');
           div.className = `project-card${proj.featured ? ' project-card-featured' : ''}`;
           div.setAttribute('data-aos', 'fade-up');
@@ -929,6 +930,7 @@ function initPortfolio() {
           div.innerHTML = `
             <div class="project-image">
               <img src="${proj.image}" alt="Projeto ${proj.key}" loading="lazy">
+              ${proj.badgeKey ? `<span class="project-card-badge"><i class="${escapeText(proj.badgeIcon || 'fas fa-star')}"></i> <span data-key="${escapeText(proj.badgeKey)}">${escapeText(proj.badgeDefault || 'Destaque')}</span></span>` : ''}
             </div>
             <div class="project-body">
               <h3 data-key="proj${proj.key}Title"></h3>

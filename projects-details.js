@@ -2,35 +2,38 @@
 
 export const projectTechDetails = {
   35: {
-    stack: ["Next.js 15", "React 19", "TypeScript 5.7", "Tailwind CSS", "Firebase", "Zod", "Lucide Icons", "Security Audit Scripts"],
+    stack: ["Next.js 15", "React 19", "TypeScript 5.7", "Tailwind CSS", "Firebase", "Zod", "Lucide Icons", "Siemens VisMockup", "GD&T", "Security Audit Scripts"],
     "pt-br": {
       category: "Engenharia & Mobilidade Sustentável",
-      architecture: "Arquitetura moderna baseada em Next.js 15 (App Router) e React 19 com exportação otimizada de alta performance, validação estrita de esquemas com Zod, integração Firebase e auditoria automatizada de segurança.",
+      architecture: "Arquitetura web corporativa de alta performance baseada em Next.js 15 (App Router) e React 19 com compilação estática otimizada para Core Web Vitals, tipagem estrita com TypeScript 5.7, validação defensiva de esquemas com Zod, integração serverless Google Firebase e auditoria automatizada de segurança DevSecOps.",
       highlights: [
-        "Interface corporativa de alta precisão com animações fluidas e renderização responsiva em Tailwind CSS.",
-        "Validação de dados e formulários de engenharia no cliente e servidor utilizando esquemas tipados com Zod e TypeScript.",
-        "Backend serverless integrado ao ecossistema Google Firebase para gestão de contatos, mídia e autenticação.",
-        "Scripts dedicados de auditoria de segurança (DevSecOps) garantindo cabeçalhos HTTP seguros e proteção contra XSS/CSRF."
+        "Mais de 20 anos de experiência comprovada em engenharia dimensional com certificação oficial em parceria com a Ford Motor Company.",
+        "Análise de variação geométrica (DVA) com Siemens VisMockup / VisVSA, definição de RPS (Reference Point System) e tolerâncias GD&T (ASME Y14.5 / ISO 1101).",
+        "Validação técnica para novas plataformas de veículos elétricos (EVs), baterias e programas globais como Lincoln, Explorer, Maverick e Bronco.",
+        "Especificação de dispositivos de controle (Jigs & Gauges), Controle Estatístico de Processo (SPC) e garantia de conformidade de montagem e acabamento.",
+        "Stack moderna com Next.js 15, Tailwind CSS, formulários validados com Zod, backend no Firebase e cabeçalhos de segurança reforçados."
       ]
     },
     "en": {
       category: "Engineering & Sustainable Mobility",
-      architecture: "Modern architecture built on Next.js 15 (App Router) and React 19 with high-performance static/hybrid optimization, strict schema validation via Zod, Firebase integration, and automated security auditing.",
+      architecture: "High-performance corporate web architecture built on Next.js 15 (App Router) and React 19 with static optimization for Core Web Vitals, strict TypeScript 5.7 typing, defensive Zod schema validation, serverless Google Firebase integration, and automated DevSecOps security auditing.",
       highlights: [
-        "High-precision corporate UI with fluid animations and responsive styling powered by Tailwind CSS.",
-        "Client and server-side engineering form and data validation using strongly-typed Zod schemas and TypeScript.",
-        "Serverless backend integrated with Google Firebase for lead management, media delivery, and authentication.",
-        "Dedicated DevSecOps security audit scripts enforcing strict HTTP security headers and XSS/CSRF protection."
+        "Over 20 years of proven experience in dimensional engineering and official certification in partnership with Ford Motor Company.",
+        "Geometric variation analysis (DVA) using Siemens VisMockup / VisVSA, RPS (Reference Point System) definition, and GD&T tolerancing (ASME Y14.5 / ISO 1101).",
+        "Technical validation for new EV mobility platforms, battery systems, and global programs including Lincoln, Explorer, Maverick, and Bronco.",
+        "Specification of checking fixtures (Jigs & Gauges), Statistical Process Control (SPC), and strict fit-and-finish quality assurance.",
+        "Modern stack powered by Next.js 15, Tailwind CSS, Zod validated forms, Firebase cloud backend, and hardened security headers."
       ]
     },
     "es": {
       category: "Ingeniería y Movilidad Sostenible",
-      architecture: "Arquitectura moderna basada en Next.js 15 (App Router) y React 19 con optimización de alto rendimiento, validación estricta de esquemas con Zod, integración con Firebase y auditoría de seguridad automatizada.",
+      architecture: "Arquitectura web corporativa de alto rendimiento basada en Next.js 15 (App Router) y React 19 con optimización estática para Core Web Vitals, tipado estricto con TypeScript 5.7, validación defensiva de esquemas con Zod, integración serverless con Google Firebase y auditoría de seguridad DevSecOps automatizada.",
       highlights: [
-        "Interfaz corporativa de alta precisión con animaciones fluidas y diseño responsivo en Tailwind CSS.",
-        "Validación de datos y formularios de ingeniería mediante esquemas tipados con Zod y TypeScript.",
-        "Backend serverless integrado con Google Firebase para gestión de contactos, medios y autenticación.",
-        "Scripts dedicados de auditoría de seguridad (DevSecOps) que garantizan cabeceras HTTP seguras y protección XSS/CSRF."
+        "Más de 20 años de experiencia comprobada en ingeniería dimensional con certificación oficial en alianza con Ford Motor Company.",
+        "Análisis de variación geométrica (DVA) con Siemens VisMockup / VisVSA, definición de RPS (Reference Point System) y tolerancias GD&T (ASME Y14.5 / ISO 1101).",
+        "Validación técnica para nuevas plataformas de vehículos eléctricos (EV), baterías y programas globales como Lincoln, Explorer, Maverick y Bronco.",
+        "Especificación de dispositivos de control (Jigs & Gauges), Control Estadístico de Procesos (SPC) y aseguramiento estricto de ensamble y acabado.",
+        "Stack moderno con Next.js 15, Tailwind CSS, formularios validados con Zod, backend en Firebase y cabeceras de seguridad reforzadas."
       ]
     }
   },
